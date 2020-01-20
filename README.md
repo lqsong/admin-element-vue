@@ -15,7 +15,7 @@
 复制 '.env.production' 重命名为 ' .env.production.local' , 修改对应的参数.
 
 ## 项目设置
-```
+```npm
 npm ci ( npm install )
 ```
 
@@ -39,7 +39,7 @@ npm run test:unit
 npm run test:e2e
 ```
 
-### 无、修复
+### 五、修复
 ```
 npm run lint
 ```

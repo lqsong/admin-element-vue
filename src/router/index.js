@@ -17,12 +17,18 @@ import LayoutIndex from '@/layout/Index';
 export const constantRoutes = [
   {
     path: '/login',
+    meta: {
+      title: '登录'
+    },
     component: () => import('@/views/Login'),
     hidden: true
   },
 
   {
     path: '/404',
+    meta: {
+      title: 'Not Found'
+    },
     component: () => import('@/views/404'),
     hidden: true
   },
