@@ -22,11 +22,11 @@ router.beforeEach(async(to, from, next) => {
 
     if (whiteList.indexOf(to.path) !== -1) {
         // 在白名单中，直接进入
-        next()
+        next();
     } else {
         const hasRoles = store.getters.roles && store.getters.roles.length > 0;
         if (hasRoles) {
-            next()
+            next();
         } else {
             try {
 
@@ -42,7 +42,7 @@ router.beforeEach(async(to, from, next) => {
                 router.addRoutes(accessRoutes);
                 
                 // 设置replace: true，这样导航就不会留下历史记录
-                next({ ...to, replace: true })
+                next({ ...to, replace: true });
 
             } catch (error) {
                 // 删除Token
@@ -60,10 +60,10 @@ router.beforeEach(async(to, from, next) => {
             }
         }
     }
-})
+});
 
 router.afterEach(() => {
     // finish progress bar
     NProgress.done();
-})
+});
 

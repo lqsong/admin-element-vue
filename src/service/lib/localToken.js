@@ -6,7 +6,7 @@ import { siteTokenKey } from '@/settings';
  * @author LiQingSong
  */
 export function getToken() {
-  return Cookies.get(siteTokenKey)
+  return Cookies.get(siteTokenKey);
 }
 
 /** 
@@ -14,7 +14,7 @@ export function getToken() {
  * @author LiQingSong
  */
 export function setToken(token) {
-  return Cookies.set(siteTokenKey, token)
+  return Cookies.set(siteTokenKey, token);
 }
 
 /** 
@@ -22,5 +22,5 @@ export function setToken(token) {
  * @author LiQingSong
  */
 export function removeToken() {
-  return Cookies.remove(siteTokenKey)
+  return Cookies.remove(siteTokenKey);
 }

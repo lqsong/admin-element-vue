@@ -11,7 +11,7 @@ export function login(url, data) {
       url: url,
       method: 'post',
       data
-    })
+    });
 }
 
 /**
@@ -20,9 +20,9 @@ export function login(url, data) {
  */
 export function getInfo() {
     /* return request({
-      url: '/user/info',
+      url: 'user/info',
       method: 'get'
-    }) */
+    }); */
     return new Promise((resolve) => {
         resolve({
             'data': {
@@ -32,7 +32,7 @@ export function getInfo() {
                 avatar: "https://cn.vuejs.org/images/logo.png"
             }
         });
-    })
+    });
 }
 
 /**
@@ -43,5 +43,5 @@ export function logout(url) {
     return request({
       url: url,
       method: 'post'
-    })
+    });
 }

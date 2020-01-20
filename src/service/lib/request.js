@@ -2,11 +2,10 @@
  * 重置 axios
  * @author LiQingSong
  */
-import router from '@/router';
 import store from '@/store';
 import axios from 'axios';
 import { Message, MessageBox } from 'element-ui';
-import { ajaxHeadersTokenKey, siteLoginRouter, serverLoginUrl, ajaxResponseNoVerifyUrl } from '@/settings';
+import { ajaxHeadersTokenKey, serverLoginUrl, ajaxResponseNoVerifyUrl } from '@/settings';
 import { isExternal } from '@/utlis/validate';
 
 // 创建一个axios实例
@@ -34,14 +33,14 @@ service.interceptors.request.use(
       // store.getters.token 加载时已在 [store/user] 用 getToken()获取Token
       // 让每个请求携带令牌
       // ajaxHeadersTokenKey -> ['X-Token'] 是自定义头key
-      config.headers[ajaxHeadersTokenKey] = store.getters.token
+      config.headers[ajaxHeadersTokenKey] = store.getters.token;
     }
-    return config
+    return config;
   },
   error => {
     // 处理请求错误
-    console.log(error) // for debug
-    return Promise.reject(error)
+    console.log(error); // for debug
+    return Promise.reject(error);
   }
 );
 
@@ -73,16 +72,15 @@ service.interceptors.response.use(
                 closeOnClickModal: false,
                 closeOnPressEscape: false,
                 message: '当前用户登入信息已失效，请重新登入再操作',
-                beforeClose: (action, instance, done) => {
-                  window.location.href = serverLoginUrl;
+                beforeClose: (action, instance, done) => {                  
                   if (isExternal(serverLoginUrl)) {
                       window.location.href = serverLoginUrl;
                   } else {
-                      router.next(siteLoginRouter + "?redirect=" + router.fullPath);
+                      window.location.reload();                    
                   }
                   console.log(action, instance, done);
                 }
-              })
+              });
             }
             
             break;
@@ -93,25 +91,27 @@ service.interceptors.response.use(
                 message: res.msg || 'Error',
                 type: 'error',
                 duration: 5 * 1000
-              })
+              });
             }
             break;
       }
 
-      // return Promise.reject(new Error(res.msg || 'Error'))
-      return res;
+      // 返回错误 走 catch 
+      return Promise.reject(res);
+      // return Promise.reject(new Error(res.msg || 'Error'));
+      // return res;
     } else {
-      return res
+      return res;
     }
   },
   error => {
-    console.log('err' + error) // for debug
+    console.log('err' + error); // for debug
     Message({
       message: error.message,
       type: 'error',
       duration: 5 * 1000
-    })
-    return Promise.reject(error)
+    });
+    return Promise.reject(error);
   }
 );
 

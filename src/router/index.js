@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-Vue.use(VueRouter)
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
 
 // 引入Index框架
-import LayoutIndex from '@/layout/Index'
+import LayoutIndex from '@/layout/Index';
 
 /**
  * 固定路由
@@ -41,7 +41,7 @@ export const constantRoutes = [
   }
 
  
-]
+];
 
 /**
  * 异步路由
@@ -87,8 +87,8 @@ const router = createRouter();
 
 // 细节见: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
-  const newRouter = createRouter()
-  router.matcher = newRouter.matcher // 重置路由
+  const newRouter = createRouter();
+  router.matcher = newRouter.matcher; // 重置路由
 }
 
 export default router;

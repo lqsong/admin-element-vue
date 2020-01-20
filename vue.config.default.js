@@ -1,7 +1,7 @@
-const path = require('path')
+const path = require('path');
 
 function resolve(dir) {
-  return path.join(__dirname, dir)
+  return path.join(__dirname, dir);
 }
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
   outputDir: 'dist',
   productionSourceMap: false,
   devServer: {
-      port: 8081,
+      port: 8081
       // 配置反向代理
       /*
       proxy: {
@@ -39,7 +39,7 @@ module.exports = {
       config.module
         .rule('svg')
         .exclude.add(resolve('src/assets/icons/svg'))
-        .end()
+        .end();
       config.module
         .rule('icons')
         .test(/\.svg$/)
@@ -50,7 +50,7 @@ module.exports = {
         .options({
           symbolId: 'icon-[name]'
         })
-        .end()
+        .end();
 
   }
-}
+};

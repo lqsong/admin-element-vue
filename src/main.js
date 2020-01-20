@@ -1,24 +1,24 @@
-import Vue from 'vue'
+import Vue from 'vue';
 
 // CSS 重置 初始化
-import 'normalize.css/normalize.css'
+import 'normalize.css/normalize.css';
 
 // 引入 ElementUI
-import ElementUI from 'element-ui'
-import '@/assets/css/element-variables.scss'
+import ElementUI from 'element-ui';
+import '@/assets/css/element-variables.scss';
 
 // 全局样式
-import '@/assets/css/global.scss'
+import '@/assets/css/global.scss';
 
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import App from './App.vue';
+import router from './router';
+import store from './store';
 
 // 自定义svg icon
-import '@/components/SvgIcon'
+import '@/components/SvgIcon';
 
 // 权限控制
-import '@/router/permission'
+import '@/router/permission';
 
 
 // 设置 ElementUI
@@ -29,10 +29,10 @@ Vue.use(ElementUI);
 
 
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');
