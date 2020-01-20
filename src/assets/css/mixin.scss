@@ -1,0 +1,11 @@
+/**
+ * 公共CSS
+ * @author LiQingSong
+ */
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
