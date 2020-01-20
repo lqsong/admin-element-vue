@@ -19,20 +19,21 @@ export function login(url, data) {
  * @author LiQingSong
  */
 export function getInfo() {
-    /* return request({
-      url: 'user/info',
+    return request({
+      url: '/user/info',
       method: 'get'
-    }); */
+    });
+    /* 
     return new Promise((resolve) => {
         resolve({
             'data': {
-                token: '',
                 roles: ['admin'],
                 name: '王小二',
                 avatar: "https://cn.vuejs.org/images/logo.png"
             }
         });
-    });
+    }); 
+    */
 }
 
 /**

@@ -24,13 +24,14 @@ import '@/components/SvgIcon';
 // 权限控制
 import '@/router/permission';
 
+// 引入扩展内容
+import '@/main.ext';
 
 // 设置 ElementUI
 Vue.use(ElementUI);
 // 如果想要 设置语言，按照，如下方式声明
 // import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 // Vue.use(ElementUI, { locale })
-
 
 
 Vue.config.productionTip = false;
