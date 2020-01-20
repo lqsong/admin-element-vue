@@ -1,3 +1,7 @@
+/** 
+ * Vuex.Store getters
+ * @author LiQingSong
+ */
 const getters = {
   token: state => state.user.token,
   avatar: state => state.user.avatar,

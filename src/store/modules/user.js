@@ -1,3 +1,7 @@
+/** 
+ * 用户 Store
+ * @author LiQingSong
+ */
 import { login, logout, getInfo } from '@/service/user';
 import { getToken, setToken, removeToken } from '@/service/lib/localToken';
 import { resetRouter } from '@/router';

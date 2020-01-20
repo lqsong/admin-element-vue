@@ -1,3 +1,7 @@
+/** 
+ * 权限验证
+ * @author LiQingSong
+ */
 import router from './index';
 import store from '@/store';
 import { Message } from 'element-ui';

@@ -1,3 +1,7 @@
+/**
+ * 入口
+ * @author LiQingSong
+ */
 import Vue from 'vue';
 
 // CSS 重置 初始化

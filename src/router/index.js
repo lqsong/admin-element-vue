@@ -1,3 +1,7 @@
+/** 
+ * 路由 主入口
+ * @author LiQingSong
+ */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);

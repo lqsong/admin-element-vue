@@ -1,3 +1,7 @@
+/** 
+ * Vuex.Store主入口
+ * @author LiQingSong
+ */
 import Vue from 'vue';
 import Vuex from 'vuex';
 import getters from './getters';

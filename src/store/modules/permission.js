@@ -1,3 +1,7 @@
+/** 
+ * 权限 Store
+ * @author LiQingSong
+ */
 import { asyncRoutes, constantRoutes } from '@/router';
 
 /**

@@ -1,3 +1,7 @@
+/** 
+ * 项目 Store
+ * @author LiQingSong
+ */
 const state = {   
 };
 const mutations = {  

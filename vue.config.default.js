@@ -1,3 +1,7 @@
+/**
+ * vue-cli 配置文件
+ * @author LiQingSong
+ */
 const path = require('path');
 
 function resolve(dir) {
