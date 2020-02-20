@@ -4,7 +4,11 @@
  */
 
  $headerHeight: 60px; // 头部高度
+ $headerBreadcrumbHeight:34px; // 头部存在情况下面包屑高度
  // IndexLayout 左侧边栏
  $leftSideBarWidth: 200px; // 左侧边栏宽度
 
+ $mainBgColor: #f0f3f4; // 主窗口背景色
+ $leftBgColor: #1c2b36; // 左侧菜单背景色
+ $leftMenuActiveBgColor: #209e91; // 左侧菜单选中色
 
