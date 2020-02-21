@@ -2,3 +2,24 @@
  * 全局样式
  * @author LiQingSong
  */
+ /* 饿了么滚动 重置样式 */
+.default-scrollbar {
+    width: 100%;
+    height: 100%;
+}
+.flex-scrollbar {
+    width: auto;
+    height: auto;
+    flex: 1;
+}
+.el-scrollbar__wrap.default-scrollbar__wrap {
+    overflow-x: auto;
+}
+.horizontal-scrollbar {
+    .el-scrollbar__wrap {
+        overflow-x: hidden;
+        .el-scrollbar__view{
+            white-space: nowrap;
+         }
+    }
+}
