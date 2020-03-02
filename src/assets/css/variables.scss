@@ -9,12 +9,25 @@
  $leftSideBarWidth: 200px; // 左侧边栏宽度
 
  $mainBgColor: #f0f3f4; // 主窗口背景色
- $leftBgColor: #1c2b36; // 左侧菜单背景色
- $leftMenuActiveBgColor: #209e91; // 左侧菜单选中色
 
+ $leftBgColor: #1c2b36; // 左侧菜单背景色
+ $leftFontColor:rgba(255,255,255,.8); // 左侧菜单字体颜色
+ $leftMenuActiveBgColor: #209e91; // 左侧菜单选中色
+ $leftMenuActiveFontColor: #FFFFFF; // 左侧菜单选中字体色
+
+ $subMenuBg:#000000;
+ $subMenuActiveFontColor: #FFFFFF;
+ 
  $topMenuFontColor: rgba(255,255,255,.8); // 顶部菜单字体颜色
  $topMenuHoverFontColor: rgba(255,255,255,0.9); // 顶部菜单字体Hover颜色
  $topMenuHoverBgColor: #000000; // 顶部菜单Hover背景色
- $topMenuActiveBgColor: rgba(0,0,0,0.5); // 顶部菜单Active背景色
+ $topMenuActiveBgColor: rgba(0,0,0,0.4); // 顶部菜单Active背景色
+
+ // the :export directive is the magic sauce for webpack
+ // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+:export {
+    menuBg: $leftBgColor;
+    menuText: $leftFontColor;
+}
 
 

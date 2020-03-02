@@ -2,6 +2,10 @@
  * 全局样式
  * @author LiQingSong
  */
+ @import './variables.scss';
+ @import './mixin.scss';
+ @import './sidebar-menu.scss';
+ 
  /* 饿了么滚动 重置样式 */
 .default-scrollbar {
     width: 100%;

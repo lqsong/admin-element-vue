@@ -1,0 +1,57 @@
+/**
+ * 侧边栏 - 菜单 样式
+ * @author LiQingSong
+ */
+#app {
+
+    .indexlayout-left-menu{
+        a {
+            width: 100%;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .svg-icon {
+            margin-right: 16px;
+        }
+      
+        .el-menu {
+            border: none;
+            height: 100%;
+            width: 100% !important;
+        }
+
+        // menu hover
+        .el-submenu__title,
+        .el-menu-item {
+            height: 40px;
+            line-height: 40px;
+            &:hover {
+                color: $leftMenuActiveBgColor !important;
+            }
+        }
+
+
+        & .nest-menu .el-submenu>.el-submenu__title,
+        & .el-submenu .el-menu-item {
+            background-color: $subMenuBg !important;
+
+            &:hover {
+                color: $leftMenuActiveBgColor !important;
+            }
+        }
+
+        .is-active>.el-submenu__title {
+            color: $subMenuActiveFontColor !important;
+        }
+        .el-submenu .el-menu-item.is-active,
+        .el-menu-item.is-active{
+            background-color: $leftMenuActiveBgColor !important;
+            color: $leftMenuActiveFontColor !important;
+        }
+
+
+
+    }
+
+}

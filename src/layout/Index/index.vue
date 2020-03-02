@@ -1,51 +1,6 @@
 <template>
   <div id="indexlayout">
-    <div id="indexlayout-left">
-      <div class="indexlayout-left-logo">
-        <router-link to="/" class="logo-url">
-          <h3 class="logo-title">AdminElementVue</h3>
-        </router-link>
-      </div>
-      <div class="indexlayout-left-menu">
-          <el-scrollbar class="flex-scrollbar" wrap-class="default-scrollbar__wrap">
-              <el-menu
-                default-active="2"
-                class="el-menu-vertical-demo">
-                <el-submenu index="1">
-                  <template slot="title">
-                    <i class="el-icon-location"></i>
-                    <span>导航一</span>
-                  </template>
-                  <el-menu-item-group>
-                    <template slot="title">分组一</template>
-                    <el-menu-item index="1-1">选项1</el-menu-item>
-                    <el-menu-item index="1-2">选项2</el-menu-item>
-                  </el-menu-item-group>
-                  <el-menu-item-group title="分组2">
-                    <el-menu-item index="1-3">选项3</el-menu-item>
-                  </el-menu-item-group>
-                  <el-submenu index="1-4">
-                    <template slot="title">选项4</template>
-                    <el-menu-item index="1-4-1">选项1</el-menu-item>
-                  </el-submenu>
-                </el-submenu>
-                <el-menu-item index="2">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">导航二</span>
-                </el-menu-item>
-                <el-menu-item index="3" disabled>
-                  <i class="el-icon-document"></i>
-                  <span slot="title">导航三</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                  <i class="el-icon-setting"></i>
-                  <span slot="title">导航四</span>
-                </el-menu-item>
-              </el-menu>
-        
-          </el-scrollbar>
-      </div>
-    </div>
+    <layout-index-left />
     <div id="indexlayout-right" class="fiexd-header">
         <div class="indexlayout-right-top">
             <div class="indexlayout-right-top-top">
@@ -89,10 +44,12 @@
  * @author LiQingSong
  */
 import AppMain from '../components/AppMain';
+import LayoutIndexLeft from './LayoutIndexLeft';
 export default {
   name: 'LayoutIndex',
   components: {
-    AppMain
+    AppMain,
+    LayoutIndexLeft
   }
 };
 </script>
@@ -103,45 +60,6 @@ export default {
   height: 100vh;
   overflow: hidden;
 }
-#indexlayout-left {
-  display: flex;
-  flex-direction: column;
-  width: $leftSideBarWidth;
-  height: 100vh;
-  background-color: $leftBgColor;
-  color: $topMenuFontColor;
-  .indexlayout-left-logo{
-    width: 100%;
-    height: $headerHeight;
-    line-height: $headerHeight;
-    text-align: center;
-    vertical-align: middle;
-    .logo-url {
-      display: inline-block;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      .logo-title {
-        display: inline-block;
-        margin: 0;
-        font-size: 16px;
-        font-family: Roboto,sans-serif;
-        color: $topMenuFontColor;
-      }
-    }
-    
-  }
-  .indexlayout-left-menu{
-    flex: 1;
-    display: flex;
-    /* overflow: auto; */
-    // height: calc(100vh);
-    /* .el-scrollbar {
-        flex:1;
-    } */
-  }
-}
-
 #indexlayout-right {
   position: relative;
   flex: 1;
@@ -233,6 +151,4 @@ export default {
   }
 
 }
-
-
 </style>
