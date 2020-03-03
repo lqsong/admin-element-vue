@@ -1,6 +1,9 @@
 {
   "name": "admin-element-vue",
   "version": "0.1.0",
+  "description": "Vue element admin. https://github.com/lqsong/admin-element-vue",
+  "author": "LiQingSong <957698457@qq.com>",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -10,6 +13,15 @@
     "lint": "vue-cli-service lint",
     "svgo": "svgo -f src/assets/icons/svg --config=src/components/SvgIcon/svgo.yml"
   },
+  "keywords": [
+    "vue",
+    "admin",
+    "dashboard",
+    "element-ui",
+    "boilerplate",
+    "admin-template",
+    "management-system"
+  ],
   "dependencies": {
     "axios": "^0.19.1",
     "core-js": "^3.4.4",
