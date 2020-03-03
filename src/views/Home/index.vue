@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../../assets/logo.png">
+    <img alt="Vue logo" src="../../assets/images/logo.png">
     <h3>Hello Admin-Element-Vue</h3> 
   </div>
 </template>

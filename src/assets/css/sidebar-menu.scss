@@ -17,8 +17,11 @@
       
         .el-menu {
             border: none;
+            width: 54px;
             height: 100%;
-            width: 100% !important;
+            &:not(.el-menu--collapse) {
+                width: 100% !important;
+            }
         }
 
         // menu hover
@@ -42,7 +45,7 @@
         }
 
         .is-active>.el-submenu__title {
-            color: $subMenuActiveFontColor !important;
+            color: $leftMenuActiveBgColor !important;
         }
         .el-submenu .el-menu-item.is-active,
         .el-menu-item.is-active{
@@ -50,8 +53,83 @@
             color: $leftMenuActiveFontColor !important;
         }
 
-
-
+        
     }
 
+    .narrow {
+        .indexlayout-left-menu {
+            .el-submenu__title{
+                span {
+                    height: 0;
+                    width: 0;
+                    overflow: hidden;
+                    visibility: hidden;
+                    display: inline-block;
+                }
+                i{
+                    display: none;
+                }
+            }
+
+        }
+    }
+
+
+}
+
+// when menu collapsed
+.el-menu--vertical {
+    a {
+        width: 100%;
+        overflow: hidden;
+        text-decoration: none;
+    }
+    &>.el-menu {
+        .svg-icon {
+          margin-right: 16px;
+        }
+
+        .el-submenu__title,
+        .el-menu-item {
+            height: 40px;
+            line-height: 40px;
+            &:hover {
+                color: $leftMenuActiveBgColor !important;
+            }
+        }
+
+        .is-active>.el-submenu__title {
+            color: $leftMenuActiveBgColor !important;
+        }
+        .el-submenu .el-menu-item.is-active,
+        .el-menu-item.is-active{
+            background-color: $leftMenuActiveBgColor !important;
+            color: $leftMenuActiveFontColor !important;
+        }
+    }
+
+    
+
+    
+
+    // the scroll bar appears when the subMenu is too long
+   /* >.el-menu--popup {
+        max-height: 100vh;
+        
+
+      
+        overflow-y: auto;
+        &::-webkit-scrollbar-track-piece {
+        background: #d3dce6;
+        }
+
+        &::-webkit-scrollbar {
+        width: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+        background: #99a9bf;
+        border-radius: 20px;
+        } 
+    }*/
 }
