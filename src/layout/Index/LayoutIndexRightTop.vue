@@ -7,11 +7,13 @@
                <div class="indexlayout-top-menu">
                   <el-scrollbar class="horizontal-scrollbar">
                       <template v-if="siteTopNavEnable">
-                          <a class="indexlayout-top-menu-li active" href="javascript:void(null);">首页</a> 
-                          <a class="indexlayout-top-menu-li" href="javascript:void(null);">图表统计</a>
-                          <a class="indexlayout-top-menu-li" href="javascript:void(null);">列表页</a>
-                          <a class="indexlayout-top-menu-li" href="javascript:void(null);">发布页</a> 
-                          <a class="indexlayout-top-menu-li" href="javascript:void(null);">详情页</a> 
+
+                          <template v-for="route in permission_routes">
+                            <app-link v-if="!route.hidden" :to="route.path" :key="route.path" class="indexlayout-top-menu-li" :class="{'active': getTopMenuActive === route.path}">
+                                {{ route.meta.title }}
+                            </app-link>
+                          </template>
+
                       </template> 
                       <breadcrumb v-else class="breadcrumb" />   
                   </el-scrollbar>
@@ -45,18 +47,26 @@
 <script>
 import { mapGetters } from 'vuex';
 import Breadcrumb from '@/components/Breadcrumb';
+import AppLink from '@/components/Link';
+import { getBelongTopMenuPath } from '@/utlis/permission';
 export default {
   name: 'LayoutIndexRightTop',
   components: {
-    Breadcrumb
+    Breadcrumb,
+    AppLink
   },
   computed: {
     ...mapGetters([
+      'permission_routes',
       'siteTopNavEnable',
       'sidebarOpened'
     ]),
     isCollapse() {
       return !this.sidebarOpened;
+    },
+    getTopMenuActive() {
+      let route = this.$route;
+      return getBelongTopMenuPath(route);
     }
   },
   methods: {
@@ -164,7 +174,8 @@ export default {
       width: 100%;
       height: $headerBreadcrumbHeight;
       background-color: $mainBgColor;
-      .indexlayout-right-top-bot-home{
+      .indexlayout-right-top-bot-home {
+        margin-right: 5px;
         width: $headerBreadcrumbHeight;
         height: $headerBreadcrumbHeight;
         line-height: $headerBreadcrumbHeight;

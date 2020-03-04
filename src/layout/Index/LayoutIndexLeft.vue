@@ -11,154 +11,23 @@
               <el-menu
                 :background-color="variables.menuBg"
                 :text-color="variables.menuText"
-                default-active="2"
+                :default-active="getSidebarMenuActive"
                 :collapse="isCollapse"
                 :collapse-transition="false">
-                <div>
-                <el-submenu index="1">
-                  <template slot="title">
-                    <svg-icon icon-class="home" />
-                    <span>导航一</span>
-                  </template>
-                    <div>
-                        <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                            <el-menu-item index="1-1">选项1</el-menu-item>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                            <el-menu-item index="1-2">选项2</el-menu-item>
-                        </a>
-                    </div>
-                    <div  class="nest-menu">
-                        <el-submenu index="1-41" >
-                            <template slot="title">选项41</template>
-                            <div>
-                                <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                                    <el-menu-item index="1-4-11">选项11</el-menu-item>
-                                </a>
-                            </div>
-                        </el-submenu>
-                    </div>
 
-                    <div  class="nest-menu">
-                        <el-submenu index="1-42" >
-                            <template slot="title">选项42</template>
-                            <div>
-                                <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                                    <el-menu-item index="1-4-12">选项12</el-menu-item>
-                                </a>
-                            </div>
-                        </el-submenu>
-                    </div>
-                    <div  class="nest-menu">
-                        <el-submenu index="1-43" >
-                            <template slot="title">选项43</template>
-                            <div>
-                                <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                                    <el-menu-item index="1-4-13">选项13</el-menu-item>
-                                </a>
-                            </div>
-                        </el-submenu>
-                    </div>
-                    <div  class="nest-menu">
-                        <el-submenu index="1-44" >
-                            <template slot="title">选项4</template>
-                            <div>
-                                <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                                    <el-menu-item index="1-4-14">选项14</el-menu-item>
-                                </a>
-                            </div>
-                        </el-submenu>
-                    </div>
-                    <div  class="nest-menu">
-                        <el-submenu index="1-45" >
-                            <template slot="title">选项45</template>
-                            <div>
-                                <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                                    <el-menu-item index="1-4-15">选项15</el-menu-item>
-                                </a>
-                            </div>
-                        </el-submenu>
-                    </div>
-                    <div  class="nest-menu">
-                        <el-submenu index="1-46" >
-                            <template slot="title">选项46</template>
-                            <div>
-                                <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                                    <el-menu-item index="1-4-16">选项16</el-menu-item>
-                                </a>
-                            </div>
-                        </el-submenu>
-                    </div>
-                    <div  class="nest-menu">
-                        <el-submenu index="1-47" >
-                            <template slot="title">选项47</template>
-                            <div>
-                                <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                                    <el-menu-item index="1-4-17">选项17</el-menu-item>
-                                </a>
-                            </div>
-                        </el-submenu>
-                    </div>
-                    <div  class="nest-menu">
-                        <el-submenu index="1-48" >
-                            <template slot="title">选项48</template>
-                            <div>
-                                <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                                    <el-menu-item index="1-4-18">选项18</el-menu-item>
-                                </a>
-                            </div>
-                        </el-submenu>
-                    </div>
+                  <template v-if="!siteTopNavEnable">
+                    <sidebar-menu-item v-for="route in permission_routes" :key="route.path" :routes="route" :base-path="route.path" :resolve-path="route.path" :active-top-menu="getTopMenuActive"/>
+                  </template>
+                  <template v-else>
+                    <template v-for="route in permission_routes">
+                      <template v-if="!route.hidden">
+
+                        <sidebar-menu-item v-for="route2 in route.children" :key="route.path + '/' + route2.path" :routes="route2" :base-path="route.path" :resolve-path="route.path" :active-top-menu="getTopMenuActive"/>
                     
-                </el-submenu>
-                </div>
-                <div>
-                <el-submenu index="11">
-                  <template slot="title">
-                    <svg-icon icon-class="chart" />
-                    <span>图表</span>
+                      </template>
+                    </template>
                   </template>
-                    <div>
-                        <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                            <el-menu-item index="1-11">选项1</el-menu-item>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                            <el-menu-item index="1-21">选项2</el-menu-item>
-                        </a>
-                    </div>
-                    <div  class="nest-menu">
-                        <el-submenu index="1-41" >
-                            <template slot="title">选项4</template>
-                            <div>
-                                <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                                    <el-menu-item index="1-4-11">选项1</el-menu-item>
-                                </a>
-                            </div>
-                        </el-submenu>
-                    </div>
-                </el-submenu>
-                </div>
-                <div>
-                    <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                        <el-menu-item index="2">
-                            <svg-icon icon-class="page" />
-                            <span slot="title">自定义页面</span>
-                        </el-menu-item>
-                    </a>
-                </div>
-                <div>
-                    <a href="#/plan/manage/list" class="router-link-exact-active router-link-active">
-                        <el-menu-item index="3">
-                            <svg-icon icon-class="set" />
-                            <span slot="title">设置</span>
-                        </el-menu-item>
-                    </a>
-                </div>
-
+           
               </el-menu>
         
           </el-scrollbar>
@@ -168,21 +37,38 @@
 <script>
 import { mapGetters } from 'vuex';
 import variables from '@/assets/css/variables.scss';
+import SidebarMenuItem from '@/layout/components/SidebarMenuItem';
+import { getBelongTopMenuPath, getActiveSidebarMenuPath } from '@/utlis/permission';
 export default {
-  name: 'LayoutIndexLeft',
-  computed: {
-    ...mapGetters([
-      'permission_routes',
-      'siteSidebarLogo',
-      'sidebarOpened'
-    ]),
-    variables() {
-      return variables;
+    name: 'LayoutIndexLeft',
+    components: {
+      SidebarMenuItem
     },
-    isCollapse() {
-      return !this.sidebarOpened;
+    computed: {
+        ...mapGetters([
+          'permission_routes',
+          'siteTopNavEnable',
+          'siteSidebarLogo',
+          'sidebarOpened'
+        ]),
+        variables() {
+            return variables;
+        },
+        isCollapse() {
+            return !this.sidebarOpened;
+        },
+        getSidebarMenuActive: function() {
+          const route = this.$route;
+          return getActiveSidebarMenuPath(route);
+        },
+        getTopMenuActive() {
+          let route = this.$route;
+          return getBelongTopMenuPath(route);
+        }
+    },
+    mounted() { 
+        // console.log(this.permission_routes);
     }
-  }
 };
 </script>
 <style lang="scss" scoped>

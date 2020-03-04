@@ -1,22 +1,24 @@
 <template>
-      <div v-if="!routes.hidden">
-        <template v-if="hasChild(routes.children)">
-            <app-link :to="resolvePathUrl(routes.path)">
-                <el-menu-item :index="resolvePathUrl(routes.path)">
+      <div v-if="!routes.hidden" v-show="menuIsShow(routes)">
+        <template v-if="!hasChild(routes.children)">
+            <app-link :to="getResolvePathUrlRoutes">
+                <el-menu-item :index="getResolvePathUrlRoutes">
                     <menu-title :icon="routes.meta.icon||(routes.meta&&routes.meta.icon)" :title="routes.meta.title" />
                 </el-menu-item>
             </app-link>
         </template>
 
-        <el-submenu v-else :index="resolvePathUrl(routes.path)" popper-append-to-body>
+        <el-submenu v-else :index="getResolvePathUrlRoutes" popper-append-to-body>
             <template slot="title">
                 <menu-title v-if="routes.meta" :icon="routes.meta && routes.meta.icon" :title="routes.meta.title" />
             </template>
-            <menu-item
+            <sidebar-menu-item
                 v-for="child in routes.children"
-                :key="resolvePathUrl(routes.path) + '/' + child.path" 
+                :key="getResolvePathUrlRoutes + '/' + child.path" 
                 :routes="child"
                 :base-path="getBasePath"
+                :resolve-path="getResolvePathUrlRoutes"
+                :active-top-menu="getActiveTopMenu"
                 class="nest-menu"
             />
         </el-submenu>
@@ -24,11 +26,13 @@
 </template>
 <script>
 import path from 'path';
-import { isExternal } from '@/utils/validate';
+import { mapGetters } from 'vuex';
+import { isExternal } from '@/utlis/validate';
+import { getBelongTopMenuPath } from '@/utlis/permission';
 import MenuTitle from './MenuTitle';
 import AppLink from '@/components/Link';
 export default {
-    name: 'SidebarItem',
+    name: 'SidebarMenuItem',
     props: {
         // route object
         routes: {
@@ -54,9 +58,42 @@ export default {
         MenuTitle,
         AppLink
     },
-    methods: {
+    computed: {
+        ...mapGetters([
+            'siteTopNavEnable'
+        ]),
         getBasePath: function() {
             return this.basePath;
+        },
+        getActiveTopMenu: function () {
+            if (this.activeTopMenu !== '') {
+                return this.activeTopMenu;
+            }
+            const route = this.$route;
+            /* 
+            const { meta, path } = route;
+            if (meta.belongTopMenu) {
+                return meta.belongTopMenu;
+            }
+            return '/' + path.split('/')[1];
+            */
+            return getBelongTopMenuPath(route);
+        },
+        getResolvePathUrlRoutes: function() {
+            return this.resolvePathUrl(this.routes.path);
+        }
+    },
+    methods: {
+        menuIsShow(route) {
+            if (!this.siteTopNavEnable) {
+                return true;
+            }
+            let activeTopMenu = this.getBasePath;
+            const { meta } = route;            
+            if (meta.belongTopMenu) {
+                activeTopMenu = meta.belongTopMenu;
+            }
+            return activeTopMenu === this.getActiveTopMenu;
         },
         hasChild(children = []) {
             const showChildren = children.filter(item => {
