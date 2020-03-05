@@ -27,3 +27,35 @@
          }
     }
 }
+/* 自定义drawer样式 */
+.custom-drawer {
+    .el-drawer__header {
+      border-bottom: 1px solid #e8eaec;
+      margin-bottom: 0;
+      padding: 14px 16px;
+      span:focus {
+        outline: none;
+      }
+    }
+    .el-drawer__body {
+        position: static;
+        height: calc(100% - 55px);
+        overflow: auto;
+        padding-top: 16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: 53px;
+    }
+    .ecrrc-drawer-footer {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-top: 1px solid #e8e8e8;
+        padding: 10px 16px;
+        text-align: right;
+        background: #fff;
+        z-index: 4;
+    }
+  }
+  

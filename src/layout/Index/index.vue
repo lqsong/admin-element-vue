@@ -6,8 +6,9 @@
         <div class="indexlayout-right-main" >
           <app-main />
         </div>
-    </div>    
-  </div>
+    </div>  
+    <site-settings />  
+  </div>  
 </template>
 <script>
 /** 
@@ -18,17 +19,21 @@ import { mapGetters } from 'vuex';
 import AppMain from '../components/AppMain';
 import LayoutIndexLeft from './LayoutIndexLeft';
 import LayoutIndexRightTop from './LayoutIndexRightTop';
+import SiteSettings from '../components/SiteSettnigs';
 export default {
   name: 'LayoutIndex',
   components: {
     AppMain,
     LayoutIndexLeft,
-    LayoutIndexRightTop
+    LayoutIndexRightTop,
+    SiteSettings
   },
   computed: {
     ...mapGetters([
       'siteFiexdHeader'
     ])
+  },
+  mounted() { 
   }
 };
 </script>
