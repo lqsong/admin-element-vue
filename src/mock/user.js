@@ -2,6 +2,7 @@
  * 用户 Mock 数据
  * @author LiQingSong
  */
+import { getQueryValue } from '@/utlis/url';
 
 const tokens = {
     admin: {
@@ -11,6 +12,13 @@ const tokens = {
       token: 'test-token'
     }
 };
+const users = {
+  'admin-token': {
+    roles: ['admin'],
+    avatar: '',
+    name: 'Admin'
+  }
+};
   
 export default [
     // 用户登录
@@ -18,7 +26,8 @@ export default [
         url: '/user/login',
         type: 'post',
         response: options => {
-          const { username } = options.body;
+          const body = JSON.parse(options.body);
+          const { username } = body;
           const token = tokens[username];
 
           // mock error
@@ -31,25 +40,33 @@ export default [
     
           return {
             code: 200,
-            data: {
-                token
-            }
+            data: token
           };
         }
     },
     // 获取用户信息
     {
-        url: '/user/info',
+        url: '/user/info.*',
         type: 'get',
-        response: () => {
+        response: options => {
+
+          const token = getQueryValue(options.url, 'token');
+          const info = users[token];
+          
+          // mock error
+          if (!info) {
             return {
-                code: 200,
-                data: {
-                    roles: ['admin'],
-                    name: '王小二',
-                    avatar: "https://cn.vuejs.org/images/logo.png"
-                }
+              code: 500,
+              msg: '登录信息失效，无法获取用户信息。'
             };
+          }
+
+          return {
+              code: 200,
+              data: info
+          };
+
+
         }
     },
     // 用户退出

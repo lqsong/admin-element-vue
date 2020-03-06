@@ -16,7 +16,7 @@
             </el-input>
           </el-form-item>
           <el-form-item>
-            <el-button class="submit" type="primary" @click="submitForm('ruleForm')">登录</el-button>
+            <el-button class="submit" type="primary" @click="submitForm('ruleForm')" :loading="loading">登录</el-button>
           </el-form-item>
         </el-form>
 
@@ -28,9 +28,10 @@ export default {
   name: 'Login',
   data() {
       return {
+        loading: false,
         ruleForm: {
-          username: '',
-          password: ''
+          username: 'admin',
+          password: '123456'
         },
         rules: {
           username: [
@@ -45,9 +46,23 @@ export default {
     },
     methods: {
       submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
+        const _this = this;
+        _this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+              _this.loading = true;
+              const paramData = {
+                  username: _this.ruleForm.username,
+                  password: _this.ruleForm.password
+              };
+              _this.$store.dispatch('user/login', paramData)
+                .then(() => {
+                  // this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+                  _this.loading = false;
+                  _this.$router.push({ path:'/'});
+                })
+                .catch(() => {
+                  _this.loading = false;
+                });
           } else {
             console.log('error submit!!');
             return false;

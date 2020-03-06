@@ -59,7 +59,7 @@ service.interceptors.response.use(
     // 如果自定义代码不是200，则判断为错误。
     if (code !== 200) {
       // 获取替换后的字符串
-      const reqUrl = response.config.url.replace(response.config.baseURL, '');
+      const reqUrl = response.config.url.split("?")[0].replace(response.config.baseURL, '');
       const noVerifyBool = ajaxResponseNoVerifyUrl.includes(reqUrl);
       
       switch (code) {

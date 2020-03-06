@@ -18,22 +18,12 @@ export function login(url, data) {
  * 用户 - 获取用户信息和权限
  * @author LiQingSong
  */
-export function getInfo() {
+export function getInfo(token) {
     return request({
       url: '/user/info',
-      method: 'get'
+      method: 'get',
+      params: { token: token }
     });
-    /* 
-    return new Promise((resolve) => {
-        resolve({
-            'data': {
-                roles: ['admin'],
-                name: '王小二',
-                avatar: "https://cn.vuejs.org/images/logo.png"
-            }
-        });
-    }); 
-    */
 }
 
 /**

@@ -46,9 +46,9 @@ const actions = {
     },
     
     // 获取用户信息
-    getInfo({ commit }) {
+    getInfo({ commit, state }) {
         return new Promise((resolve, reject) => {
-            getInfo().then(response => {
+            getInfo(state.token).then(response => {
                 const { data } = response;
 
                 if (!data) {
