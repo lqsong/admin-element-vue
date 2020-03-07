@@ -6,7 +6,7 @@ import { login, logout, getInfo } from '@/service/user';
 import { getToken, setToken, removeToken } from '@/service/lib/localToken';
 import { resetRouter } from '@/router';
 import { isExternal } from '@/utlis/validate';
-import { serverLoginUrl, serverLogoutUrl } from '@/settings';
+import { serverLoginUrl, serverLogoutUrl, siteLoginRouter } from '@/settings';
 
 const state = {
     token: getToken(),
@@ -76,9 +76,12 @@ const actions = {
     // 用户退出
     logout({ commit }) {
         if (isExternal(serverLogoutUrl)) {
-            commit('SET_TOKEN', '');
-            commit('SET_ROLES', []);
-            window.location.href = serverLogoutUrl;
+            return new Promise((resolve) => {
+              commit('SET_TOKEN', '');
+              commit('SET_ROLES', []);
+              window.location.href = serverLogoutUrl;
+              resolve({isExternal: true, siteLoginRouter: siteLoginRouter});
+            });
         } else {
             return new Promise((resolve, reject) => {
                 logout(serverLogoutUrl).then(() => {
@@ -86,7 +89,7 @@ const actions = {
                     commit('SET_ROLES', []);
                     removeToken();
                     resetRouter();
-                    resolve();
+                    resolve({isExternal: false, siteLoginRouter: siteLoginRouter});
                 }).catch(error => {
                     reject(error);
                 });

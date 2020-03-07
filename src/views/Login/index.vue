@@ -41,8 +41,22 @@ export default {
             { required: true, message: '请输入密码', trigger: 'blur' },
             { min: 6, max: 32, message: '长度在 6 到 32 个字符', trigger: 'blur' }
           ]
-        }
+        },
+        redirect: undefined,
+        otherQuery: {}
       };
+    },
+    watch: {
+      $route: {
+        handler: function(route) {
+          const query = route.query;
+          if (query) {
+            this.redirect = query.redirect;
+            this.otherQuery = this.getOtherQuery(query);
+          }
+        },
+        immediate: true
+      }
     },
     methods: {
       submitForm(formName) {
@@ -54,20 +68,26 @@ export default {
                   username: _this.ruleForm.username,
                   password: _this.ruleForm.password
               };
-              _this.$store.dispatch('user/login', paramData)
-                .then(() => {
-                  // this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+              _this.$store.dispatch('user/login', paramData).then(() => {
                   _this.loading = false;
-                  _this.$router.push({ path:'/'});
-                })
-                .catch(() => {
+                  _this.$router.push({ path: _this.redirect || '/', query: _this.otherQuery },() => {});
+                }).catch(error => {
+                  _this.$message.error(error || 'Has Error');
                   _this.loading = false;
-                });
+              });
           } else {
             console.log('error submit!!');
             return false;
           }
         });
+      },
+      getOtherQuery(query) {
+        return Object.keys(query).reduce((acc, cur) => {
+          if (cur !== 'redirect') {
+            acc[cur] = query[cur];
+          }
+          return acc;
+        }, {});
       }
     }
 };

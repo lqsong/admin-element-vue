@@ -31,7 +31,7 @@
                         </span>
                         <el-dropdown-menu slot="dropdown">
                             <el-dropdown-item>个人信息</el-dropdown-item>
-                            <el-dropdown-item divided>退出</el-dropdown-item>
+                            <el-dropdown-item divided  @click.native="logout">退出</el-dropdown-item>
                         </el-dropdown-menu>
                     </el-dropdown>
                </div>
@@ -72,6 +72,17 @@ export default {
   methods: {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar');
+    },
+    async logout() {
+      try {
+          const { isExternal, siteLoginRouter } = await this.$store.dispatch('user/logout');
+          if (!isExternal){
+            this.$router.push(siteLoginRouter + "?redirect=" + this.$route.fullPath);
+          }
+      } catch (error) {
+          this.$message.error(error || 'Has Error');
+      }
+      
     }
   }
 };
