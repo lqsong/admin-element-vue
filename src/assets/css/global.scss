@@ -58,4 +58,30 @@
         z-index: 4;
     }
   }
+
+/* 初始样式 */
+.main-conent {
+    margin: 24px;
+}
+.main-conent-minheight{
+    min-height: calc(100% - 48px - 122px);
+}
+.main-conent-bgFFF{
+    background-color: #FFFFFF;
+}
+.main-conent-borderradius{
+    border-radius: 4px;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.float-left{
+    float: left;
+}
+.float-right {
+    float: right;
+}
+.text-right {
+    text-align: right;
+}
   

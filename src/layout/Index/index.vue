@@ -5,6 +5,7 @@
         <layout-index-right-top />
         <div class="indexlayout-right-main" >
           <app-main />
+          <layout-index-right-footer />
         </div>
     </div>  
     <site-settings />  
@@ -19,6 +20,7 @@ import { mapGetters } from 'vuex';
 import AppMain from '../components/AppMain';
 import LayoutIndexLeft from './LayoutIndexLeft';
 import LayoutIndexRightTop from './LayoutIndexRightTop';
+import LayoutIndexRightFooter from './LayoutIndexRightFooter';
 import SiteSettings from '../components/SiteSettnigs';
 export default {
   name: 'LayoutIndex',
@@ -26,6 +28,7 @@ export default {
     AppMain,
     LayoutIndexLeft,
     LayoutIndexRightTop,
+    LayoutIndexRightFooter,
     SiteSettings
   },
   computed: {

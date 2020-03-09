@@ -66,7 +66,7 @@ export const constantRoutes = [
         path: 'home',
         component: () => import('@/views/Home'),
         name: 'home',
-        meta: { title: '主控台', icon: 'home', belongTopMenu: '/' }
+        meta: { title: '主控台', icon: 'control', belongTopMenu: '/' }
       },
       {
         path: 'monitor',
@@ -74,7 +74,7 @@ export const constantRoutes = [
         name: 'monitor',
         meta: { 
             title: '监控页',
-            icon: 'home',
+            icon: 'monitoring',
             belongTopMenu: '/',
             breadcrumb: [
               {
