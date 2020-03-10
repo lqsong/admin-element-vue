@@ -28,7 +28,7 @@ import '@/router/permission';
 import '@/main.ext';
 
 // 设置 ElementUI
-Vue.use(ElementUI);
+Vue.use(ElementUI, { size: 'small' });
 // 如果想要 设置语言，按照，如下方式声明
 // import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 // Vue.use(ElementUI, { locale })
