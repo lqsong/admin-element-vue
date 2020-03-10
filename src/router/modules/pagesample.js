@@ -23,7 +23,7 @@ const pagesampleRouter = {
             name: 'pagesample-list',
             meta: { 
                 title: '列表页面',
-                icon: 'page',
+                icon: 'pagelist',
                 roles: ['pagesample-list']
             },
             children: [
@@ -31,13 +31,19 @@ const pagesampleRouter = {
                     path: 'one',
                     component: () => import('@/views/Pagesample/List/one'),
                     name: 'pagesample-list-one',
-                    meta: { title: '样例1', roles: ['pagesample-list-one'] }
+                    meta: { title: '标准列表', roles: ['pagesample-list-one'] }
                 },
                 {
                     path: 'two',
                     component: () => import('@/views/Pagesample/List/one'),
                     name: 'pagesample-list-two',
-                    meta: { title: '样例2', roles: ['pagesample-list-two'] }
+                    meta: { title: '查询列表', roles: ['pagesample-list-two'] }
+                },
+                {
+                    path: 'three',
+                    component: () => import('@/views/Pagesample/List/one'),
+                    name: 'pagesample-list-three',
+                    meta: { title: '高级查询列表', roles: ['pagesample-list-three'] }
                 }
                 
             ]
@@ -49,7 +55,7 @@ const pagesampleRouter = {
             name: 'pagesample-form',
             meta: { 
                 title: '表单页面',
-                icon: 'page',
+                icon: 'pageform',
                 roles: ['pagesample-form']
             },
             children: [
@@ -57,7 +63,39 @@ const pagesampleRouter = {
                     path: 'one',
                     component: () => import('@/views/Pagesample/Form/one'),
                     name: 'pagesample-form-one',
-                    meta: { title: '样例1', roles: ['pagesample-form-one'] }
+                    meta: { title: '基础表单', roles: ['pagesample-form-one'] }
+                },
+                {
+                    path: 'two',
+                    component: () => import('@/views/Pagesample/Form/one'),
+                    name: 'pagesample-form-two',
+                    meta: { title: '高级表单', roles: ['pagesample-form-two'] }
+                }
+                
+            ]
+        },
+        {
+            path: 'detail',
+            component: AppMainLayout,
+            redirect: '/pagesample/detail/one',
+            name: 'pagesample-detail',
+            meta: { 
+                title: '详情页面',
+                icon: 'pagedetails',
+                roles: ['pagesample-detail']
+            },
+            children: [
+                {
+                    path: 'one',
+                    component: () => import('@/views/Pagesample/Detail/one'),
+                    name: 'pagesample-detail-one',
+                    meta: { title: '基础详情', roles: ['pagesample-detail-one'] }
+                },
+                {
+                    path: 'two',
+                    component: () => import('@/views/Pagesample/Detail/one'),
+                    name: 'pagesample-detail-two',
+                    meta: { title: '高级详情', roles: ['pagesample-detail-two'] }
                 }
                 
             ]

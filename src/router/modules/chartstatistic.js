@@ -40,25 +40,6 @@ const chartstatisticRouter = {
                     meta: { title: '样例2', roles: ['chartstatistic-echarts-two'] }
                 }
             ]
-        },
-        {
-            path: 'highcharts',
-            component: AppMainLayout,
-            redirect: '/chartstatistic/highcharts/one',
-            name: 'chartstatistic-highcharts',
-            meta: { 
-                title: 'Highcharts',
-                icon: 'chart',
-                roles: ['chartstatistic-highcharts']
-            },
-            children: [
-                {
-                    path: 'one',
-                    component: () => import('@/views/Chartstatistic/Highcharts/one'),
-                    name: 'chartstatistic-highcharts-one',
-                    meta: { title: '样例1', roles: ['chartstatistic-highcharts-one'] }
-                }
-            ]
         }
         
         

@@ -1,5 +1,5 @@
 <template>
-    <div>Highcharts one</div>
+    <div>Detail Page one</div>
 </template>
 <script>
 export default {
