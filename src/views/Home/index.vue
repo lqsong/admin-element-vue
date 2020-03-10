@@ -86,7 +86,29 @@
 
     <el-card class="box-card" shadow="never">
       <div slot="header">
-        <span>访问量</span>
+        <el-row>
+          <el-col :span="8">
+              <span>访问量</span>
+          </el-col>
+          <el-col :span="16" class="text-right">
+            <el-radio-group v-model="radio1" size="mini">
+              <el-radio-button label="今日"></el-radio-button>
+              <el-radio-button label="本周"></el-radio-button>
+              <el-radio-button label="本月"></el-radio-button>
+              <el-radio-button label="全年"></el-radio-button>
+            </el-radio-group>
+            <el-date-picker
+              v-model="datevalue1"
+              type="daterange"
+              size="mini"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              style="width:220px;margin-left:5px;">
+            </el-date-picker>
+
+          </el-col>
+        </el-row>
         
       </div>
       <el-row>
@@ -164,7 +186,9 @@ export default {
   data() {
     return {
       chart: null,
-      resizeHandler: null
+      resizeHandler: null,
+      radio1: '今日',
+      datevalue1: ''
     };
   },
   computed: {
