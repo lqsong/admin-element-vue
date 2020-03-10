@@ -1,6 +1,6 @@
 <template>
     <div class="main-conent main-conent-minheight">
-        <el-card class="box-card" shadow="never">
+        <el-card shadow="never">
             <div slot="header">
                 <el-form label-width="100px">
                     <el-row type="flex" justify="end" class="flex-wrap-wrap">
@@ -11,12 +11,12 @@
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
                             <el-form-item label="省市区：">
-                               <el-select v-model="svalue2" clearable placeholder="请选择" style="width:100%;">
-                                <el-option label="浙江" value="1"></el-option>
-                                <el-option label="安徽" value="2"></el-option>
-                                <el-option label="江苏" value="3"></el-option>
-                                <el-option label="北京" value="4"></el-option>
-                            </el-select>
+                                <el-select v-model="svalue2" clearable placeholder="请选择" style="width:100%;">
+                                    <el-option label="浙江" value="1"></el-option>
+                                    <el-option label="安徽" value="2"></el-option>
+                                    <el-option label="江苏" value="3"></el-option>
+                                    <el-option label="北京" value="4"></el-option>
+                                </el-select>
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" v-if="searchOpen">
@@ -215,14 +215,6 @@ export default {
                 province: '上海',
                 city: '普陀区',
                 address: '上海市普陀区金沙江路 1517 弄',
-                zip: 200333
-            }, 
-            {
-                date: '2016-05-01',
-                name: '王小虎',
-                province: '上海',
-                city: '普陀区',
-                address: '上海市普陀区金沙江路 1519 弄',
                 zip: 200333
             }
         ]

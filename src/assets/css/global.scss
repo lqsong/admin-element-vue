@@ -27,7 +27,7 @@
          }
     }
 }
-/* 自定义drawer样式 */
+/* 自定义 drawer 样式 */
 .custom-drawer {
     .el-drawer__header {
       border-bottom: 1px solid #e8eaec;
@@ -46,7 +46,7 @@
         padding-right: 16px;
         padding-bottom: 53px;
     }
-    .ecrrc-drawer-footer {
+    .custom-drawer-footer {
         width: 100%;
         position: absolute;
         bottom: 0;
@@ -58,7 +58,18 @@
         z-index: 4;
     }
   }
-
+/*自定义 table 样式*/
+.custom-table {
+    .el-table__fixed-right-patch {
+        background-color: #F5F7FA;
+    }
+}
+.custom-table-header {
+    color: #303133;
+    th {
+        background-color: #F5F7FA;
+    }
+}
 /* 初始样式 */
 .main-conent {
     margin: 24px;
@@ -71,6 +82,24 @@
 }
 .main-conent-borderradius{
     border-radius: 4px;
+}
+.main-conent-screen{
+    display: flex;
+    flex-direction: column;    
+    height: calc(100% - 48px - 122px);
+    .screen-header {
+        padding: 20px;
+        height: 33px;
+    }
+    .screen-footer  {
+        padding: 20px;
+        height: 32px;
+    }
+    .screen-conent {
+        flex: 1;
+        padding: 0 20px;
+        overflow: hidden;
+    }
 }
 .flex-wrap-wrap {
     flex-wrap: wrap;
