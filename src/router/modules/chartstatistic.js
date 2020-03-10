@@ -31,13 +31,13 @@ const chartstatisticRouter = {
                     path: 'one',
                     component: () => import('@/views/Chartstatistic/Echarts/one'),
                     name: 'chartstatistic-echarts-one',
-                    meta: { title: '样例1', roles: ['chartstatistic-echarts-one'] }
+                    meta: { title: '基础引用', roles: ['chartstatistic-echarts-one'] }
                 },
                 {
                     path: 'two',
-                    component: () => import('@/views/Chartstatistic/Echarts/one'),
+                    component: () => import('@/views/Chartstatistic/Echarts/two'),
                     name: 'chartstatistic-echarts-two',
-                    meta: { title: '样例2', roles: ['chartstatistic-echarts-two'] }
+                    meta: { title: '更换主题', roles: ['chartstatistic-echarts-two'] }
                 }
             ]
         }
