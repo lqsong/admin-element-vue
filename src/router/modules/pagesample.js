@@ -35,7 +35,7 @@ const pagesampleRouter = {
                 },
                 {
                     path: 'two',
-                    component: () => import('@/views/Pagesample/List/one'),
+                    component: () => import('@/views/Pagesample/List/two'),
                     name: 'pagesample-list-two',
                     meta: { title: '查询列表', roles: ['pagesample-list-two'] }
                 },
