@@ -4,7 +4,7 @@
 
 **[Default version demo](http://demo.admin-element-vue.liqingsong.cc/)**             |  **Background version demo**
 :-------------------------:|:-------------------------:
-![Default version demo](https://raw.githubusercontent.com/lqsong/public/master/admin-element-vue/admin1.png)  |  敬请期待
+![Default version demo](https://gitee.com/lqsong/public/raw/master/admin-element-vue/admin1.png)  |  敬请期待
 
 ## 功能
 
@@ -16,7 +16,7 @@
   - 权限配置
 
 - 全局功能
-  - 动态顶级菜单（支撑设置是否启用）
+  - 动态顶级菜单（支持设置是否启用）
   - 动态侧边栏（支持多级路由嵌套）
   - 动态面包屑
   - Svg Sprite 图标
@@ -80,3 +80,12 @@ npm run lint
 ```
 npm run svgo
 ```
+
+## 捐赠
+
+如果你觉得这个项目帮助到了你，你可以帮作者买一杯果汁表示鼓励.
+
+**ALIPAY**             |  **WECHAT**
+:-------------------------:|:-------------------------:
+![Alipay](https://gitee.com/lqsong/public/raw/master/common/Alipay.png)  |  ![Wechat](https://gitee.com/lqsong/public/raw/master/common/Wechat.png)
+
