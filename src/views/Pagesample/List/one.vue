@@ -1,6 +1,6 @@
 <template>
     <div class="main-conent main-conent-minheight">
-        <el-card shadow="never">
+        <el-card shadow="never" class="border-none">
             <div slot="header">
                 <el-row>
                     <el-col :span="8">

@@ -1,6 +1,6 @@
 <template>
     <div class="main-conent main-conent-minheight">
-        <el-card shadow="never">
+        <el-card shadow="never" class="border-none">
             <div slot="header">
                 <el-form label-width="100px">
                     <el-row type="flex" justify="end" class="flex-wrap-wrap">

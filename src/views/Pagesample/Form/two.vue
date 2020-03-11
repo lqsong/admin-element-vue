@@ -1,7 +1,7 @@
 <template>
     <div class="main-conent main-conent-minheight">
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
-        <el-card shadow="never">
+        <el-card shadow="never" class="border-none">
             <div slot="header">
               <span>模块名称</span>
             </div>
@@ -46,7 +46,7 @@
         </el-card>
 
 
-        <el-card shadow="never" style="margin-top:24px;">
+        <el-card shadow="never" class="border-none" style="margin-top:24px;">
             <div slot="header">
               <span>模块名称</span>
             </div>
@@ -90,7 +90,7 @@
             </el-row>
         </el-card>
 
-        <el-card shadow="never" style="margin-top:24px;">
+        <el-card shadow="never" class="border-none" style="margin-top:24px;">
             <div slot="header">
               <span>模块名称</span>
             </div>
