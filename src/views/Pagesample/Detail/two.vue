@@ -1,8 +1,9 @@
 <template>
     <div class="main-conent main-conent-minheight">
-        <el-card shadow="never" class="border-none">
-            <div class="main-conent-detail">
-                <div class="main-conent-detail-title">基本信息</div>
+            <el-card shadow="never" class="border-none">
+                <div slot="header">
+                    基本信息
+                </div>
                 <el-row :gutter="24">
                     <el-col :sm="24" :md="12" :lg="8">
                         <span class="main-conent-detail-lable">姓名：</span>
@@ -29,11 +30,13 @@
                         <span class="main-conent-detail-content">某某村</span>
                     </el-col>
                 </el-row>
-            </div>
-            <el-divider></el-divider>
+            </el-card>
 
-            <div class="main-conent-detail">
-                <div class="main-conent-detail-title">退款申请</div>
+            <el-card shadow="never" class="border-none" style="margin-top:24px;">
+                <div slot="header">
+                    退款申请
+                </div>
+
                 <el-row :gutter="24">
                     <el-col :sm="24" :md="12" :lg="8">
                         <span class="main-conent-detail-lable">订单号：</span>
@@ -60,11 +63,14 @@
                         <span class="main-conent-detail-content">某某村</span>
                     </el-col>
                 </el-row>
-            </div>
-            <el-divider></el-divider>
+          
+            </el-card>
 
-            <div class="main-conent-detail">
-                <div class="main-conent-detail-title">退货商品</div>
+            <el-card shadow="never" class="border-none" style="margin-top:24px;">
+                <div slot="header">
+                    退货商品
+                </div>
+
                 <el-table
                     :data="tableData"
                     style="width: 100%">
@@ -85,11 +91,13 @@
                     </el-table-column>
                 </el-table>
                 
-            </div>
-            <el-divider></el-divider>
+            </el-card>
 
-            <div class="main-conent-detail">
-                <div class="main-conent-detail-title">退货进度</div>
+            <el-card shadow="never" class="border-none" style="margin-top:24px;">
+                <div slot="header">
+                    退货进度
+                </div>
+
                 <el-table
                     :data="tableData"
                     style="width: 100%">
@@ -110,10 +118,8 @@
                     </el-table-column>
                 </el-table>
                 
-            </div>
-            
 
-        </el-card>
+            </el-card>
     </div>
 </template>
 <script>
@@ -142,14 +148,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.main-conent-detail {
-    box-sizing: border-box;
-    .main-conent-detail-title {
-        margin-bottom: 16px;
-        color: #303133;
-        font-size: 16px;
-        font-weight: 700;
-    }
+
     .main-conent-detail-lable,
     .main-conent-detail-content {
         display: table-cell;
@@ -166,5 +165,4 @@ export default {
         word-wrap:break-word;
         word-break: break-all;
     }
-}
 </style>

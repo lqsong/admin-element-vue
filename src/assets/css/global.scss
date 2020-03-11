@@ -63,6 +63,12 @@
     .el-table__fixed-right-patch {
         background-color: #F5F7FA;
     }
+    .custom-td-header-one,
+    .el-table__body tr:hover .custom-td-header-one {
+        color: #303133;
+        font-weight: bold;
+        background-color: #F5F7FA;
+    }
 }
 .custom-table-header {
     color: #303133;

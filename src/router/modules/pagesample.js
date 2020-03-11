@@ -93,9 +93,15 @@ const pagesampleRouter = {
                 },
                 {
                     path: 'two',
-                    component: () => import('@/views/Pagesample/Detail/one'),
+                    component: () => import('@/views/Pagesample/Detail/two'),
                     name: 'pagesample-detail-two',
-                    meta: { title: '高级详情', roles: ['pagesample-detail-two'] }
+                    meta: { title: '模块详情', roles: ['pagesample-detail-two'] }
+                },
+                {
+                    path: 'three',
+                    component: () => import('@/views/Pagesample/Detail/three'),
+                    name: 'pagesample-detail-three',
+                    meta: { title: '表格详情', roles: ['pagesample-detail-three'] }
                 }
                 
             ]
