@@ -2,9 +2,9 @@
 
 ## Demo
 
-**[Default version demo](http://demo.admin-element-vue.liqingsong.cc/)**             |  **Background version demo**
+**[Default version demo](http://demo.admin-element-vue.liqingsong.cc/)**             |  **[BgImg version demo](http://bgimg-demo.admin-element-vue.liqingsong.cc/)**
 :-------------------------:|:-------------------------:
-![Default version demo](https://gitee.com/lqsong/public/raw/master/admin-element-vue/admin1.png)  |  敬请期待
+![Default version demo](https://gitee.com/lqsong/public/raw/master/admin-element-vue/admin1.png)  |  ![BgImg version demo](https://gitee.com/lqsong/public/raw/master/admin-element-vue/admin2.png)
 
 ## 功能
 
@@ -83,7 +83,7 @@ npm run svgo
 
 ## 捐赠
 
-如果你觉得这个项目帮助到了你，你可以帮作者买一杯果汁表示鼓励.
+如果你觉得这个项目帮助到了你，你可以请作者喝咖啡表示鼓励.
 
 **ALIPAY**             |  **WECHAT**
 :-------------------------:|:-------------------------:
