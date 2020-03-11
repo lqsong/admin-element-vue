@@ -113,8 +113,14 @@
 .float-right {
     float: right;
 }
+.border-solid-transparent{
+    border: solid 1px transparent;
+}
 .text-right {
     text-align: right;
+}
+.text-center {
+    text-align: center;
 }
 .margin-t16{
     margin-top: 16px;
