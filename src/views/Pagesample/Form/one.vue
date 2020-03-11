@@ -4,7 +4,7 @@
             <el-row>
                 <el-col :xs="0" :sm="2"  :md="4" :lg="6" :xl="6" class="border-solid-transparent"></el-col>
                 <el-col :xs="24" :sm="20"  :md="16" :lg="12" :xl="12">
-                    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+                    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px">
                         <el-form-item label="活动名称" prop="name">
                             <el-input v-model="ruleForm.name"></el-input>
                         </el-form-item>

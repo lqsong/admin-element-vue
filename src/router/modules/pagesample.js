@@ -67,7 +67,7 @@ const pagesampleRouter = {
                 },
                 {
                     path: 'two',
-                    component: () => import('@/views/Pagesample/Form/one'),
+                    component: () => import('@/views/Pagesample/Form/two'),
                     name: 'pagesample-form-two',
                     meta: { title: '高级表单', roles: ['pagesample-form-two'] }
                 }
