@@ -1,5 +1,37 @@
 # admin-element-vue
 
+## Demo
+
+**[Default version demo](http://demo.admin-element-vue.liqingsong.cc/)**             |  **Background version demo**
+:-------------------------:|:-------------------------:
+![Default version demo](https://raw.githubusercontent.com/lqsong/public/master/admin-element-vue/admin1.png)  |  敬请期待
+
+## 功能
+
+```
+- 登录 / 注销
+
+- 权限验证
+  - 页面权限
+  - 权限配置
+
+- 全局功能
+  - 动态顶级菜单
+  - 动态侧边栏（支持多级路由嵌套）
+  - 动态面包屑
+  - Svg Sprite 图标
+  - Mock 数据
+
+- 综合实例
+- 引导页
+- 页面示例
+  - 列表页面
+  - 表单页面
+  - 详情页面
+- ECharts 图表
+```
+
+
 ## 自定义配置
 
 ### 一、**(必须)** 复制 'vue.config.default.js' 重命名为 ' vue.config.js'

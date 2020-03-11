@@ -1,9 +1,9 @@
 <template>
     <div class="indexlayout-right-footer">
         <div class="footer-links">
-            <a href="#" target="_blank">DEMO</a>
+            <a href="http://demo.admin-element-vue.liqingsong.cc" target="_blank">DEMO</a>
             <a href="https://github.com/lqsong/admin-element-vue" target="_blank">Github</a>
-            <a href="http://liqingsong.cc" target="_blank">博客</a>
+            <a href="https://www.liqingsong.cc" target="_blank">博客</a>
             <a href="http://www.wyxgn.com" target="_blank">网页小功能</a>
         </div>
         <div class="footer-copyright">
