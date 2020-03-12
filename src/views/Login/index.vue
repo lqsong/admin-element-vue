@@ -4,7 +4,7 @@
         <h1 class="title">
           Sign in to Admin
         </h1>
-        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0">
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0" size="medium">
           <el-form-item label="" prop="username">
             <el-input v-model.number="ruleForm.username" autocomplete="off" placeholder="请输入账号">
               <i slot="prefix" class="el-input__icon el-icon-user"></i>
@@ -99,7 +99,7 @@ export default {
   height: 100vh;
   min-height: 500px;
   overflow: auto;
-  background-image: url("../../assets/images/bg.jpg");
+  background-image: url("../../assets/images/bg-smooth.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
