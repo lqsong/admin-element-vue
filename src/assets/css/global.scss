@@ -5,6 +5,22 @@
  @import './variables.scss';
  @import './mixin.scss';
  @import './sidebar-menu.scss';
+ /* 初始化 */
+ ::-webkit-scrollbar {
+    width: .5em;
+    height: .5em
+}
+::-webkit-scrollbar-thumb {
+    background: /* #d9d9d9; */rgba(0,0,0,.6);
+    cursor: pointer
+}
+::-webkit-scrollbar-track {
+    background: /* 0 0 */ rgba(255,255,255,.7);
+}
+body {
+    scrollbar-face-color:/* #d9d9d9 */ rgba(0,0,0,.6);
+    scrollbar-track-color:/* transparent */ rgba(255,255,255,.7);
+}
  
  /* 饿了么滚动 重置样式 */
 .default-scrollbar {
