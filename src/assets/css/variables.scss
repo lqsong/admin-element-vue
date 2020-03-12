@@ -26,6 +26,8 @@
  $topMenuHoverBgColor: #000C17; // 顶部菜单Hover背景色
  $topMenuActiveBgColor: rgba(0,0,0,0.4); // 顶部菜单Active背景色
 
+
+ @import './bg-img/variables.scss';
  // the :export directive is the magic sauce for webpack
  // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
 :export {

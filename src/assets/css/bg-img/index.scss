@@ -1,0 +1,264 @@
+#indexlayout {
+    background-image: url(../images/bg-smooth.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    #indexlayout-left {
+        background-color: rgba(0,0,0,.5);
+    }
+    #indexlayout-right{
+        background: none;
+        #indexlayout-right-top {
+            box-shadow: 2px 0 3px rgba(0,0,0,.5);
+            .indexlayout-right-top-top {
+                color: #C0C4CC;
+                background-color: rgba(0,0,0,.5);
+            }
+            &.enableTopNav {
+                .indexlayout-right-top-top {
+                    .indexlayout-flexible {
+                        &:hover{
+                            background-color: #000C17;
+                            color: #FFF;
+                        }
+                    }
+                    .el-breadcrumb-cus {
+                        /deep/ .el-breadcrumb__item {
+                            .is-link,
+                            a {
+                                color: #C0C4CC;
+                                &:hover {
+                                    color: #fff;
+                                }
+                            }
+                            &:last-child {
+                                .el-breadcrumb__inner{
+                                    color: #209e91;
+                                }
+                            }
+                        } 
+                    }
+                    .indexlayout-top-menu-right {
+                        .index-layout-message,
+                        .el-dropdown-link{
+                            color: #FFF;
+                        }
+                    }
+                }
+            }
+            .indexlayout-right-top-bot {
+                background: none;
+                color: #C0C4CC;
+                background-color: rgba(0,0,0,.05);
+                opacity: .9;
+                .el-breadcrumb-cus {
+                    /deep/ .el-breadcrumb__item {
+                        .el-breadcrumb__separator {
+                            color: #ccc;
+                        }
+                        .el-breadcrumb__inner{
+                            color: #C0C4CC;
+                        }
+                        .is-link,
+                        a {
+                            color: #C0C4CC;
+                            &:hover {
+                                color: #fff;
+                            }
+                        }
+                        &:last-child {
+                            .el-breadcrumb__inner{
+                                color: #209e91;
+                            }
+                        }
+                    } 
+                }
+
+            }
+        }
+        .indexlayout-right-main {
+            background-color: rgba(0,0,0,.05);
+            .indexlayout-right-footer {
+                opacity: .9;
+                color: #FFF;
+                a {
+                    color: #FFF;
+                    &:hover {
+                        color: #209e91;
+                    }
+                }
+            }
+        }
+
+    }
+    .site-settings {
+        background-color: rgba(0, 0, 0, 0.9);
+        &:hover {
+            background-color: $leftMenuActiveBgColor;
+        }
+    }
+}
+.main-conent-bgFFF {
+    background-color: rgba(0,0,0,.3);
+    opacity: .9;
+    color: #ffffff;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,.25);
+    transition: none;
+}
+.custom-table-header {
+    color: #FFF;
+}
+.custom-table {
+    .el-table__fixed-right-patch {
+        background-color: rgba(0, 0, 0,0.3);
+    }
+
+    .custom-td-header-one,
+    .el-table__body tr:hover .custom-td-header-one {
+        color: #FFF;
+        background-color: rgba(0, 0, 0,0.38);
+    }
+}
+.custom-drawer {
+    background-image: url(../images/bg-smooth.jpg);
+    .el-drawer__header {
+        color: #FFF;
+        border-bottom: 1px solid rgba(0,0,0,.12);
+        box-shadow: 0 1px 0 0 rgba(255,255,255,.12)
+    }
+    .custom-drawer-footer {
+        background-image: url(../images/bg-smooth.jpg);
+    }
+}
+/* 重置饿了么 */
+.el-card {
+   /*  background-image: url(../images/bg-smooth.jpg);
+    background-attachment: fixed;
+    background-size: 1913px 1076px;
+    background-position: 0px -356px; */
+    background-color: rgba(0,0,0,.3);
+    opacity: .9;
+    color: #ffffff;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,.25);
+    transition: none;
+    .el-card__header {
+        border-bottom: 1px solid rgba(0,0,0,.12);
+        box-shadow: 0 1px 0 0 rgba(255,255,255,.12)
+    }
+}
+.el-divider {
+    background-color: rgba(0,0,0,.12);
+}
+/* el菜单 */
+.el-menu {
+    .el-submenu__title:hover,
+    .el-menu-item:hover{
+        background: rgba(0,0,0,.3) !important;
+    }
+    &.el-menu--popup {
+        background-image: url(../images/bg-smooth.jpg);
+    }
+}
+/* el表单 */
+.el-form-item__label,
+.el-checkbox,
+.el-radio {
+    color: #FFF;
+}
+.el-input__inner,
+.el-textarea__inner,
+.el-checkbox__inner,
+.el-radio__inner,
+.el-switch__core,
+.el-date-editor .el-range-input,
+.el-button--default,
+.el-radio-button__inner {
+    background-color: rgba(0,0,0,.15);
+    color: #FFF;
+}
+/* el表格 */
+.el-table {
+    background:none;
+    color: #FFF;
+    &::before{
+        background-color: rgba(255,255,255,.2);
+    }
+    thead {
+        color: #FFF;
+    }
+    th {
+        background: none;
+    }
+    th.is-leaf,
+    td {
+        border-bottom: 1px solid rgba(255,255,255,.2);
+    }
+    tr {
+        background: none;
+        &.hover-row {
+            td {
+                background-color: rgba(0, 0, 0,0.3);
+            }
+        }
+    }
+    &.el-table--striped {
+        tr {
+            &.el-table__row--striped {
+                td {
+                    background-color: rgba(0, 0, 0,0.2);
+                }
+            }
+            &.hover-row {
+                td {
+                    background-color: rgba(0, 0, 0,0.3);
+                }
+            }
+        }
+    }
+    &.el-table--enable-row-hover {
+            tr {
+                &:hover {
+                    td {
+                        background-color: rgba(0, 0, 0,0.3);
+                    }
+                }
+            }
+    }
+    
+}
+.el-table__fixed::before,
+.el-table__fixed-right::before {
+    background-color: rgba(255,255,255,.2);
+}
+/* el分页 */
+.el-pagination {
+    .el-pagination__total {
+        color: #FFF;
+    }
+    &.is-background {
+        .el-pager {
+            li {
+                border: 1px solid #DCDFE6;
+                background-color: rgba(0,0,0,.15);
+                color: #FFF;
+                &.active {
+                    border: none;
+                }
+            }
+        }
+        .btn-prev,
+        .btn-next {
+            border: 1px solid #DCDFE6;
+            background-color: rgba(0,0,0,.15);
+            color: #FFF;
+        }
+    }
+}
+
+/* 自定义页面样式 */
+.main-conent-detail {
+    .main-conent-detail-title {
+        color: #FFF !important;
+    }
+}
