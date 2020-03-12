@@ -159,7 +159,7 @@ export default {
           text-decoration: none;
           color: $topMenuFontColor;
           font-size: 15px;
-          border-bottom: solid 3px $leftBgColor;
+          border-bottom: solid 3px transparent;
           &:hover,
           &.active{
             background-color: $topMenuHoverBgColor;
