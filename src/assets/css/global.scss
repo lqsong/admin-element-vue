@@ -74,6 +74,32 @@ body {
         z-index: 4;
     }
   }
+/* 自定义头像上传 */
+.avatar-uploader {
+    .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        &:hover {
+            border-color: #409EFF;
+        }
+    }
+    .avatar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 178px;
+        height: 178px;
+        line-height: 178px;
+        text-align: center;
+      }
+      .avatar {
+        width: 178px;
+        height: 178px;
+        display: block;
+      }
+}
 /*自定义 table 样式*/
 .custom-table {
     .el-table__fixed-right-patch {
@@ -111,7 +137,7 @@ body {
     height: calc(100% - 48px - 122px);
     .screen-header {
         padding: 20px;
-        height: 33px;
+        min-height: 33px;
     }
     .screen-footer  {
         padding: 20px;
@@ -156,5 +182,17 @@ body {
 .margin-l10{
     margin-left: 10px;
 }
+.margin-b10 {
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
 @import './bg-img/index.scss';
+
   
