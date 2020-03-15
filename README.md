@@ -6,6 +6,10 @@
 :-------------------------:|:-------------------------:
 ![Default version demo](https://gitee.com/lqsong/public/raw/master/admin-element-vue/admin1.png)  |  ![BgImg version demo](https://gitee.com/lqsong/public/raw/master/admin-element-vue/admin2.png)
 
+## 使用文档
+
+[http://admin-element-vue.liqingsong.cc](http://admin-element-vue.liqingsong.cc/)
+
 ## 功能
 
 ```
