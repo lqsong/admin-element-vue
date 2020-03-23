@@ -23,6 +23,7 @@
     "management-system"
   ],
   "dependencies": {
+    "@toast-ui/editor": "^2.0.0",
     "axios": "^0.19.1",
     "core-js": "^3.4.4",
     "echarts": "^4.6.0",
