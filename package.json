@@ -23,6 +23,8 @@
     "management-system"
   ],
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^18.0.0",
+    "@ckeditor/ckeditor5-vue": "^1.0.1",
     "@toast-ui/editor": "^2.0.0",
     "axios": "^0.19.1",
     "core-js": "^3.4.4",

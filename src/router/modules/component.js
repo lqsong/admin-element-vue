@@ -32,6 +32,12 @@ const componentsRouter = {
                     component: () => import('@/views/Component/Editor/one'),
                     name: 'component-editor-one',
                     meta: { title: 'tui-editor', roles: ['component-editor-one'] }
+                },
+                {
+                    path: 'two',
+                    component: () => import('@/views/Component/Editor/two'),
+                    name: 'component-editor-two',
+                    meta: { title: 'CKEditor', roles: ['component-editor-two'] }
                 }
             ]
         }
