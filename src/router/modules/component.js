@@ -42,6 +42,31 @@ const componentsRouter = {
             ]
         },
         {
+            path: 'tree',
+            component: AppMainLayout,
+            redirect: '/component/tree/one',
+            name: 'component-tree',
+            meta: { 
+                title: '树形表格',
+                icon: 'tree',
+                roles: ['component-tree']
+            },
+            children: [
+                {
+                    path: 'one',
+                    component: () => import('@/views/Component/Tree/one'),
+                    name: 'component-tree-one',
+                    meta: { title: '页面滚动', roles: ['component-tree-one'] }
+                },
+                {
+                    path: 'two',
+                    component: () => import('@/views/Component/Tree/two'),
+                    name: 'component-tree-two',
+                    meta: { title: '页面全屏表格滚动', roles: ['component-tree-two'] }
+                }
+            ]
+        },
+        {
             path: 'other',
             component: AppMainLayout,
             redirect: '/component/other/one',
