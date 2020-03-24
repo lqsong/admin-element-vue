@@ -74,7 +74,7 @@ export const constantRoutes = [
         component: () => import('@/views/Home'),
         name: 'monitor',
         meta: { 
-            title: '监控页',
+            title: '自定义面包屑',
             icon: 'monitoring',
             belongTopMenu: '/',
             breadcrumb: [
@@ -94,6 +94,11 @@ export const constantRoutes = [
               }
             ]
         }
+      },
+      {
+        path: 'http://admin-element-vue.liqingsong.cc',
+        name: 'document',
+        meta: { title: '使用文档', icon: 'pagedetails' }
       }
     ]
   }

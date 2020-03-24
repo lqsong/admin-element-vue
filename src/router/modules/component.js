@@ -40,6 +40,25 @@ const componentsRouter = {
                     meta: { title: 'CKEditor', roles: ['component-editor-two'] }
                 }
             ]
+        },
+        {
+            path: 'other',
+            component: AppMainLayout,
+            redirect: '/component/other/one',
+            name: 'component-other',
+            meta: { 
+                title: '其他',
+                icon: 'other',
+                roles: ['component-other']
+            },
+            children: [
+                {
+                    path: 'one',
+                    component: () => import('@/views/Component/Other/one'),
+                    name: 'component-other-one',
+                    meta: { title: 'SVG图标', roles: ['component-other-one'] }
+                }
+            ]
         }
         
         
