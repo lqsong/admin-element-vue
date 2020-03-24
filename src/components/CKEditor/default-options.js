@@ -1,9 +1,22 @@
 export default {
     toolbar: [
-        "heading", "bold", "italic", "blockQuote", 
-        "imageTextAlternative", "imageUpload", "imageStyle:full", "imageStyle:side", 
-        "link", "numberedList", "bulletedList","|", 
-        "undo", "redo"
+        "heading",
+        "|",
+        "bold",
+        "italic", 
+        "link",
+        "bulletedList",
+        "numberedList",
+        "|",
+        "indent",
+        "outdent",
+        "|",
+        /* "imageUpload", */
+        "blockQuote", 
+        "insertTable",
+        "mediaEmbed",
+        "undo",
+        "redo"
     ],
     language: 'zh-cn'
 };
