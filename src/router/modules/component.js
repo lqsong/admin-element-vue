@@ -82,6 +82,12 @@ const componentsRouter = {
                     component: () => import('@/views/Component/Other/one'),
                     name: 'component-other-one',
                     meta: { title: 'SVG图标', roles: ['component-other-one'] }
+                },
+                {
+                    path: 'ScreenTable',
+                    redirect: '/pagesample/list/three',
+                    name: 'component-other-ScreenTable',
+                    meta: { title: 'ScreenTable', roles: ['component-other-ScreenTable'] }
                 }
             ]
         }
