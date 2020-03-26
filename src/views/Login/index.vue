@@ -72,7 +72,7 @@ export default {
                   _this.loading = false;
                   _this.$router.push({ path: _this.redirect || '/', query: _this.otherQuery },() => {});
                 }).catch(error => {
-                  _this.$message.error(error || 'Has Error');
+                  _this.$message.error(error.msg || 'Has Error');
                   _this.loading = false;
               });
           } else {
