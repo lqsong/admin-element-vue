@@ -44,8 +44,8 @@ export const ajaxHeadersTokenKey = "X-Token";
  * ajax请求 - 返回数据 - 不添加前置验证的 URL
  */
 export const ajaxResponseNoVerifyUrl = [
-    'user/login', // 用户登录
-    'user/info' // 获取用户信息
+    '/user/login', // 用户登录
+    '/user/info' // 获取用户信息
 ];
 
 /**
