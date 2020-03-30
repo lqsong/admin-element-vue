@@ -16,7 +16,8 @@ const users = {
   'admin-token': {
     roles: ['admin'],
     avatar: '',
-    name: 'Admin'
+    name: 'Admin',
+    msgtotal: 100
   }
 };
   

@@ -12,6 +12,7 @@ const state = {
     token: getToken(),
     name: '',
     avatar: '',
+    msgtotal: 0,
     roles: []
 };
 const mutations = {
@@ -23,6 +24,9 @@ const mutations = {
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar;
+    },
+    SET_MSGTOTAL: (state, msgtotal) => {
+      state.msgtotal = msgtotal;
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles;
@@ -55,7 +59,7 @@ const actions = {
                   reject('当前用户登入信息已失效，请重新登入再操作.');
                 }
 
-                const { roles, name, avatar } = data;
+                const { roles, name, avatar, msgtotal } = data;
 
                 // roles must be a non-empty array
                 if (!roles || roles.length <= 0) {
@@ -65,6 +69,7 @@ const actions = {
                 commit('SET_ROLES', roles);
                 commit('SET_NAME', name);
                 commit('SET_AVATAR', avatar);
+                commit('SET_MSGTOTAL', msgtotal);
                 resolve(data);
             }).catch(error => {               
                 reject(error.msg || 'Error');

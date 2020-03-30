@@ -21,7 +21,7 @@
                <div class="indexlayout-top-menu-right">
                     <router-link class="index-layout-message" to="/" title="消息">
                         <svg-icon icon-class="message" />
-                        <el-badge :value="100" :max="10" class="index-layout-message-item"></el-badge>
+                        <el-badge :value="msgtotal" :max="10" class="index-layout-message-item"></el-badge>
                     </router-link>
 
                     <el-dropdown>
@@ -59,7 +59,8 @@ export default {
     ...mapGetters([
       'permission_routes',
       'siteTopNavEnable',
-      'sidebarOpened'
+      'sidebarOpened',
+      'msgtotal'
     ]),
     isCollapse() {
       return !this.sidebarOpened;
