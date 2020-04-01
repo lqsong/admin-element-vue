@@ -109,7 +109,7 @@ export default {
   .indexlayout-left-menu{
     flex: 1;
     display: flex;
-    /* overflow: auto; */
+    overflow: auto;
     // height: calc(100vh);
     /* .el-scrollbar {
         flex:1;
