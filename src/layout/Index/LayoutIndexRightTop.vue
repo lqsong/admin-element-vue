@@ -25,8 +25,8 @@
                     </router-link>
 
                     <el-dropdown>
-                        <span class="el-dropdown-link" title="王小二">
-                            <span class="el-dropdown-link-text">王小二</span>
+                        <span class="el-dropdown-link" :title="name">
+                            <span class="el-dropdown-link-text">{{ name }}</span>
                             <i class="el-icon-arrow-down el-icon--right"></i>
                         </span>
                         <el-dropdown-menu slot="dropdown">
@@ -60,6 +60,7 @@ export default {
       'permission_routes',
       'siteTopNavEnable',
       'sidebarOpened',
+      'name',
       'msgtotal'
     ]),
     isCollapse() {
