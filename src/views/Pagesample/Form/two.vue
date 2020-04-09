@@ -1,5 +1,5 @@
 <template>
-    <div class="main-conent main-conent-minheight">
+    <div class="main-conent main-conent-minheight form-footer">
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
         <el-card shadow="never" class="border-none">
             <div slot="header">

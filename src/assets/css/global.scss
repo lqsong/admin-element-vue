@@ -121,6 +121,11 @@ body {
 /* 初始样式 */
 .main-conent {
     margin: 24px;
+    &.form-footer {
+        & + .indexlayout-right-footer  {
+            padding-bottom: 80px;
+        }
+    }
 }
 .main-conent-minheight{
     min-height: calc(100% - 48px - 122px);
