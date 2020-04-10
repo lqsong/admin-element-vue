@@ -1,6 +1,8 @@
 <template>
     <div class="main-conent main-conent-minheight">
-            <el-card shadow="never" class="border-none">
+            <page-header><strong>模块详情页</strong></page-header>
+        
+            <el-card shadow="never" class="border-none margin-t24">
                 <div slot="header">
                     基本信息
                 </div>
@@ -32,7 +34,7 @@
                 </el-row>
             </el-card>
 
-            <el-card shadow="never" class="border-none" style="margin-top:24px;">
+            <el-card shadow="never" class="border-none margin-t24">
                 <div slot="header">
                     退款申请
                 </div>
@@ -66,7 +68,7 @@
           
             </el-card>
 
-            <el-card shadow="never" class="border-none" style="margin-top:24px;">
+            <el-card shadow="never" class="border-none margin-t24">
                 <div slot="header">
                     退货商品
                 </div>
@@ -93,7 +95,7 @@
                 
             </el-card>
 
-            <el-card shadow="never" class="border-none" style="margin-top:24px;">
+            <el-card shadow="never" class="border-none margin-t24">
                 <div slot="header">
                     退货进度
                 </div>
@@ -123,7 +125,11 @@
     </div>
 </template>
 <script>
+import PageHeader from '@/layout/components/PageHeader';
 export default {
+    components: {
+      PageHeader
+    },
     data() {
         return {
           tableData: [{

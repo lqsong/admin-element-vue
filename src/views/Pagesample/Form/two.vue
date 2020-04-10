@@ -1,7 +1,11 @@
 <template>
     <div class="main-conent main-conent-minheight form-footer">
+
+      <page-header into="高级表单常见于一次性输入和提交大批量数据的场景。"><strong>高级表单</strong></page-header>
+
+
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
-        <el-card shadow="never" class="border-none">
+        <el-card shadow="never" class="border-none margin-t24">
             <div slot="header">
               <span>模块名称</span>
             </div>
@@ -46,7 +50,7 @@
         </el-card>
 
 
-        <el-card shadow="never" class="border-none" style="margin-top:24px;">
+        <el-card shadow="never" class="border-none margin-t24">
             <div slot="header">
               <span>模块名称</span>
             </div>
@@ -90,7 +94,7 @@
             </el-row>
         </el-card>
 
-        <el-card shadow="never" class="border-none" style="margin-top:24px;">
+        <el-card shadow="never" class="border-none margin-t24">
             <div slot="header">
               <span>模块名称</span>
             </div>
@@ -147,9 +151,11 @@
   
 </template>
 <script>
+import PageHeader from '@/layout/components/PageHeader';
 import FormFooterToolbar from '@/layout/components/FormFooterToolbar';
 export default {
     components: {
+      PageHeader,
       FormFooterToolbar
     },
     data() {

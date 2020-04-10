@@ -94,7 +94,8 @@ export default {
 #indexlayout-right-top {
     width: 100%;
     height: ($headerHeight+$headerBreadcrumbHeight);
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 4px rgba(0,21,41,.08);
+    z-index: 9;
     .indexlayout-right-top-top{
       display: flex;
       width: 100%;

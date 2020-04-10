@@ -1,6 +1,9 @@
 <template>
     <div class="main-conent main-conent-minheight">
-        <el-card shadow="never" class="border-none">
+
+        <page-header><strong>基础详情页</strong></page-header>
+        
+        <el-card shadow="never" class="border-none margin-t24">
             <div class="main-conent-detail">
                 <div class="main-conent-detail-title">基本信息</div>
                 <el-row :gutter="24">
@@ -117,7 +120,11 @@
     </div>
 </template>
 <script>
+import PageHeader from '@/layout/components/PageHeader';
 export default {
+    components: {
+      PageHeader
+    },
     data() {
         return {
           tableData: [{

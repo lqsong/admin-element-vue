@@ -1,6 +1,8 @@
 <template>
     <div class="main-conent main-conent-minheight">
-        <el-card shadow="never" class="border-none">
+        <page-header into="表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。"><strong>基础表单</strong></page-header>
+
+        <el-card shadow="never" class="border-none margin-t24">
             <el-row>
                 <el-col :xs="0" :sm="2"  :md="4" :lg="6" :xl="6" class="border-solid-transparent"></el-col>
                 <el-col :xs="24" :sm="20"  :md="16" :lg="12" :xl="12">
@@ -58,7 +60,11 @@
     </div>
 </template>
 <script>
+import PageHeader from '@/layout/components/PageHeader';
 export default {
+    components: {
+      PageHeader
+    },
     data() {
       return {
         ruleForm: {

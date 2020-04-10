@@ -10,7 +10,7 @@
             <div v-html="contentHtml"></div>
         </el-card>
 
-        <el-card shadow="never" class="border-none"  style="margin-top:24px;">
+        <el-card shadow="never" class="border-none margin-t24">
             <tui-editor-viewer v-model="content"></tui-editor-viewer>
         </el-card>
         
