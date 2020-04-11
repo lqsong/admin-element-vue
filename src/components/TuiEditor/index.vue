@@ -2,6 +2,11 @@
     <div :id="id" />
 </template>
 <script>
+/**
+ * 可以按照开发需求自定义扩展插件、上传图片
+ * 1、插件扩展文档 https://github.com/nhn/tui.editor/blob/master/apps/editor/docs/plugins.md
+ * 2、自定义上传图片 imgUpload 可删除此 props , 自己写死在本组件内部
+ */
 import 'codemirror/lib/codemirror.css'; // Editor's Dependency Style
 import '@toast-ui/editor/dist/toastui-editor.css'; // Editor's Style
 
@@ -9,6 +14,7 @@ import Editor from '@toast-ui/editor';
 import defaultOptions from './default-options';
 // import '@toast-ui/editor/dist/i18n/zh-cn.js';
 
+import request from '@/service/lib/request';
 export default {
     name: 'TuiEditor',
     props: {
@@ -39,6 +45,20 @@ export default {
         language: {
             type: String,
             default: 'zh-CN' // en_US
+        },
+        placeholder: {
+            type: String,
+            default: '请输入内容'
+        },
+        /**
+         * 自定义上传图片
+         * 1、如果是 String 请填写上传的url地址
+         * 2、如果是 Function 自定义上传 function(fileOrBlob,callback)
+         * 3、其他(不设置) base64
+         */
+        imgUpload: {
+            type: [Function, String],
+            default: null
         }
     },
     watch: {
@@ -65,11 +85,22 @@ export default {
     },
     computed: {
         editorOptions() {
+            const _this = this;
             const options = Object.assign({}, defaultOptions, this.options);
-            options.initialEditType = this.mode;
-            options.height = this.height;
-            options.language = this.language;
+            options.hooks = {};
+            options.initialEditType = _this.mode;
+            options.height = _this.height;
+            options.language = _this.language;
+            options.placeholder = _this.placeholder;            
+            
+            if (['string', 'function'].includes(_this.typeofImgUpload)) {
+                options.hooks.addImageBlobHook = _this.$imgUpload;
+            }
+
             return options;
+        },
+        typeofImgUpload() {
+            return typeof this.imgUpload;
         }
     },
     methods: {
@@ -152,6 +183,32 @@ export default {
         },
         getHtml() {
             return this.editor.getHtml();
+        },
+        $imgUpload(fileOrBlob, callback){
+            const _this = this;
+            switch (_this.typeofImgUpload) {
+               case 'string': // 表示是上传地址
+                    var formdata = new FormData();
+                    formdata.append('image', fileOrBlob);
+                    request({
+                        url: _this.imgUpload,
+                        method: 'post',
+                        data: formdata,
+                        headers: { 'Content-Type': 'multipart/form-data' }
+                    }).then(res => {  
+                        const { data } = res;
+                        const { url, name } = data;
+                        callback(url, name);
+                    }).catch(err => {                       
+                        console.log(err);
+                    });
+                   break;
+               case 'function': // 表示自定义上传
+                   _this.imgUpload(fileOrBlob, callback);
+                   break;           
+               default:
+                   break;
+            }
         }
     },
     mounted() {
@@ -163,3 +220,13 @@ export default {
     }
 };
 </script>
+<style>
+/**
+ * 强制隐藏菜单tip，
+ * 因为 此tip是根据body插入
+ * 本项目中布局flex scroll不是body的scroll所以此插件tip有问题
+ */
+.tui-tooltip{
+    display: none !important;
+}
+</style>

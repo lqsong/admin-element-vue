@@ -34,6 +34,12 @@ const componentsRouter = {
                     meta: { title: 'tui-editor', roles: ['component-editor-one'] }
                 },
                 {
+                    path: 'three',
+                    component: () => import('@/views/Component/Editor/three'),
+                    name: 'component-editor-three',
+                    meta: { title: 'MavonEditor', roles: ['component-editor-three'] }
+                },
+                {
                     path: 'two',
                     component: () => import('@/views/Component/Editor/two'),
                     name: 'component-editor-two',
