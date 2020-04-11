@@ -4,7 +4,7 @@
             <div slot="header">
               <span>默认</span>
             </div>
-            <mavon-editor ref="mavoneditor" v-model="content"></mavon-editor>
+            <mavon-editor ref="mavoneditor" v-model="content" @change="change"></mavon-editor>
         </el-card>
 
         <el-card shadow="never" class="border-none margin-t24">
@@ -27,6 +27,13 @@
               previewBackground="#FFFFFF"></mavon-editor>
         </el-card>
 
+        <el-card shadow="never" class="border-none margin-t24">
+            <div slot="header">
+              <span>详情 - HTML</span>
+            </div>
+            <div v-html="contentHtml"></div>
+        </el-card>
+
 
     </div>
 </template>
@@ -38,10 +45,15 @@ export default {
     },
     data(){
         return {
-            content: '# 1235'
+            content: '# This is Test.',
+            contentHtml: ''
         };
     },
     methods: {
+        change(v, html) {
+            console.log(v);
+            this.contentHtml = html;
+        },
         imgUpload(pos, $file , $vm) {
            
             var formdata = new FormData();
