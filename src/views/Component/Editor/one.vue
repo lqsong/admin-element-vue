@@ -67,7 +67,7 @@ export default {
         }).catch(err => {                       
             console.log(err);
         }); */
-        callback('https://gitee.com/lqsong/public/raw/master/common/Alipay.png','百度');
+        callback('https://gitee.com/lqsong/public/raw/master/common/Alipay.png','赞助码');
       }
   },
   mounted() {
