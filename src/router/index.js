@@ -124,14 +124,14 @@ export const asyncRoutes = [
 // 打印对应链接的权限
 const consoleLogRouteRoles = (routes, level) => {
    let obj = {};
-   routes.map(item => {
+   routes.map((item, index) => {
       let { meta, children } = item;
       if (!meta) {
         return item;
       }
       let { title, roles } = meta;
       //console.log(meta);
-      obj[title + level ] = roles[0] || '';
+      obj[title + index + '-' + level ] = roles[0] || '';
       // console.log(children);
       if (children) {
         obj = Object.assign(obj, consoleLogRouteRoles(children, level + 1));
