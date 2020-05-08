@@ -6,12 +6,12 @@
         </h1>
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0" size="medium">
           <el-form-item label="" prop="username">
-            <el-input v-model.number="ruleForm.username" autocomplete="off" placeholder="请输入账号" @keyup.enter.native="submitForm('ruleForm')">
+            <el-input v-model.trim="ruleForm.username" autocomplete="off" placeholder="请输入账号" @keyup.enter.native="submitForm('ruleForm')">
               <i slot="prefix" class="el-input__icon el-icon-user"></i>
             </el-input>            
           </el-form-item>
           <el-form-item label="" prop="password">
-            <el-input type="password" v-model="ruleForm.password" autocomplete="off" placeholder="请输入密码" @keyup.enter.native="submitForm('ruleForm')">
+            <el-input type="password" v-model.trim="ruleForm.password" autocomplete="off" placeholder="请输入密码" @keyup.enter.native="submitForm('ruleForm')">
               <i slot="prefix" class="el-input__icon el-icon-lock"></i>
             </el-input>
           </el-form-item>
