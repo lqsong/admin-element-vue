@@ -106,6 +106,9 @@ service.interceptors.response.use(
   },
   error => {
     console.log('err' + error); // for debug
+    //console.log('err' + error.response.headers); // for debug
+    //console.log('err' + error.response.data); // for debug
+    //console.log('err' + error.response.status); // for debug
     Message({
       message: error.message,
       type: 'error',
