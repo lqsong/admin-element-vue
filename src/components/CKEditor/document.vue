@@ -149,5 +149,6 @@ export default {
 }
 .document-editor .ck-content {
     min-height: 300px;
+    line-height: normal;
 }
 </style>
