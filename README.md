@@ -6,9 +6,16 @@
 :-------------------------:|:-------------------------:
 ![Default version demo](https://gitee.com/lqsong/public/raw/master/admin-element-vue/admin1.png)  |  ![BgImg version demo](https://gitee.com/lqsong/public/raw/master/admin-element-vue/admin2.png)
 
+## 实战案例
+
+- lqsblog-frontend-admin-vue（[Github](https://github.com/lqsong/lqsblog-frontend-admin-vue) 、 [Gitee](https://gitee.com/lqsong/lqsblog-frontend-admin-vue)）
+
+
 ## 使用文档
 
-[http://admin-element-vue.liqingsong.cc](http://admin-element-vue.liqingsong.cc/)
+ - [http://admin-element-vue.liqingsong.cc](http://admin-element-vue.liqingsong.cc/)
+ - [Github](https://github.com/lqsong/admin-element-vue) 
+ - [Gitee](https://gitee.com/lqsong/admin-element-vue)
 
 ## 功能
 

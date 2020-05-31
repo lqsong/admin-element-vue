@@ -3,11 +3,11 @@
         <div class="footer-links">
             <a href="http://demo.admin-element-vue.liqingsong.cc" target="_blank">DEMO</a>
             <a href="https://github.com/lqsong/admin-element-vue" target="_blank">Github</a>
-            <a href="https://www.liqingsong.cc" target="_blank">博客</a>
+            <a href="https://liqingsong.cc" target="_blank">博客</a>
             <a href="http://www.wyxgn.com" target="_blank">网页小功能</a>
         </div>
         <div class="footer-copyright">
-            Copyright © 2020 WYXGN.COM, All Rights Reserved
+            Copyright © 2020 liqingsong.cc, All Rights Reserved
         </div>
     </div>
 </template>
