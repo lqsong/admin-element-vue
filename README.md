@@ -8,7 +8,7 @@
  - [http://admin-element-vue.liqingsong.cc](http://admin-element-vue.liqingsong.cc/)
 
 
-## TypeScript.v2
+## TypeScript.v2 (分支)
 
 Element Plus Vue3.x Admin
 
@@ -16,7 +16,7 @@ Element Plus Vue3.x Admin
  - [Gitee](https://gitee.com/lqsong/admin-element-vue/tree/typescript.v2)
 
 
-## JavaScript.v1
+## JavaScript.v1 (分支)
 
 Element-ui Vue2.x Admin
 
