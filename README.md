@@ -2,7 +2,7 @@
 
 ## Demo
 
-**[Default version demo](http://demo.admin-element-vue.liqingsong.cc/)**             |  **[BgImg version demo](http://bgimg-demo.admin-element-vue.liqingsong.cc/)**
+**[Default version demo](http://jsv1-demo.admin-element-vue.liqingsong.cc/)**             |  **[BgImg version demo](http://bgimg-demo.admin-element-vue.liqingsong.cc/)**
 :-------------------------:|:-------------------------:
 ![Default version demo](https://gitee.com/lqsong/public/raw/master/admin-element-vue/admin1.png)  |  ![BgImg version demo](https://gitee.com/lqsong/public/raw/master/admin-element-vue/admin2.png)
 
@@ -13,9 +13,9 @@
 
 ## 使用文档
 
- - [http://admin-element-vue.liqingsong.cc](http://admin-element-vue.liqingsong.cc/)
- - [Github](https://github.com/lqsong/admin-element-vue) 
- - [Gitee](https://gitee.com/lqsong/admin-element-vue)
+ - [http://admin-element-vue.liqingsong.cc/jsv1/](http://admin-element-vue.liqingsong.cc/jsv1/)
+ - [Github](https://github.com/lqsong/admin-element-vue/tree/javascript.v1) 
+ - [Gitee](https://gitee.com/lqsong/admin-element-vue/tree/javascript.v1)
 
 ## 功能
 
@@ -98,7 +98,7 @@ npm run svgo
 
 ## 捐赠
 
-如果你觉得这个项目帮助到了你，你可以请作者喝咖啡表示鼓励.
+如果你觉得这个项目帮助到了你，请帮助点击 Star，你也可以请作者喝咖啡表示鼓励.
 
 **ALIPAY**             |  **WECHAT**
 :-------------------------:|:-------------------------:

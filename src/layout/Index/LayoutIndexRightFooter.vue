@@ -1,8 +1,8 @@
 <template>
     <div class="indexlayout-right-footer">
         <div class="footer-links">
-            <a href="http://demo.admin-element-vue.liqingsong.cc" target="_blank">DEMO</a>
-            <a href="https://github.com/lqsong/admin-element-vue" target="_blank">Github</a>
+            <a href="http://jsv1-demo.admin-element-vue.liqingsong.cc" target="_blank">DEMO</a>
+            <a href="https://github.com/lqsong/admin-element-vue/tree/javascript.v1" target="_blank">Github</a>
             <a href="https://liqingsong.cc" target="_blank">博客</a>
             <a href="http://www.wyxgn.com" target="_blank">网页小功能</a>
         </div>

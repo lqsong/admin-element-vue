@@ -3,6 +3,7 @@ node_modules
 /dist
 vue.config.js
 main.ext.js
+package-lock.json
 
 /tests/e2e/videos/
 /tests/e2e/screenshots/
