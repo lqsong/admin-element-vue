@@ -1,32 +1,32 @@
-# admin-element-vue
+# admin-element-vue-typescript
 
 ## Demo
 
-**[Default version demo](http://demo.admin-element-vue.liqingsong.cc/)**             |  **[BgImg version demo](http://bgimg-demo.admin-element-vue.liqingsong.cc/)**
-:-------------------------:|:-------------------------:
-![Default version demo](https://gitee.com/lqsong/public/raw/master/admin-element-vue/admin1.png)  |  ![BgImg version demo](https://gitee.com/lqsong/public/raw/master/admin-element-vue/admin2.png)
+| **[http://tsv2-demo.admin-element-vue.liqingsong.cc](http://tsv2-demo.admin-element-vue.liqingsong.cc/)**             |
+:-------------------------:
+| ![Home](https://gitee.com/lqsong/public/raw/master/admin-element-vue-typescript/home.png)  |
+| ![Home](https://gitee.com/lqsong/public/raw/master/admin-element-vue-typescript/home2.png)  |
 
-## 实战案例
-
-- lqsblog-frontend-admin-vue（[Github](https://github.com/lqsong/lqsblog-frontend-admin-vue) 、 [Gitee](https://gitee.com/lqsong/lqsblog-frontend-admin-vue)）
 
 
 ## 使用文档
 
- - [http://admin-element-vue.liqingsong.cc](http://admin-element-vue.liqingsong.cc/)
+ - [http://admin-element-vue.liqingsong.cc/tsv2/](http://admin-element-vue.liqingsong.cc/tsv2/)
  - [Github](https://github.com/lqsong/admin-element-vue) 
  - [Gitee](https://gitee.com/lqsong/admin-element-vue)
 
 ## 功能
 
 ```
-- 登录 / 注销
+- 登录 / 注销 / 注册
 
 - 权限验证
   - 页面权限
+  - 按钮操作
   - 权限配置
 
 - 全局功能
+  - 国际化多语言
   - 动态顶级菜单（支持设置是否启用）
   - 动态侧边栏（支持多级路由嵌套）
   - 动态面包屑（支持自定义配置）
@@ -37,68 +37,110 @@
   - 引导页
   - 组件示例
     - 编辑器
-    - 树形表格
-    - 其他组件
+      - CKEditor
+      - tui-editor
+    - 图标
+      - IconSvg
+      - IconFont
   - 页面示例
     - 列表页面
+      - 表格列表
+      - 高度自适应表格
+      - 搜索列表
     - 表单页面
+      - 基础表单
+      - 高级表单      
     - 详情页面
-  - ECharts 图表
+      - 基础详情
+      - 模块详情
+      - 表格详情
+  - 权限验证
 ```
 
 
 ## 自定义配置
 
-### 一、**(必须)** 复制 'vue.config.default.js' 重命名为 ' vue.config.js'
-查看 [配置参考](https://cli.vuejs.org/config/).
-
-### 二、**(必须)**  复制 'src/main.ext.default.js' 重命名为 'src/main.ext.js'
-满足不同用户、不同环境下，内容可自定义进行增删减
-
-### 三、**(建议)** 开发模式下，不要直接修改 '.env.development'
+### **(建议)** 本地或开发模式下，不要直接修改 '.env.development'
 复制 '.env.development' 重命名为 ' .env.development.local' , 修改对应的参数.
 
-### 四、**(建议)** 生产模式下，不要直接修改 '.env.production'
+### **(建议)** 生产模式下，不要直接修改 '.env.production'
 复制 '.env.production' 重命名为 ' .env.production.local' , 修改对应的参数.
 
+
 ## 项目设置
-```
-npm ci ( npm install )
+
+### 一、Install dependencies,
+
+```bash
+$ yarn
 ```
 
-### 一、Compiles and hot-reloads for development
+or
+
 ```
-npm run serve
+$ npm install
 ```
 
-### 二、Compiles and minifies for production
-```
-npm run build
+> 推荐使用 yarn , **[yarn安装与常用命令](http://liqingsong.cc/article/detail/9)** 。
+
+### 二、Compiles and hot-reloads for development
+
+```bash
+$ yarn serve
 ```
 
-### 三、运行单元测试
+or
+
 ```
+$ npm run serve
+```
+
+
+### 三、Compiles and minifies for production
+
+```bash
+$ yarn build
+```
+or
+
+```
+$ npm run build
+```
+
+### 四、精简 svg icon
+
+```
+$ yarn svgo
+```
+
+or
+
+```
+$ npm run svgo
+```
+
+### 五、Run your unit tests
+```
+yarn test:unit
+
+#
+
 npm run test:unit
 ```
 
-### 四、运行端到端测试
+### 六、Lints and fixes files
 ```
-npm run test:e2e
-```
+yarn lint
 
-### 五、修复
-```
+#
+
 npm run lint
 ```
 
-### 六、精简 svg icon
-```
-npm run svgo
-```
 
 ## 捐赠
 
-如果你觉得这个项目帮助到了你，你可以请作者喝咖啡表示鼓励.
+如果你觉得这个项目帮助到了你，请帮助点击 Star，你也可以请作者喝咖啡表示鼓励.
 
 **ALIPAY**             |  **WECHAT**
 :-------------------------:|:-------------------------:

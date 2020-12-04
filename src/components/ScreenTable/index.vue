@@ -1,38 +1,64 @@
 <template>
-    <div class="screentable" ref="screentable">
-        <el-table
-            ref="screentElTable"
-            :class="tableClass"
-            :data="data"
-            :height="tableHeight"
-            :show-header="showHeader"
-            :stripe="stripe"
-            :border="border"
-            :size="size"
-            :row-class-name="rowClassName"
-            :row-style="rowStyle"
-            :cell-class-name="cellClassName"
-            :cell-style="cellStyle"
-            :header-row-class-name="headerRowClassName"
-            :header-row-style="headerRowStyle"
-            :header-cell-class-name="headerCellClassName"
-            :header-cell-style="headerCellStyle"
-            @select="handleSelect"
-            @select-all="handleSelectAll"
-            @selection-change="handleSelectionChange"
-            @header-dragend="handleHeaderDragend">
-            <slot></slot>
-        </el-table>
+    <div class="main-conent-screen">
+     
+        <div v-if="$slots.header" class="screen-header"><slot name="header"></slot></div>
+        <div v-else class="screen-padding" />
+
+        <div class="screen-conent" ref="conentRef">
+            <el-table
+                :height="tableHeight"                
+                :row-key="rowKey"               
+                :data="data"
+                v-loading="loading"
+                :show-header="showHeader"
+                :stripe="stripe"
+                :border="border"
+                :size="size"
+                :class="tableClass"
+                :header-row-class-name="headerRowClassName"
+            >
+                <slot></slot>
+                <template #empty>
+                    <slot v-if="$slots.empty" name="empty"></slot>
+                    <span v-else>暂无数据</span>
+                </template>
+            </el-table>
+        </div>
+
+        <div v-if="pagination" class="screen-footer">
+
+            <el-pagination
+                background
+                :layout="pagination.layout || 'prev, pager, next'"
+                :current-page="pagination.current"
+                :page-size="pagination.pageSize"
+                :total="pagination.total"
+                @current-change="pagination.onChange">
+            </el-pagination>
+
+        </div>
+        <div v-else class="screen-padding" />
     </div>
 </template>
-<script>
-import { debounce } from '@/utlis';
-export default {
+<script lang="ts">
+import { defineComponent, onBeforeUnmount, onMounted, PropType, ref } from "vue";
+import debounce from "lodash.debounce";
+import { PaginationConfig } from "./data.d";
+
+export default defineComponent({
     name: 'ScreenTable',
     props: {
+        rowKey: {
+            type: String,
+        },
         data: {
-            type: Array,
-            required: true
+            type: Array
+        },
+        loading: {
+            type: Boolean
+        },
+        pagination: {
+            type: Object as PropType<PaginationConfig | false | undefined>
         },
         showHeader: {
             type: Boolean,
@@ -46,93 +72,73 @@ export default {
             type: Boolean,
             default: true
         },
-        emptyText: {
-            type: String,
-            default: '暂无数据'
-        },
-        size: {
-            type: String
+        size:{
+          type: String,
+          default: 'small'
         },
         tableClass: {
-            type: [Object,String]
-        },
-        rowClassName: {
-            type: [Function,String]
-        },
-        rowStyle: {
-            type: [Function,String]
-        },
-        cellClassName: {
-            type: [Function,String]
-        },
-        cellStyle: {
-            type: [Function,String]
+          type: String,
+          default: 'custom-table'
         },
         headerRowClassName: {
-            type: [Function,String]
-        },
-        headerRowStyle: {
-            type: [Function,String]
-        },
-        headerCellClassName: {
-            type: [Function,String]
-        },
-        headerCellStyle: {
-            type: [Function,String]
+          type: String,
+          default: 'custom-table-header'
         }
     },
-    data() {
-        return {
-            tableHeight: 200,
-            resizeHandler: null
-        };
-    },
-    methods: {
-        initResizeEvent() {
-            window.addEventListener('resize', this.resizeHandler);
-        },
-        clearSelection() {
-            this.$refs.screentElTable.clearSelection();
-        },
-        toggleRowSelection(row, selected) {
-            this.$refs.screentElTable.toggleRowSelection(row, selected);
-        },
-        toggleAllSelection() {
-            this.$refs.screentElTable.toggleAllSelection();
-        },
-        setCurrentRow(row) {
-            this.$refs.screentElTable.setCurrentRow(row);
-        },
-        handleSelect(selection, row) {
-            this.$emit('select', selection, row);
-        },
-        handleSelectAll(selection) {
-            this.$emit('select-all', selection);
-        },
-        handleSelectionChange(val) {
-            this.$emit('selection-change', val);
-        },
-        handleHeaderDragend(newWidth, oldWidth, column, event) {
-            this.$emit('header-dragend', newWidth, oldWidth, column, event);
-        }
-    },
-    mounted() {
-        const _this = this;
-        _this.resizeHandler = debounce(() => {
-            if (!_this.$refs.screentable || !_this.$refs.screentable.offsetHeight) {
-                return false;
+    setup() {
+
+        const conentRef = ref<HTMLDivElement>();
+        const tableHeight = ref<number>(200);
+
+        const resizeHandler = debounce(() => {
+            if (conentRef.value) {           
+                tableHeight.value = conentRef.value.offsetHeight;            
             }
-            let heightStyle = _this.$refs.screentable.offsetHeight;
-            _this.tableHeight = heightStyle;
         }, 100);
-        _this.resizeHandler();
-        _this.initResizeEvent();
-        
-  }
-};
+
+        onMounted(()=> {
+            resizeHandler();
+
+            window.addEventListener('resize', resizeHandler);
+
+        })
+
+        onBeforeUnmount(()=> {
+             window.removeEventListener('resize', resizeHandler);
+        })
+
+        return {
+            conentRef,
+            tableHeight
+        }
+
+    }
+})
 </script>
 <style lang="scss" scoped>
-.screentable {
+.main-conent-screen {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 48px - 50px);
+  border-radius: 4px;
+  background-color: #fff;
+  .screen-header {
+    padding: 20px;
+    min-height: 33px;
+  }
+  .screen-footer {
+    padding: 20px;
+    min-height: 32px;
+    text-align: right;
+  }
+  .screen-conent {
+    flex: 1;
+    padding: 0 20px;
     overflow: hidden;
+  }
+  .screen-padding {
+    padding-top: 20px;
+  }
+
 }
 </style>

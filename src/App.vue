@@ -1,10 +1,19 @@
 <template>
-  <div id="app">    
-    <router-view/>
-  </div>
+  <router-view></router-view>
 </template>
-<script>
-export default {
-  name: 'App'
-};
+<script lang="ts">
+import { defineComponent, onMounted } from "vue";
+import { setHtmlLang } from "@/utils/i18n";
+import { useI18n } from "vue-i18n";
+export default defineComponent({
+  name: 'App',
+  setup() {
+    const { locale } = useI18n();
+
+    onMounted(() => {
+      setHtmlLang(locale.value);
+    })
+    
+  }
+})
 </script>

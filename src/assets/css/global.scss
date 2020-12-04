@@ -1,199 +1,47 @@
-/**
- * 全局样式
- * @author LiQingSong
- */
- @import './variables.scss';
- @import './mixin.scss';
- @import './sidebar-menu.scss';
- /* 初始化 */
- ::-webkit-scrollbar {
-    width: .5em;
-    height: .5em
-}
-::-webkit-scrollbar-thumb {
-    background: #d9d9d9;/* rgba(0,0,0,.6) */;
-    cursor: pointer
-}
-::-webkit-scrollbar-track {
-    background: 0 0 /* rgba(255,255,255,.7) */;
-}
-body {
-    scrollbar-face-color:#d9d9d9 /* rgba(0,0,0,.6) */;
-    scrollbar-track-color:transparent /* rgba(255,255,255,.7) */;
-}
- 
- /* 饿了么滚动 重置样式 */
-.default-scrollbar {
-    width: 100%;
-    height: 100%;
-}
-.flex-scrollbar {
-    width: auto;
-    height: auto;
-    flex: 1;
-}
-.el-scrollbar__wrap.default-scrollbar__wrap {
-    overflow-x: auto;
-}
-.horizontal-scrollbar {
-    .el-scrollbar__wrap {
-        overflow-x: hidden;
-        .el-scrollbar__view{
-            white-space: nowrap;
-         }
-    }
-}
-/* 自定义 drawer 样式 */
-.custom-drawer {
-    .el-drawer__header {
-      border-bottom: 1px solid #e8eaec;
-      margin-bottom: 0;
-      padding: 14px 16px;
-      span:focus {
-        outline: none;
-      }
-    }
-    .el-drawer__body {
-        position: static;
-        height: calc(100% - 55px);
-        overflow: auto;
-        padding-top: 16px;
-        padding-left: 16px;
-        padding-right: 16px;
-        padding-bottom: 53px;
-    }
-    .custom-drawer-footer {
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        border-top: 1px solid #e8e8e8;
-        padding: 10px 16px;
-        text-align: right;
-        background: #fff;
-        z-index: 4;
-    }
-  }
-/* 自定义头像上传 */
-.avatar-uploader {
-    .el-upload {
-        border: 1px dashed #d9d9d9;
-        border-radius: 6px;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        &:hover {
-            border-color: #409EFF;
-        }
-    }
-    .avatar-uploader-icon {
-        font-size: 28px;
-        color: #8c939d;
-        width: 178px;
-        height: 178px;
-        line-height: 178px;
-        text-align: center;
-      }
-      .avatar {
-        width: 178px;
-        height: 178px;
-        display: block;
-      }
-}
-/*自定义 table 样式*/
-.custom-table {
-    .el-table__fixed-right-patch {
-        background-color: #F5F7FA;
-    }
-    .custom-td-header-one,
-    .el-table__body tr:hover .custom-td-header-one {
-        color: #303133;
-        font-weight: bold;
-        background-color: #F5F7FA;
-    }
-}
-.custom-table-header {
-    color: #303133;
-    th {
-        background-color: #F5F7FA;
-    }
-}
-/* 初始样式 */
-.main-conent {
-    margin: 24px;
-    &.form-footer {
-        & + .indexlayout-right-footer  {
-            padding-bottom: 80px;
-        }
-    }
-}
-.main-conent-minheight{
-    min-height: calc(100% - 48px - 122px);
-}
-.main-conent-bgFFF{
-    background-color: #FFFFFF;
-}
-.main-conent-borderradius{
-    border-radius: 4px;
-}
-.main-conent-screen{
-    display: flex;
-    flex-direction: column;    
-    height: calc(100% - 48px - 122px);
-    .screen-header {
-        padding: 20px;
-        min-height: 33px;
-    }
-    .screen-footer  {
-        padding: 20px;
-        height: 32px;
-    }
-    .screen-conent {
-        flex: 1;
-        padding: 0 20px;
-        overflow: hidden;
-    }
-}
+@import './element-variables.scss';
+@import './variables.scss';
+@import './mixin.scss';
+
 .flex-wrap-wrap {
     flex-wrap: wrap;
 }
-.cursor-pointer{
+
+a {
+    color: #1890ff;
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
     cursor: pointer;
+    transition: color .3s;
 }
-.float-left{
-    float: left;
+a:active,
+a:hover {
+    text-decoration: none;
+    outline: 0;
 }
-.float-right {
-    float: right;
+a:active {
+    color: #096dd9;
 }
-.border-none {
-    border: none;
+a:hover {
+    color: #40a9ff;
 }
+
 .border-solid-transparent{
     border: solid 1px transparent;
 }
-.height-100{
-    height: 100% !important;
-}
-.text-right {
+
+.text-align-right {
     text-align: right;
 }
-.text-center {
-    text-align: center;
+
+.float-right {
+    float: right;
 }
-.margin-t16{
-    margin-top: 16px;
+
+.padding-t10 {
+    padding-top: 10px;
 }
-.margin-t24 {
-    margin-top: 24px;
+
+.cursor-pointer {
+    cursor: pointer;
 }
-.margin-l5{
-    margin-left: 5px;
-}
-.margin-l10{
-    margin-left: 10px;
-}
-.margin-b10 {
-    margin-bottom: 10px;
-}
-  
