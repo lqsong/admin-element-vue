@@ -17,7 +17,7 @@
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "echarts": "^4.9.0",
-    "element-plus": "^1.0.1-beta.3",
+    "element-plus": "^1.0.1-beta.4",
     "localforage": "^1.9.0",
     "lodash.debounce": "^4.0.8",
     "normalize.css": "^8.0.1",
