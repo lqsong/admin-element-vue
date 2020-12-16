@@ -2,7 +2,8 @@
  * 国际化 utils
  * @author LiQingSong
  */
-import { LocaleMessageDictionary, VueMessageType } from "vue-i18n";
+import { LocaleMessages } from '@intlify/core-base';
+import { VueMessageType } from "vue-i18n";
 
 // window.localStorage 存储key
 export const localeKey = 'locale';
@@ -78,8 +79,8 @@ export const setLocale = (lang: string, realReload = true, callback: Function) =
  * 自动导入 框架自定义语言
  * @author LiQingSong
  */
-export function importAllLocales(): Record<string, LocaleMessageDictionary<VueMessageType>> {
-    const modules: Record<string, LocaleMessageDictionary<VueMessageType>> = {};
+export function importAllLocales(): LocaleMessages<VueMessageType> {
+    const modules: LocaleMessages<VueMessageType> = {};
     try {
         // 导入 @/views 下文件，包含子目录，文件名为：[/\\]locales[/\\]([a-z]{2})-?([A-Z]{2})?\.ts
         const viewsRequireContext: __WebpackModuleApi.RequireContext = require.context('../views', true, /[/\\]locales[/\\]([a-z]{2})-?([A-Z]{2})?\.ts$/); 
