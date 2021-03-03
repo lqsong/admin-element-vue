@@ -1,0 +1,47 @@
+@import './element-variables.scss';
+@import './variables.scss';
+@import './mixin.scss';
+
+.flex-wrap-wrap {
+    flex-wrap: wrap;
+}
+
+a {
+    color: #1890ff;
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    transition: color .3s;
+}
+a:active,
+a:hover {
+    text-decoration: none;
+    outline: 0;
+}
+a:active {
+    color: #096dd9;
+}
+a:hover {
+    color: #40a9ff;
+}
+
+.border-solid-transparent{
+    border: solid 1px transparent;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+.float-right {
+    float: right;
+}
+
+.padding-t10 {
+    padding-top: 10px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

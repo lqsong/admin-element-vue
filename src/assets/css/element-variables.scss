@@ -1,0 +1,183 @@
+/* 改变主题色变量 */
+$--color-primary: #009688;
+
+/// color|1|Font Color|2
+$--color-text-primary: #303133 !default;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: 'element-plus/lib/theme-chalk/fonts';
+
+@import 'element-plus/packages/theme-chalk/src/index';
+
+$heading-color: rgba(0, 0, 0, 0.85); // 标题色
+
+// Menu
+$menu-collapsed-width: 54px;
+
+// dark theme
+$menu-dark-bg: #222834;
+$menu-dark-submenu-bg: #000c17;
+$menu-dark-color: rgba(#FFF, 0.65);
+$menu-dark-highlight-color: #fff;
+
+
+/* 重置 NavMenu */
+.index-layout-leftmenu {
+    background-color: $menu-dark-bg;
+    border: none;
+
+
+    .el-submenu .el-menu {
+        background-color: $menu-dark-submenu-bg;
+    }
+    
+    .el-submenu__title,
+    .el-menu-item {
+        height: 40px;
+        line-height: 40px;
+        color: $menu-dark-color;
+        .icon {
+            margin-right: 5px;
+            vertical-align: middle;
+            width: 24px;
+            text-align: center;
+            color: $menu-dark-color;
+        }
+
+        &:focus,
+        &:hover {
+            color: $menu-dark-highlight-color !important;
+            background:none;
+            .icon {
+                color: $menu-dark-highlight-color !important;
+            }
+        } 
+    }
+
+    .is-active>.el-submenu__title {
+        color: $menu-dark-highlight-color !important;
+        .icon {
+            color: $menu-dark-highlight-color !important;
+        }
+    }
+    .el-submenu .el-menu-item.is-active,
+    .el-menu-item.is-active{
+        color: $menu-dark-highlight-color !important;
+        background-color: $--color-primary !important;
+    }
+    .el-submenu__title {
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+    .el-menu-item:not(:last-child) {
+        margin-bottom: 8px;
+    }
+
+
+    /* 收起 */
+    &.el-menu--collapse {
+        width: $menu-collapsed-width;
+        .el-submenu__title,
+        .el-menu-item {
+            .icon {
+                position: absolute;
+                left: 15px;
+                top: 10px;
+                margin: 0;
+            }         
+        }
+    }
+
+
+}
+.index-layout-leftmenu-popper {
+
+    .el-menu {
+        background-color: $menu-dark-submenu-bg;
+    }
+    .el-submenu__title,
+    .el-menu-item {
+        height: 40px;
+        line-height: 40px;
+        color: $menu-dark-color;
+        .icon {
+            margin-right: 5px;
+            vertical-align: middle;
+            width: 24px;
+            text-align: center;
+            color: $menu-dark-color;
+        }
+
+        &:focus,
+        &:hover {
+            color: $menu-dark-highlight-color !important;
+            background:none;
+            .icon {
+                color: $menu-dark-highlight-color !important;
+            }
+        }        
+    }
+
+    .is-active>.el-submenu__title {
+        color: $menu-dark-highlight-color !important;
+        .icon {
+            color: $menu-dark-highlight-color !important;
+        }
+    }
+    .el-submenu .el-menu-item.is-active,
+    .el-menu-item.is-active{
+        color: $menu-dark-highlight-color !important;
+        background-color: $--color-primary !important;
+    }
+    .el-submenu__title {
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+    .el-menu-item:not(:last-child) {
+        margin-bottom: 8px;
+    }
+
+
+}
+
+
+/* 重置 Drawer */
+.el-drawer {
+    .el-drawer__header {
+        padding: 15px 20px;
+        margin-bottom: 0;
+        border-bottom: 1px solid #f0f0f0;
+        span,
+        button {
+            outline: none;
+        }
+    }
+}
+
+/* 重置 card */
+.cus-card {
+    .el-card {
+        border: 0;
+    }
+}
+
+/*自定义 table 样式*/
+.custom-table {
+    .el-table__header {
+        background-color: #F5F7FA;
+    }
+    .custom-td-header-one,
+    .el-table__body tr:hover .custom-td-header-one {
+        color: #303133;
+        font-weight: bold;
+        background-color: #F5F7FA;
+    }
+}
+.custom-table-header {
+    color: #303133;
+    th {
+        background-color: #F5F7FA;
+    }
+}
+
+
