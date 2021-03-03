@@ -1,5 +1,7 @@
 # admin-element-vue-typescript
 
+此分支是 Webpack + Vue3.x + Element Plus 版本 ， Vite 版本请查看 Vite.ts (分支)（[github](https://github.com/lqsong/admin-element-vue/tree/vite.ts)、[gitee](https://gitee.com/lqsong/admin-element-vue/tree/vite.ts)）
+
 ## Demo
 
 **注意：Demo 用的是在线mock服务，不稳定，若在线登录不了pull到本地可直接运行查看demo**
