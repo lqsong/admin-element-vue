@@ -54,7 +54,11 @@ export function loadAllMock(mockDirPath: string = mockDir) {
     })
     .map(function(file) {
         // console.log('.....file....', file);
-        return require(file);
+        try {
+            return require(file);
+        } catch (error) {
+            console.log('>>> mock ', error)            
+        }        
     });
 
    for (let index = 0, len = data.length; index < len; index++) {
