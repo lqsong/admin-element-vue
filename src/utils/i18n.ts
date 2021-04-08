@@ -185,10 +185,10 @@ export function validateLocalesPath(filePath: string): boolean {
   let localesDirBool: boolean = false;
   
 
-  const viewsPath = path.resolve(__dirname, './src/views');
-  const layoutsPath = path.resolve(__dirname, './src/layouts');
-  const componentsPath = path.resolve(__dirname, './src/components');
-  const localesPath = path.resolve(__dirname, './src/locales');
+  const viewsPath = path.resolve(__dirname, '../views');
+  const layoutsPath = path.resolve(__dirname, '../layouts');
+  const componentsPath = path.resolve(__dirname, '../components');
+  const localesPath = path.resolve(__dirname, '../locales');
   
   viewsDirBool = filePath.replace(viewsPath, '') !== filePath;
   layoutsDirBool = filePath.replace(layoutsPath, '') !== filePath;

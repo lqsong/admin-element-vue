@@ -5,7 +5,7 @@ import path from 'path';
  * nodejs 加载 .env
  * @author LiQingSong
  */
-export function setNodeEnv(NODE_ENV: string, envFile: string = path.resolve(__dirname, '.env')) {
+export function setNodeEnv(NODE_ENV: string, envFile: string = path.resolve(__dirname, '../../.env')) {
 
   // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
   const dotenvFiles = [

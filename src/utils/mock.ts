@@ -4,7 +4,8 @@ import url from 'url';
 import { files } from "node-dir";
 import { ViteDevServer, Plugin, Connect } from 'vite';
 
-const mockDir = path.resolve(__dirname, './mock');
+// const mockDir = path.resolve(__dirname, './mock');
+const mockDir = path.resolve(__dirname, '../../mock');
 
 /**
  * 解析post请求参数

@@ -66,8 +66,8 @@ export function validateStorePath(filePath: string): boolean {
   let storeDirBool: boolean = false;
   let viewsDirBool: boolean = false;
 
-  const storePath = path.resolve(__dirname, './src/store');
-  const viewsPath = path.resolve(__dirname, './src/views');
+  const storePath = path.resolve(__dirname, '../store');
+  const viewsPath = path.resolve(__dirname, '../views');
 
   storeDirBool = filePath.replace(storePath, '') !== filePath;
 

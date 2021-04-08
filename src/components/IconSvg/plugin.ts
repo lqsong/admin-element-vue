@@ -6,7 +6,8 @@ const svgTitle = /<svg([^>+].*?)>/;
 const clearHeightWidth = /(width|height)="([^>+].*?)"/g;
 const hasViewBox = /(viewBox="[^>+].*?")/g;
 const clearReturn = /(\r)|(\n)/g;
-const svgDir = path.resolve(__dirname, './src/assets/iconsvg');
+// const svgDir = path.resolve(__dirname, './src/assets/iconsvg');
+const svgDir = path.resolve(__dirname, '../../assets/iconsvg');
 
 export function findSvgFile(dir: string, idPerfix: string = 'icon-'): string[] {
     const svgRes = []
