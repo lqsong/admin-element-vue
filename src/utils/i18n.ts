@@ -35,6 +35,7 @@ export const setHtmlLang = (lang: string) => {
 
 /**
  * 获取当前选择的语言
+ * 获取的浏览器语言默认项目中有可能不支持，所以在config/i18n.ts中要加以判断
  * @returns string
  * @author LiQingSong
  */

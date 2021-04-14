@@ -47,7 +47,9 @@ export default defineComponent({
       },
       menuData: {
         type: Array as PropType<RoutesDataItem[]>,
-        default: []
+        default: () => {
+          return [];
+        }
       }
     },
     components: {

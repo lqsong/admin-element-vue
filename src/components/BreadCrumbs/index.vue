@@ -20,7 +20,9 @@ export default defineComponent({
     props: {
         list: {
             type: Array as PropType<BreadcrumbType[]>,
-            default: []
+            default: () => {
+                return [];
+            }
         }
     },
     components: {

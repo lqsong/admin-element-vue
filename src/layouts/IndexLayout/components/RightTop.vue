@@ -91,11 +91,15 @@ export default defineComponent({
       },
       breadCrumbs: {
         type: Array as PropType<BreadcrumbType[]>,
-        default: []
+        default: () => {
+          return [];
+        }
       },
       menuData: {
         type: Array as PropType<RoutesDataItem[]>,
-        default: []
+        default: () => {
+          return [];
+        }
       }
     },
     setup(props): RightTopSetupData {
