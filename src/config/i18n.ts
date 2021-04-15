@@ -4,7 +4,7 @@
  */
 
 import { createI18n } from "vue-i18n";
-import { getLocale, setLocale, importAllLocales } from "@/utils/i18n";
+import { getLocale, setLocale, importAllLocales, defaultLang } from "@/utils/i18n";
 
 /**
  * elementUI 多语言 配置
@@ -23,10 +23,10 @@ export const elementPlusMessages: { [key: string]: any} = {
  * 框架 多语言 配置
  */
 export const messages = importAllLocales();
-
+const sysLocale = getLocale();
 const i18n = createI18n({
     legacy: false,
-    locale: getLocale(),
+    locale: elementPlusMessages[sysLocale] ? sysLocale : defaultLang,
     messages,
 });
 
