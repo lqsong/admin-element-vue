@@ -30,7 +30,7 @@
     </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, reactive, ref } from "vue";
+import { computed, defineComponent, reactive, Ref, ComputedRef, ref } from "vue";
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { useI18n } from "vue-i18n";
@@ -39,13 +39,13 @@ import { RegisterParamsType } from "./data.d";
 import { StateType as RegisterStateType } from "./store";
 
 interface UserRegisterSetupData {
-    t(key: string | number): string;
+    t: (key: string | number) => string;
     modelRef: RegisterParamsType;
     rulesRef: any;
-    formRef: typeof ElForm;
-    submitLoading: boolean;
+    formRef: Ref<typeof ElForm | undefined>;
+    submitLoading: Ref<boolean>;
     handleSubmit: () => Promise<void>;
-    errorMsg?: string; 
+    errorMsg: ComputedRef<string | undefined>; 
 }
 
 export default defineComponent({
@@ -120,10 +120,10 @@ export default defineComponent({
             t,
             modelRef,
             rulesRef,
-            formRef: formRef as unknown as typeof ElForm,
-            submitLoading: submitLoading as unknown as boolean,
+            formRef,
+            submitLoading,
             handleSubmit,            
-            errorMsg: errorMsg as unknown as string
+            errorMsg
         }
 
     }

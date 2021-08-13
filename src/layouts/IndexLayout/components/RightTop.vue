@@ -48,7 +48,7 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, PropType, Ref, toRefs } from "vue";
+import { defineComponent, PropType, Ref, toRefs } from "vue";
 import { useI18n } from "vue-i18n";
 import { BreadcrumbType, RoutesDataItem } from '@/utils/routes';
 import BreadCrumbs from '@/components/BreadCrumbs/index.vue';
@@ -59,7 +59,7 @@ import RightTopUser from './RightTopUser.vue';
 import useTopMenuWidth from "../composables/useTopMenuWidth";
 
 interface RightTopSetupData {
-  t: Function;
+  t: (key: string | number) => string;
   topMenuCon: Ref;
   topMenuWidth: Ref;
 }

@@ -3,17 +3,17 @@
     <router-view v-if="isLogin" />
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from "vue";
+import { computed, defineComponent, onMounted, ref, Ref, ComputedRef } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import Spin from '@/components/Spin/index.vue';
 import { StateType as UserStateType, CurrentUser } from "@/store/user";
 
 interface SecurityLayoutSetupData {
-    isLogin: boolean;
-    loading: boolean;
+    isLogin: ComputedRef<boolean>;
+    loading: Ref<boolean>;
     getUser: () => Promise<void>;
-    isReady: boolean;
+    isReady: Ref<boolean>;
 }
 
 export default defineComponent({
@@ -56,10 +56,10 @@ export default defineComponent({
 
 
         return {
-            isLogin: isLogin as unknown as boolean,
-            loading: loading as unknown as boolean,
+            isLogin,
+            loading,
             getUser,
-            isReady: isReady as unknown as boolean
+            isReady
         }
 
 

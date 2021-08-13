@@ -4,12 +4,12 @@
     </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ComputedRef } from "vue";
 import { useStore } from "vuex";
 import { StateType as GlobalStateType } from '@/store/global';
 
 interface FooterToolbarSetupData {
-    collapsed: boolean;
+    collapsed: ComputedRef<boolean>;
 }
 
 export default defineComponent({
@@ -20,7 +20,7 @@ export default defineComponent({
         const collapsed = computed<boolean>(() => store.state.global.collapsed);
 
         return {
-            collapsed: collapsed as unknown as boolean
+            collapsed
         }
 
     }

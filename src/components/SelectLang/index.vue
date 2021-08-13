@@ -16,7 +16,7 @@
     </el-dropdown>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, WritableComputedRef } from "vue";
 import { setI18nLanguage } from "@/config/i18n";
 import { useI18n } from "vue-i18n";
 interface SelectLangSetupData {
@@ -24,7 +24,7 @@ interface SelectLangSetupData {
     languageLabels: {[key: string]: string};
     languageIcons: {[key: string]: string};
     changeLang: ({ key }: any) => void;
-    locale: string;
+    locale: WritableComputedRef<string>;
 }
 
 export default defineComponent({
@@ -55,7 +55,7 @@ export default defineComponent({
             languageLabels,
             languageIcons,
             changeLang,
-            locale: locale as unknown as string
+            locale
         }
     }
 })

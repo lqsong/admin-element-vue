@@ -61,13 +61,13 @@
     </el-button>
 </template>
 <script lang="ts">
-import { defineComponent, PropType, ref, toRefs, watch } from "vue";
+import { defineComponent, PropType, ref, toRefs, watch, Ref } from "vue";
 import { ElMessage } from "element-plus";
 import { TableFormDataType } from "./data.d";
 
 interface TableFormSetupData {
-    TableData: TableFormDataType;
-    TableLoading: boolean;
+    TableData: Ref<TableFormDataType[]>;
+    TableLoading: Ref<boolean>;
     newTableData:  () => void;
     saveRow: (record: TableFormDataType) => void;
     remove: (key: string) => void;
@@ -161,8 +161,8 @@ export default defineComponent({
 
 
         return {
-            TableData: TableData as unknown as TableFormDataType,
-            TableLoading: TableLoading as unknown as boolean,
+            TableData,
+            TableLoading,
             newTableData,
             saveRow,
             remove,

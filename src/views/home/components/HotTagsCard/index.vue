@@ -53,7 +53,7 @@
     </el-card>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from "vue";
+import { computed, defineComponent, onMounted, ref, ComputedRef, Ref } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 import { StateType as HomeStateType } from "../../store";
@@ -61,11 +61,11 @@ import { PaginationConfig } from "../../data";
 import { TableListItem } from "./data";
 
 interface HotTagsCardSetupData {
-    t(key: string | number): string;
+    t: (key: string | number) => string;
     indexMethod: (index: number) => number;
-    list: TableListItem[];
-    pagination: PaginationConfig;
-    loading: boolean;
+    list: ComputedRef<TableListItem[]>;
+    pagination: ComputedRef<PaginationConfig>;
+    loading: Ref<boolean>;
     getList: (current: number) => Promise<void>;
 }
 
@@ -105,9 +105,9 @@ export default defineComponent({
         return {
             t,
             indexMethod,
-            list: list as unknown as TableListItem[],
-            pagination: pagination as unknown as PaginationConfig,
-            loading: loading as unknown as boolean,
+            list,
+            pagination,
+            loading,
             getList
         }
     }
