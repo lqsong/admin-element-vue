@@ -4,7 +4,10 @@
  */
 import { ComputedRef, onMounted, Ref, ref, watch, nextTick } from 'vue';
 
-export default function useTopMenuWidth(topNavEnable: ComputedRef<boolean> | Ref<boolean>) {
+export default function useTopMenuWidth(topNavEnable: ComputedRef<boolean> | Ref<boolean>): {
+    topMenuCon: Ref<HTMLElement | null>;
+    topMenuWidth: Ref<string>;
+} {
 
     const topMenuCon = ref<HTMLElement | null>(null);
 

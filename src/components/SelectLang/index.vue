@@ -71,8 +71,8 @@ export default defineComponent({
     }
 }
 .active {
-    background-color: $--dropdown-menuItem-hover-fill;
-    color: $--dropdown-menuItem-hover-color;
+    background-color: var(--el-dropdown-menuItem-hover-fill);
+    color: var(--el-dropdown-menuItem-hover-color);
 
 }
 </style>

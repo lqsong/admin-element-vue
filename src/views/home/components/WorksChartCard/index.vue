@@ -79,7 +79,7 @@ const worksChartOption: EChartOption = {
 };
 
 interface WorksChartCardSetupData {
-    t: Function;
+    t(key: string | number): string;
     loading: boolean;
     worksChartRef: Ref;
     total: number;

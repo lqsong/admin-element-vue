@@ -2,14 +2,14 @@
     <div class="indexlayout-main-conent">
         <el-card shadow="never" class="cus-card">
 
-                <div v-for="item in svgIcons" class="list" :key="item" >
+                <div v-for="(item, index) in svgIcons" class="list" :key="index" >
                     <el-popover trigger="hover" placement="top-start" width="300">
                         
                         &lt;icon-svg type="{{item}}" /&gt;
                         
                         <template #reference>
                             <div>
-                                <icon-svg :type="item" style="font-size: 30px" />
+                                <icon-svg :type="item || ''" style="font-size: 30px" />
                                 <span>{{item}}</span>
                             </div>
                         </template>
@@ -70,7 +70,7 @@ import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
 import IconSvg from "@/components/IconSvg";
 
-const requireAll = (requireContext: __WebpackModuleApi.RequireContext) =>
+const requireAll = (requireContext: any/* __WebpackModuleApi.RequireContext */) =>
   requireContext.keys();
 const svgIcons = requireAll(
   require.context('../../../../assets/iconsvg', false, /\.svg$/),

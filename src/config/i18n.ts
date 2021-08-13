@@ -35,7 +35,7 @@ const i18n = createI18n({
  * 设置语言
  * @param locale 
  */
-export function setI18nLanguage(locale: string, realReload = false) {  
+export function setI18nLanguage(locale: string, realReload = false): void {  
     setLocale(locale,realReload, function() {
         // i18n.global.locale = locale // legacy: true
         i18n.global.locale.value = locale;        

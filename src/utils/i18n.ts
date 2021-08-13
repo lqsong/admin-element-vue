@@ -26,7 +26,7 @@ export const localeNameExp = (lang: string): boolean => {
  * @param lang 语言的 key
  * @author LiQingSong
  */
-export const setHtmlLang = (lang: string) => {
+export const setHtmlLang = (lang: string): void => {
     /**
      * axios.defaults.headers.common['Accept-Language'] = locale
      */
@@ -52,7 +52,7 @@ export const getLocale = (): string => {
  * @param realReload 是否刷新页面，默认刷新
  * @author LiQingSong
  */
-export const setLocale = (lang: string, realReload = true, callback: Function) => {
+export const setLocale = (lang: string, realReload = true, callback: () => void ): void => {
   
   if (lang !== undefined && !localeNameExp(lang)) {
     // for reset when lang === undefined

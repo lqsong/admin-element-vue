@@ -36,7 +36,7 @@ const StoreModel: ModuleType = {
     },
     actions: {
         async login({ commit }, payload: LoginParamsType) {
-            let status = undefined;
+            let status: undefined | string = undefined;
             try {
                 const response: ResponseData = await accountLogin(payload);
                 const { data } = response;

@@ -82,7 +82,7 @@ const topicsChartOption: EChartOption = {
 };
 
 interface TopicsChartCardSetupData {
-    t: Function;
+    t(key: string | number): string;
     loading: boolean;
     topicsChartRef: Ref;
     total: number;

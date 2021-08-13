@@ -58,7 +58,7 @@ const linksChartOption: EChartOption = {
 };
 
 interface LinksChartCardSetupData {
-    t: Function;
+    t(key: string | number): string;
     loading: boolean;
     linksChartRef: Ref;
     total: number;

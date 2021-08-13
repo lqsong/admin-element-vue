@@ -40,7 +40,7 @@ import { LoginParamsType } from './data.d';
 import { StateType as UserLoginStateType } from './store';
 
 interface UserLoginSetupData {
-    t: Function;
+    t(key: string | number): string;
     modelRef: LoginParamsType;
     rulesRef: any;
     formRef: typeof ElForm;

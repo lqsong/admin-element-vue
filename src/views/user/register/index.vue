@@ -39,7 +39,7 @@ import { RegisterParamsType } from "./data.d";
 import { StateType as RegisterStateType } from "./store";
 
 interface UserRegisterSetupData {
-    t: Function;
+    t(key: string | number): string;
     modelRef: RegisterParamsType;
     rulesRef: any;
     formRef: typeof ElForm;

@@ -34,7 +34,7 @@ const StoreModel: ModuleType = {
     },
     actions: {
         async register({ commit }, payload: RegisterParamsType) {
-            let msg = undefined;
+            let msg: undefined | string = undefined;
             try {
                 await accountReg(payload);
                 msg = '';

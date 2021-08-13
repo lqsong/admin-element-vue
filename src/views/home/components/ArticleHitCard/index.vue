@@ -60,7 +60,7 @@ import { PaginationConfig } from "../../data";
 import { TableListItem } from "./data";
 
 interface ArticleHitCardSetupData {
-    t: Function;
+    t(key: string | number): string;
     indexMethod: (index: number) => number;
     list: TableListItem[];
     pagination: PaginationConfig;

@@ -38,7 +38,7 @@ import { ArticleChartDataType } from "../../data.d";
 import { StateType as HomeStateType } from "../../store";
 
 interface ArticleChartCardSetupData {
-    t: Function;
+    t(key: string | number): string;
     loading: boolean;
     visitData: ArticleChartDataType;
 }

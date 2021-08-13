@@ -12,7 +12,7 @@ import { BreadcrumbType } from '@/utils/routes';
 import ALink from '@/components/ALink/index.vue';
 
 interface BreadCrumbsSetupData {
-    t: Function;
+    t(key: string | number): string;
 }
 
 export default defineComponent({
