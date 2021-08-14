@@ -16,11 +16,11 @@ importAllSvg();
 import App from '@/App.vue';
 import router from '@/config/routes';
 import store from '@/config/store';
-import i18n, { elementPlusMessages } from '@/config/i18n';
+import i18n from '@/config/i18n';
 
 const app = createApp(App)
 app.use(store);
 app.use(router)
-app.use(ElementPlus, { size: 'small', locale: elementPlusMessages[i18n.global.locale.value] });
+app.use(ElementPlus, { size: 'small'});
 app.use(i18n);
 app.mount('#app');

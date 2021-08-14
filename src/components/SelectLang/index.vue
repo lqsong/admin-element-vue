@@ -47,7 +47,7 @@ export default defineComponent({
 
         // 切换语言
         const changeLang = (command: string): void => {
-            setI18nLanguage(command, true);
+            setI18nLanguage(command);
         };
 
         return {
