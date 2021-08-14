@@ -2,7 +2,8 @@
  * 设置 IndexLayout TopMenuWidth
  * @author LiQingSong
  */
-import { ComputedRef, onMounted, Ref, ref, watch, nextTick } from 'vue';
+import { ComputedRef, onMounted, Ref, ref, watch, nextTick, computed } from 'vue';
+import { useI18n } from "vue-i18n";
 
 export default function useTopMenuWidth(topNavEnable: ComputedRef<boolean> | Ref<boolean>) {
 
@@ -10,7 +11,7 @@ export default function useTopMenuWidth(topNavEnable: ComputedRef<boolean> | Ref
 
     const topMenuWidth = ref<string>('auto');
 
-      const setWidth = async () => {
+    const setWidth = async () => {
         await nextTick();
         if (topMenuCon.value && topNavEnable.value) {
             let width = 0;
@@ -26,12 +27,17 @@ export default function useTopMenuWidth(topNavEnable: ComputedRef<boolean> | Ref
     };
 
 
-    watch(topNavEnable,(topNavEnable)=> {
+    watch(topNavEnable,()=> {
         setWidth(); 
     })
 
-    onMounted(()=> {  
-             
+    const { locale } = useI18n();
+    const localeValue = computed(()=> locale.value);
+    watch(localeValue,()=> {
+        setWidth(); 
+    })
+
+    onMounted(()=> {
         setWidth();       
     })
 
