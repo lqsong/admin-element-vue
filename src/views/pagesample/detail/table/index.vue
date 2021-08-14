@@ -216,17 +216,17 @@
     </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref, h } from "vue";
+import { computed, defineComponent, onMounted, ref, Ref, ComputedRef } from "vue";
 import { useStore } from 'vuex';
 import { StateType as DetailStateType } from './store';
 import { RefundApplicationDataType, ReturnGoodsDataType, ReturnProgressDataType, UserInfoDataType, TableDetailType } from './data.d';
 
 interface DetailBasicPageSetupData {
-    loading: boolean;
-    baseTableData: TableDetailType[];
-    userTableData: TableDetailType[];
-    goodsData: ReturnGoodsDataType;
-    returnProgress: ReturnProgressDataType;
+    loading: Ref<boolean>;
+    baseTableData: ComputedRef<TableDetailType[]>;
+    userTableData: ComputedRef<TableDetailType[]>;
+    goodsData: ComputedRef<ReturnGoodsDataType[]>;
+    returnProgress:  ComputedRef<ReturnProgressDataType[]>;
 }
 
 export default defineComponent({
@@ -316,11 +316,11 @@ export default defineComponent({
 
 
         return {
-            loading: loading as unknown as boolean,
-            baseTableData: baseTableData as unknown as TableDetailType[],
-            userTableData: userTableData as unknown as TableDetailType[],
-            goodsData: goodsData as unknown as ReturnGoodsDataType,
-            returnProgress: returnProgress as unknown as ReturnProgressDataType,
+            loading,
+            baseTableData,
+            userTableData,
+            goodsData,
+            returnProgress,
         }
     }
 })

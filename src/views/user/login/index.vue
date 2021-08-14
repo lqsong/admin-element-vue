@@ -31,7 +31,7 @@
     </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, reactive, ref, watch, Ref } from "vue";
+import { computed, defineComponent, reactive, ref, Ref, ComputedRef } from "vue";
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { useI18n } from "vue-i18n";
@@ -40,13 +40,13 @@ import { LoginParamsType } from './data.d';
 import { StateType as UserLoginStateType } from './store';
 
 interface UserLoginSetupData {
-    t: Function;
+    t: (key: string | number) => string;
     modelRef: LoginParamsType;
     rulesRef: any;
-    formRef: typeof ElForm;
-    submitLoading: boolean;
+    formRef: Ref<typeof ElForm | undefined>;
+    submitLoading: Ref<boolean>;
     handleSubmit: () => Promise<void>;
-    loginStatus?: "ok" | "error" ;
+    loginStatus: ComputedRef<"ok" | "error" | undefined>;
 }
 
 export default defineComponent({
@@ -118,10 +118,10 @@ export default defineComponent({
             t,
             modelRef,
             rulesRef,
-            formRef: formRef as unknown as typeof ElForm,
-            submitLoading: submitLoading as unknown as boolean,
+            formRef,
+            submitLoading,
             handleSubmit,
-            loginStatus: loginStatus as unknown as "ok" | "error" | undefined
+            loginStatus
         }
     }
 })

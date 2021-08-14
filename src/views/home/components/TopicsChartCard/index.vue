@@ -18,7 +18,7 @@
 
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted, Ref, ref, watch } from "vue";
+import { computed, ComputedRef, defineComponent, onMounted, Ref, ref, watch } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 import { EChartOption } from 'echarts';
@@ -82,11 +82,11 @@ const topicsChartOption: EChartOption = {
 };
 
 interface TopicsChartCardSetupData {
-    t: Function;
-    loading: boolean;
+    t: (key: string | number) => string;
+    loading: Ref<boolean>;
     topicsChartRef: Ref;
-    total: number;
-    num: number;
+    total: ComputedRef<number>;
+    num: ComputedRef<number>;
 }
 
 export default defineComponent({
@@ -138,10 +138,10 @@ export default defineComponent({
 
         return {
             t,
-            loading: loading as unknown as boolean,
+            loading,
             topicsChartRef,
-            total: total as unknown as number,
-            num: num as unknown as number,
+            total,
+            num,
         }
     }
 })

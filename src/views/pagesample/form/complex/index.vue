@@ -99,7 +99,7 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref } from "vue";
+import { defineComponent, reactive, Ref, ref } from "vue";
 import { useStore } from "vuex";
 import { ElForm, ElMessage } from "element-plus";
 import { FormDataType } from "./data.d";
@@ -110,9 +110,9 @@ import TableForm from './components/TableForm/index.vue';
 interface FormComplexPageSetupData {    
     modelRef: FormDataType;
     rulesRef: any;
-    formRef: typeof ElForm;
+    formRef: Ref<typeof ElForm | undefined>;
     resetFields: () => void;
-    submitLoading: boolean;
+    submitLoading: Ref<boolean>;
     handleSubmit: (e: MouseEvent) => void;
 }
 
@@ -201,9 +201,9 @@ export default defineComponent({
         return {           
             modelRef,
             rulesRef,
-            formRef: formRef as unknown as typeof ElForm,
+            formRef,
             resetFields,
-            submitLoading: submitLoading as unknown as boolean,
+            submitLoading,
             handleSubmit,
         }
 

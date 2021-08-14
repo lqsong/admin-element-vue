@@ -31,16 +31,16 @@
     </template>
 </template>
 <script lang="ts">
-import { defineComponent, PropType, toRefs, computed } from 'vue';
+import { defineComponent, PropType, toRefs, computed, Ref, ComputedRef } from 'vue';
 import { useI18n } from "vue-i18n";
 import { RoutesDataItem, setRoutePathForParent, getRouteBelongTopMenu, hasChildRoute } from '@/utils/routes';
 import ALink from '@/components/ALink/index.vue';
 import Icon from "./Icon.vue";
 interface SiderMenuItemSetupData {
-    item: RoutesDataItem;
-    topMenuPath: string;
+    item: Ref;
+    topMenuPath: ComputedRef<string>;
     hasChildRoute: (children: RoutesDataItem[]) => boolean;
-    t: Function;
+    t: (key: string | number) => string;
 }
 export default defineComponent({
     name: 'SiderMenuItem',
@@ -71,8 +71,8 @@ export default defineComponent({
         const topMenuPath = computed<string>(()=> getRouteBelongTopMenu(routeItem.value as RoutesDataItem));
 
         return {
-            item: routeItem as unknown as RoutesDataItem,
-            topMenuPath: topMenuPath as unknown as string,
+            item: routeItem,
+            topMenuPath: topMenuPath,
             hasChildRoute,
             t
         }

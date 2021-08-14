@@ -36,19 +36,19 @@
     </el-drawer>
 </template>
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+import { computed, ComputedRef, defineComponent, Ref, ref } from "vue";
 import { useStore } from 'vuex';
 import { StateType as GlobalStateType } from '@/store/global';
 
 interface SettingsSetupData {
-    visible: boolean;
+    visible: Ref<boolean>;
     close: () => void;
     show: () => void;
-    topNavEnable: boolean;
+    topNavEnable: ComputedRef<boolean>;
     onChangeTopNavEnable: (v: boolean) => void;
-    headFixed: boolean;
+    headFixed: ComputedRef<boolean>;
     onChangeHeadFixed: (v: boolean) => void;
-    disabledHeadFixed: boolean;
+    disabledHeadFixed: Ref<boolean>;
 }
 
 export default defineComponent({
@@ -90,14 +90,14 @@ export default defineComponent({
 
 
         return {
-            visible: visible as unknown as boolean,
+            visible,
             close,
             show,
-            topNavEnable: topNavEnable as unknown as boolean,
+            topNavEnable,
             onChangeTopNavEnable,
-            headFixed: headFixed as unknown as boolean,
+            headFixed,
             onChangeHeadFixed,
-            disabledHeadFixed: disabledHeadFixed as unknown as boolean,
+            disabledHeadFixed,
         }
 
     }

@@ -4,7 +4,7 @@
     </div>  
 </template>
 <script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
+import { computed, defineComponent, PropType, WritableComputedRef } from "vue";
 import request from '@/utils/request';
 import CKEditor from '@ckeditor/ckeditor5-vue';
 import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
@@ -55,7 +55,7 @@ const CKEditorConfig = {
 interface CKEditorSetupData {
     DecoupledEditor: any;
     language: string;
-    editorData: string;
+    editorData: WritableComputedRef<string>;
     onReady:  (editor: any) => void;
 }
 
@@ -151,7 +151,7 @@ export default defineComponent({
         return {
             DecoupledEditor,
             language: CKEditorConfig.language,
-            editorData: editorData as unknown as string,
+            editorData,
             onReady
         }
     }

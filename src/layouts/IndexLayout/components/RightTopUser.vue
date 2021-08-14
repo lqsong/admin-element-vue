@@ -17,14 +17,14 @@
     </el-dropdown>
 </template>
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, ComputedRef, defineComponent } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { StateType as UserStateType, CurrentUser } from "@/store/user";
 interface RightTopUserSetupData {
-    t: Function;
-    currentUser: CurrentUser;
+    t: (key: string | number) => string;
+    currentUser: ComputedRef<CurrentUser>;
     onMenuClick: (event: any) => Promise<void>;
 }
 export default defineComponent({
@@ -60,7 +60,7 @@ export default defineComponent({
 
         return {
             t,
-            currentUser: currentUser as unknown as CurrentUser,
+            currentUser,
             onMenuClick
         }
     }

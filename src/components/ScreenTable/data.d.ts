@@ -1,5 +1,5 @@
 export interface PaginationConfig {
-  layout: string;
+  layout?: string;
   total: number;
   current: number;
   pageSize: number;

@@ -106,7 +106,7 @@
     </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from "vue";
+import { computed, ComputedRef, defineComponent, onMounted, Ref, ref } from "vue";
 import { useStore } from "vuex";
 import { ElMessageBox, ElMessage } from "element-plus";
 import CreateForm from './components/CreateForm.vue';
@@ -115,25 +115,25 @@ import { StateType as ListStateType } from "./store";
 import { PaginationConfig, TableListItem } from './data.d';
 
 interface ListTablePageSetupData {
-    list: TableListItem[];
-    pagination: PaginationConfig;
-    loading: boolean;
+    list: ComputedRef<TableListItem[]>;
+    pagination: ComputedRef<PaginationConfig>;
+    loading: Ref<boolean>;
     getList:  (current: number) => Promise<void>;
-    createFormVisible: boolean;
+    createFormVisible: Ref<boolean>;
     setCreateFormVisible:  (val: boolean) => void;
-    createSubmitLoading: boolean;
+    createSubmitLoading: Ref<boolean>;
     createSubmit: (values: Omit<TableListItem, 'id'>, resetFields: () => void) => Promise<void>;
-    detailUpdateLoading: number[];
+    detailUpdateLoading: Ref<number[]>;
     detailUpdateData: (id: number) => Promise<void>;
-    updateData: Partial<TableListItem>;
-    updateFormVisible: boolean;
+    updateData: ComputedRef<Partial<TableListItem>>;
+    updateFormVisible: Ref<boolean>;
     updataFormCancel:  () => void;
-    updateSubmitLoading: boolean;
+    updateSubmitLoading: Ref<boolean>;
     updateSubmit:  (values: TableListItem, resetFields: () => void) => Promise<void>;
-    deleteLoading: number[];
+    deleteLoading: Ref<number[]>;
     deleteTableData:  (id: number) => void;
-    tabVal: string;
-    searchVal: string;
+    tabVal: Ref<string>;
+    searchVal: Ref<string>;
 }
 
 export default defineComponent({
@@ -254,25 +254,25 @@ export default defineComponent({
         })
 
         return {
-            list: list as unknown as TableListItem[],
-            pagination: pagination as unknown as PaginationConfig,
-            loading: loading as unknown as boolean,
+            list,
+            pagination,
+            loading,
             getList,
-            createFormVisible: createFormVisible as unknown as boolean,
+            createFormVisible,
             setCreateFormVisible,
-            createSubmitLoading: createSubmitLoading as unknown as boolean,
+            createSubmitLoading,
             createSubmit,
-            detailUpdateLoading: detailUpdateLoading as unknown as number[],
+            detailUpdateLoading,
             detailUpdateData,
-            updateData: updateData as Partial<TableListItem>,
-            updateFormVisible: updateFormVisible as unknown as boolean,
+            updateData,
+            updateFormVisible,
             updataFormCancel,
-            updateSubmitLoading: updateSubmitLoading as unknown as boolean,
+            updateSubmitLoading,
             updateSubmit,
-            deleteLoading: deleteLoading as unknown as number[],
+            deleteLoading,
             deleteTableData,
-            tabVal: tabVal as unknown as string,
-            searchVal: searchVal as unknown as string
+            tabVal,
+            searchVal
         }
 
     }

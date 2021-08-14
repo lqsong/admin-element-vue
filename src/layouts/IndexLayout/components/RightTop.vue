@@ -59,7 +59,7 @@ import RightTopUser from './RightTopUser.vue';
 import useTopMenuWidth from "../composables/useTopMenuWidth";
 
 interface RightTopSetupData {
-  t: Function;
+  t: (key: string | number) => string;
   topMenuCon: Ref;
   topMenuWidth: Ref;
 }

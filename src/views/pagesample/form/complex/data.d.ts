@@ -7,5 +7,5 @@ export interface FormDataType {
   radio2: string;
   checkbox: string[];
   remark: string;
-  users?: TableFormDataType[];
+  users: TableFormDataType[];
 }
