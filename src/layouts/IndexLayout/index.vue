@@ -21,6 +21,7 @@
               :toggleCollapsed="toggleCollapsed"
               :breadCrumbs="breadCrumbs"
               :menuData="permissionMenuData"
+              :routeItem="routeItem"
             >              
             </right-top>
 

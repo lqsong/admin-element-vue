@@ -45,6 +45,7 @@
             </div>
             <bread-crumbs class="breadcrumb" :list="breadCrumbs"></bread-crumbs>
         </div>
+        <right-tab-nav :routeItem="routeItem"></right-tab-nav>
     </div>
 </template>
 <script lang="ts">
@@ -56,6 +57,7 @@ import SelectLang from '@/components/SelectLang/index.vue';
 import ALink from '@/components/ALink/index.vue';
 import RightTopMessage from './RightTopMessage.vue';
 import RightTopUser from './RightTopUser.vue';
+import RightTabNav from './RightTabNav.vue';
 import useTopMenuWidth from "../composables/useTopMenuWidth";
 
 interface RightTopSetupData {
@@ -72,6 +74,7 @@ export default defineComponent({
       RightTopMessage,
       RightTopUser,
       SelectLang,
+      RightTabNav,
     },
     props: {
       collapsed: {
@@ -100,6 +103,10 @@ export default defineComponent({
         default: () => {
           return [];
         }
+      },
+      routeItem: {
+        type: Object as PropType<RoutesDataItem>,
+        required: true
       }
     },
     setup(props): RightTopSetupData {
@@ -120,7 +127,7 @@ export default defineComponent({
 @import '../../../assets/css/global.scss';
 #indexlayout-right-top {
   width: 100%;
-  height: ($headerHeight + $headerBreadcrumbHeight);
+  height: ($headerHeight + $headerBreadcrumbHeight + $headerTabNavHeight);
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   z-index: 9;
   .indexlayout-right-top-top {
@@ -206,7 +213,7 @@ export default defineComponent({
     }
   }
   &.topNavEnable {
-    height: $headerHeight;
+    height: ($headerHeight + $headerTabNavHeight);
     .indexlayout-right-top-top {
       background-color: #ffffff;
       color: $--color-text-primary;

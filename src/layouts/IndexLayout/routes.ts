@@ -1,3 +1,4 @@
+import settings from "@/config/settings";
 import { RoutesDataItem } from "@/utils/routes";
 import BlankLayout from '@/layouts/BlankLayout.vue';
 
@@ -12,14 +13,11 @@ const IndexLayoutRoutes: Array<RoutesDataItem> = [
     icon: 'home',
     title: 'index-layout.menu.home',
     path: '/home',
-    redirect: '/home/workplace',
+    redirect: settings.homeRouteItem.path,
     component: BlankLayout,
     children: [
       {
-        icon: 'control',
-        title: 'index-layout.menu.home.workplace',
-        path: 'workplace',
-        component: ()=> import('@/views/home/index.vue')
+        ...settings.homeRouteItem
       },
       {
         icon: 'edit',

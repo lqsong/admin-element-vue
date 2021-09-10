@@ -4,6 +4,7 @@
  */
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { RoutesDataItem } from "@/utils/routes";
+import settings from "@/config/settings";
 
 import SecurityLayout from '@/layouts/SecurityLayout.vue';
 
@@ -22,7 +23,7 @@ const routes: Array<RoutesDataItem> = [
       {
         title: 'empty',
         path: '/',
-        redirect: '/home/workplace',
+        redirect: settings.homeRouteItem.path,
         component: IndexLayout,
         children: IndexLayoutRoutes
       },
@@ -47,7 +48,7 @@ const router = createRouter({
     return { top: 0 }
   },
   history: createWebHashHistory(process.env.BASE_URL),
-  routes: routes as any,
+  routes: routes,
 });
 
 export default router;

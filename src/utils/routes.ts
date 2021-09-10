@@ -2,12 +2,9 @@
  * Route utils
  * @author LiQingSong
  */
-import { Component } from 'vue';
-import { RouteLocation, RouteLocationRaw} from 'vue-router';
-import { isExternal } from './validate';
 
 /**
- * 路由类型
+ * 面包屑类型
  */
 export interface BreadcrumbType {
   // 标题，路由在菜单、浏览器title 或 面包屑中展示的文字，目前可以使用locales
@@ -15,53 +12,72 @@ export interface BreadcrumbType {
   // 路由地址或外链
   path: string;
 }
-interface RoutesDataItemCore {
-  // 菜单中是否隐藏
-  hidden?: boolean;
-  // 图标的名称，显示在菜单标题前
-  icon?: string;
-  // 权限控制，页面角色(您可以设置多个角色)
-  roles?: string[];
-  // 标题，路由在菜单、浏览器title 或 面包屑中展示的文字，目前可以使用locales
-  title: string;
-  // 路由地址或外链
-  path: string;
-  // 子集
-  children?: RoutesDataItem[];
+
+/**
+ * tab导航key取值类型
+ */
+export type TabNavKey = 'path' | 'querypath';
+
+import 'vue-router'
+declare module 'vue-router' {
   /**
-   * 面包屑自定义内容：
-   *     1、默认不配置按照路由自动读取；
-   *     2、设置为 false , 按照路由自动读取并不读当前自己；
-   *     3、配置对应的面包屑格式如下：
+   * 自定义补充扩展 - 路由 - 类型字段
    */
-  breadcrumb?: BreadcrumbType[] | false;
-  /**
-   * 左侧菜单选中，如果设置路径，侧栏将突出显示你设置的路径对应的侧栏导航
-   *   1、（默认 route.path），此参数是为了满足特殊页面特殊需求，
-   *   2、如：详情页等选中侧栏导航或在模块A下面的页面，想选模块B为导航选中状态
-   */
-  selectLeftMenu?: string;
-  /**
-   * 所属顶级菜单,当顶级菜单存在时，用于选中顶部菜单，与侧栏菜单切换
-   *   1、三级路由此参数的作用是选中顶级菜单
-   *   2、二级路由此参数的作用是所属某个顶级菜单的下面，两个层级的必须同时填写一致，如果path设置的是外链，此参数必填
-   *   3、(默认不设置 path.split('/')[0])，此参数是为了满足特殊页面特殊需求
-   */
-  belongTopMenu?: string;
+  interface _RouteRecordBase {
+      // 菜单中是否隐藏
+      hidden?: boolean;
+      // 图标的名称，显示在菜单标题前
+      icon?: string;
+      // 权限控制，页面角色(您可以设置多个角色)
+      roles?: string[];
+      // 标题，路由在菜单、浏览器title 或 面包屑中展示的文字，目前可以使用locales
+      title: string;
+      /**
+       * 面包屑自定义内容：
+       *     1、默认不配置按照路由自动读取；
+       *     2、设置为 false , 按照路由自动读取并不读当前自己；
+       *     3、配置对应的面包屑格式如下：
+       */
+      breadcrumb?: BreadcrumbType[] | false;
+      /**
+       * 设置tab导航key取值类型
+       *    1、默认不配置按照path(route.path)规则
+       *    2、querypath：path + query (route.path+route.query) 规则
+       */
+      tabNavKey?: TabNavKey ;
+      /**
+        * 左侧菜单选中，如果设置路径，侧栏将突出显示你设置的路径对应的侧栏导航
+        *   1、（默认 route.path），此参数是为了满足特殊页面特殊需求，
+        *   2、如：详情页等选中侧栏导航或在模块A下面的页面，想选模块B为导航选中状态
+        */
+      selectLeftMenu?: string;
+      /**
+        * 所属顶级菜单,当顶级菜单存在时，用于选中顶部菜单，与侧栏菜单切换
+        *   1、三级路由此参数的作用是选中顶级菜单
+        *   2、二级路由此参数的作用是所属某个顶级菜单的下面，两个层级的必须同时填写一致，如果path设置的是外链，此参数必填
+        *   3、(默认不设置 path.split('/')[0])，此参数是为了满足特殊页面特殊需求
+        */
+      belongTopMenu?: string;
+  }
 }
-interface RoutesDataItemComponent extends RoutesDataItemCore {
-  // 跳转地址
-  redirect?: RouteLocationRaw | ((to: RouteLocation) => RouteLocationRaw);
-  // 组件页面
-  component: Component | Promise<Component>;
+import { RouteRecordRaw,  RouteLocationNormalizedLoaded } from 'vue-router';
+
+
+/**
+ * 自定义重命名 - 路由类型
+ */
+export type RoutesDataItem = RouteRecordRaw;
+
+/**
+ * 头部tab导航类型
+ */
+export interface TabNavItem {
+  key: string;
+  route: RouteLocationNormalizedLoaded,
+  menu: RoutesDataItem
 }
-interface RoutesDataItemRedirect extends RoutesDataItemCore{
-  // 跳转地址
-  redirect: RouteLocationRaw | ((to: RouteLocation) => RouteLocationRaw);
-  // 组件页面
-  component?: Component | Promise<Component>;
-}
-export type RoutesDataItem = RoutesDataItemComponent | RoutesDataItemRedirect;
+
+import { isExternal } from './validate';
 
 /**
  * 获取 route
@@ -219,6 +235,47 @@ export const vueRoutes = (routesData: RoutesDataItem[], parentPath = '/', headSt
     return newItem;
   });
 };
+
+/**
+ * 批量设置route.meta值
+ * @param routesData routes
+ */
+export const routesSetMeta = (routesData: RoutesDataItem[]): RoutesDataItem[] => {
+  return routesData.map(item => {
+    const { children, tabNavKey, meta, ...other } = item;    
+    const newItem: RoutesDataItem = {
+      meta: {
+        ...meta,
+
+        // 自定义设置的 meta 值 S
+
+        tabNavKey: tabNavKey || 'path',  
+
+        // 自定义设置的 meta 值 E
+      },
+      ...other
+     };
+    
+    if (item.children) {
+      const itemChildren = children || [];
+      newItem.children = [
+        ...routesSetMeta(itemChildren),
+      ];
+    }
+
+    return newItem;
+  });
+
+}
+
+/**
+ * 根据当前route与tabNavKey的规则设置tabNavKey的值
+ * @param route vue-route
+ * @returns 
+ */
+export const getTabNavKeyValue = (route: RouteLocationNormalizedLoaded, keyType: TabNavKey): string => {
+  return keyType==='path' ? route.path : ''
+}
 
 
 
