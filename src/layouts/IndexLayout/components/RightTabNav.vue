@@ -1,18 +1,22 @@
 <template>
     <div class="indexlayout-top-tab-nav">
         <div class="left" @click="handleScroll(200)">
-             <icon-svg type="arrow-left"  />
+             <icon-svg class="icon" type="arrow-left"  />
         </div>
         <div class="middle" ref="scrollBox" @DOMMouseScroll="handleRolling" @mousewheel="handleRolling">
             <div class="tab" ref="scrollContent" :style="{transform: `translateX(${translateX}px)`}">
-                <el-tag v-for="item in tabNavList" :key="item.key" :closable="item.key!==homeRouteItemPath" :class="{'active': route.path===item.key}"  type='info'  size="medium" color="#FFFFFF">{{t(item.menu.title)}}</el-tag>
+                <span v-for="item in tabNavList" :key="item.key" class="item" :class="{'active': route.path===item.key}" @click="toRoute(item)">
+                    <icon-svg v-if="route.path===item.key" class="icon-pre" type="refresh" @click.stop="refreshCurrentTabNav(item)"  />
+                    <span>{{t(item.menu.title)}}</span> 
+                    <icon-svg v-if="item.key!==homeRouteItemPath" class="icon" type="close" @click.stop="closeCurrentTabNav(item)" />
+                </span>
             </div>
         </div>
         <div class="right"  @click="handleScroll(-200)">
-            <icon-svg type="arrow-right"  />
+            <icon-svg class="icon" type="arrow-right"  />
         </div>
         <div class="down">
-            <icon-svg type="arrow-down"  />
+            <icon-svg class="icon" type="more"  />
         </div>
     </div>
 </template>
@@ -36,6 +40,9 @@ interface RightTabNavSetupData {
     tabNavList: ComputedRef<TabNavItem[]>;
     homeRouteItemPath: string;
     route: RouteLocationNormalizedLoaded;
+    toRoute: (item: TabNavItem) => void;
+    refreshCurrentTabNav: (item: TabNavItem) => void;
+    closeCurrentTabNav: (item: TabNavItem) => void;
 }
 
 export default defineComponent({
@@ -109,8 +116,12 @@ export default defineComponent({
                     ...tabNavList.value,
                     {
                         key: currentTabNavKeyVal,
-                        route: route,
-                        menu: routeItem.value
+                        route: {
+                            ...route
+                        },
+                        menu: {
+                            ...routeItem.value
+                        }
                     }
                 ]);
             }
@@ -130,7 +141,18 @@ export default defineComponent({
             setTabNav()
         })
 
-        
+
+        // 路由链接
+        const toRoute = (item: TabNavItem): void => {
+            router.push(item.route);
+        }
+        const refreshCurrentTabNav = (item: TabNavItem): void => {
+                    console.log('refreshCurrentTabNav', item)
+        }
+        // 关闭当前tabNav
+        const closeCurrentTabNav = (item: TabNavItem): void => {
+                    console.log('closeCurrentTabNav', item)
+        }
 
 
         return {  
@@ -142,7 +164,10 @@ export default defineComponent({
             handleRolling,
             tabNavList,
             homeRouteItemPath: settings.homeRouteItem.path,
-            route
+            route,
+            toRoute,
+            refreshCurrentTabNav,
+            closeCurrentTabNav,
         }
     }
 })
@@ -151,7 +176,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import '../../../assets/css/global.scss';
 .indexlayout-top-tab-nav {
-    height: $headerTabNavHeight;
+    height: ($headerTabNavHeight - 4px);
+    padding-top: 4px;
     /* background-color: #f0f0f0; */
     box-shadow: 0 -1px 4px rgba(0, 21, 41, 0.08);
     display: flex;
@@ -160,38 +186,79 @@ export default defineComponent({
     .right,
     .down {
         width: ($headerTabNavHeight - 10px);
+        height: ($headerTabNavHeight - 8px);
+        line-height: ($headerTabNavHeight - 8px);
        /*  background-color: #FFFFFF; */
         text-align: center;
         font-size: 12px;
         cursor: pointer;
+        .icon {
+            color: rgba(0,0,0,.45);
+        }
+        &:hover {
+            .icon {
+                color: rgba(0,0,0,.75);
+            }
+        }
     }
-    .down {
-        background-color: #FFFFFF;
+     .down {
+        padding-right: 10px;
+        /*background-color: #FFFFFF;
         width: ($headerTabNavHeight);
-        height: ($headerTabNavHeight - 8px);
-        line-height: ($headerTabNavHeight - 8px);
-        
-    }
+        */
+    } 
     .middle {
         flex: 1;
         overflow: hidden;
         .tab {
             position: relative;           
             float: left;
-            /* padding: 0 10px; */
             list-style: none;
             overflow: visible;
             white-space: nowrap;
             transition: transform .5s ease-in-out;
-            .el-tag{
-                border: 0;
+            .item {
+                height: ($headerTabNavHeight - 6px);
+                line-height: ($headerTabNavHeight - 6px);
+                background: #fafafa;
+                box-sizing: border-box;
+                white-space: nowrap;
+                display: inline-block;
+                padding: 0 10px;
+                border-radius: 4px 4px 0 0;
+                transition: all .3s cubic-bezier(.645,.045,.355,1);
                 cursor: pointer;
-                &+.el-tag {
-                    margin-left: 10px;
+                font-size: 14px;
+                color: rgba(0,0,0,.65);
+                border: 1px solid  $mainBgColor;
+                &+.item {
+                    margin-left: 3px;
                 }
-            }
+                &:hover {
+                    color: $--color-primary;
+                }
+                .icon {
+                    font-size: 10px;
+                    margin: 0 0 2px 5px;
+                    color: rgba(0,0,0,.45);
+                    &:hover {
+                        color: rgba(0,0,0,.75);
+                    }
+
+                }
+                .icon-pre {
+                    font-size: 12px;
+                    margin: 0 5px 0 0;
+                    color: rgba($--color-primary, 0.75);
+                    &:hover {
+                        color: rgba($--color-primary, 1);
+                    }
+                }
+            }            
             .active {
                 color: $--color-primary;
+                background:#FFFFFF;
+                border-color:#FFFFFF;
             }
         }
     }
