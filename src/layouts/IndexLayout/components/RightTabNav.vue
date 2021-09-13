@@ -5,7 +5,7 @@
         </div>
         <div class="middle" ref="scrollBox" @DOMMouseScroll="handleRolling" @mousewheel="handleRolling">
             <div class="tab" ref="scrollContent" :style="{transform: `translateX(${translateX}px)`}">
-                <span v-for="(item, index) in tabNavList" :key="index" class="item" :class="{'active': equalTabNavRView(route, item.route, item.menu.tabNavType)}" @click="toRoute(item)">
+                <span :ref="tabNavSpanRef" v-for="(item, index) in tabNavList" :key="`tab-nav-${index}`" class="item" :class="{'active': equalTabNavRView(route, item.route, item.menu.tabNavType)}" @click="toRoute(item,index)">
                     <icon-svg class="icon-pre" type="refresh" @click.stop="refreshCurrentTabNav(item)"  />
                     <span>{{t(item.menu.title)}}</span> 
                     <icon-svg v-if="item.menu.path!==homeRouteItemPath" class="icon" type="close" @click.stop="closeCurrentTabNav(item, index)" />
@@ -18,7 +18,9 @@
         <div class="down">
             
             <el-dropdown placement="bottom-end" @command="handleCommandMore">
+                <span class="icon-box">
                 <icon-svg class="icon" type="more"  />
+                </span>
                 <template #dropdown>
                     <el-dropdown-menu>
                         <el-dropdown-item command="closeleft"><icon-svg class="icon-dropdown-menu" type="arrow-left2"  /> 关闭左侧</el-dropdown-item>
@@ -33,7 +35,7 @@
     </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, ComputedRef, ref, Ref, watch, PropType, toRefs, onMounted } from "vue";
+import { computed, defineComponent, ComputedRef, ref, Ref, watch, PropType, toRefs, onMounted, onBeforeUpdate, onUpdated, nextTick } from "vue";
 import { useRoute, useRouter, RouteLocationNormalizedLoaded } from 'vue-router';
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
@@ -50,10 +52,11 @@ interface RightTabNavSetupData {
     scrollContent: Ref;
     handleScroll: (offset: number) => void;
     handleRolling: (e: any)=> void;
+    tabNavSpanRef: (el: any) => void;
     tabNavList: ComputedRef<TabNavItem[]>;
     homeRouteItemPath: string;
     route: RouteLocationNormalizedLoaded;
-    toRoute: (item: TabNavItem) => void;
+    toRoute: (item: TabNavItem, index: number) => void;
     refreshCurrentTabNav: (item: TabNavItem) => void;
     closeCurrentTabNav: (item: TabNavItem, index: number) => void;
     handleCommandMore: (command: string) => void;
@@ -108,6 +111,48 @@ export default defineComponent({
         }
 
 
+        // 设置tabItem位置
+        let tabNavSpanRefs: any = [];
+        const tabNavSpanRef = (el: any) => {
+            tabNavSpanRefs.push(el)
+        }
+        onBeforeUpdate(() => {
+            tabNavSpanRefs = []
+        })
+        /* 
+        onUpdated(() => {
+            console.log('tabNavSpanRefs', tabNavSpanRefs)
+        }) 
+        */
+        const tabNavPadding = 10;
+        const moveToView = (index: number): void => {
+            if(!tabNavSpanRefs[index]) {
+                return;
+            }
+            const tabItemEl = tabNavSpanRefs[index];
+            const tabItemElOffsetLeft = tabItemEl.offsetLeft;
+            const tabItemOffsetWidth = tabItemEl.offsetWidth;
+            // console.log('taboffsetleft', tabItemElOffsetLeft, 'taboffsetwidth', tabItemOffsetWidth)
+            const boxWidth = scrollBox.value ? scrollBox.value.offsetWidth : 0;
+            const contentWidth = scrollContent.value ? scrollContent.value.offsetWidth : 0;
+            if(contentWidth < boxWidth || tabItemElOffsetLeft===0) {
+                translateX.value = 0;
+            } else if (tabItemElOffsetLeft < -translateX.value) {
+                // 标签在可视区域左侧
+                translateX.value = -tabItemElOffsetLeft + tabNavPadding;
+            }else if (tabItemElOffsetLeft > -translateX.value && tabItemElOffsetLeft + tabItemOffsetWidth < -translateX.value + boxWidth) {
+                // 标签在可视区域
+                translateX.value = Math.min(0, boxWidth - tabItemOffsetWidth - tabItemElOffsetLeft - tabNavPadding)
+            } else {
+                // 标签在可视区域右侧
+                translateX.value = -(tabItemElOffsetLeft - (boxWidth - tabNavPadding - tabItemOffsetWidth))
+            }
+
+           
+        }
+        
+
+
         const store = useStore<{global: GlobalStateType}>();
         const tabNavList = computed<TabNavItem[]>(()=> store.state.global.headTabNavList);
         const router = useRouter();
@@ -127,12 +172,12 @@ export default defineComponent({
             }
 
             // 数组里是否已经存在当前route规则
+            /* 
             const isRoute: boolean = tabNavList.value.some(item =>{
                 if(equalTabNavRoute(item.route, route, routeItem.value.tabNavType)) {
                     return true;
                 }                
-            });
-            
+            }); 
             if(!isRoute) {
                 store.commit('global/setHeadTabNavList', [
                     ...tabNavList.value,
@@ -146,7 +191,27 @@ export default defineComponent({
                     }
                 ]);
             }
+            */
+            // 数组里是否已经存在当前route规则，不存在下标为-1
+            let index = tabNavList.value.findIndex(item => equalTabNavRoute(item.route, route, routeItem.value.tabNavType))            
+            if(index < 0) {
+                index = tabNavList.value.length;
+                store.commit('global/setHeadTabNavList', [
+                    ...tabNavList.value,
+                    {
+                        route: {
+                            ...route
+                        },
+                        menu: {
+                            ...routeItem.value
+                        }
+                    }
+                ]);
+            }
 
+            nextTick(() => {
+              moveToView(index)
+            })
             // console.log('route', route, router.currentRoute.value, router.resolve('/home/workplace'), router.currentRoute.value==router.resolve('/home/workplace'))
         }
 
@@ -195,7 +260,6 @@ export default defineComponent({
             store.commit('global/setHeadTabNavList', [
                 ...navList
             ]);
-
         }
 
         // 关闭TabNav左侧和右侧
@@ -224,13 +288,14 @@ export default defineComponent({
 
 
         // 路由链接
-        const toRoute = (item: TabNavItem): void => {
+        const toRoute = (item: TabNavItem, index: number): void => {
             router.push(item.route);
         }
 
         // 刷新当前tabNav
         const refreshCurrentTabNav = (item: TabNavItem): void => {
-                    console.log('refreshCurrentTabNav', item)
+            // console.log('refreshCurrentTabNav', item)
+            router.replace('/refresh')
         }
 
         // 关闭当前tabNav
@@ -273,6 +338,7 @@ export default defineComponent({
             scrollContent,
             handleScroll,
             handleRolling,
+            tabNavSpanRef,
             tabNavList,
             homeRouteItemPath: settings.homeRouteItem.path,
             route,
@@ -303,7 +369,13 @@ export default defineComponent({
        /*  background-color: #FFFFFF; */
         text-align: center;
         font-size: 12px;
-        cursor: pointer;        
+        cursor: pointer;  
+        .icon-box {
+            display: block;
+            width: ($headerTabNavHeight - 10px);
+            height: ($headerTabNavHeight - 8px);
+            line-height: ($headerTabNavHeight - 8px);
+        }      
         .icon {
             color: rgba(0,0,0,.45);
         }
@@ -315,9 +387,7 @@ export default defineComponent({
     }
      .down {
         padding-right: 10px;
-        /*background-color: #FFFFFF;
-        width: ($headerTabNavHeight);
-        */
+        line-height: normal;
     } 
     .middle {
         flex: 1;

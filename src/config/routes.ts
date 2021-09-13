@@ -27,6 +27,11 @@ const routes: Array<RoutesDataItem> = [
         component: IndexLayout,
         children: IndexLayoutRoutes
       },
+      {
+        title: 'empty',
+        path: '/refresh',
+        component: () => import('@/views/refresh/index.vue'),
+      },
     ]
   },
   {
