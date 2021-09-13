@@ -5,10 +5,10 @@
         </div>
         <div class="middle" ref="scrollBox" @DOMMouseScroll="handleRolling" @mousewheel="handleRolling">
             <div class="tab" ref="scrollContent" :style="{transform: `translateX(${translateX}px)`}">
-                <span v-for="item in tabNavList" :key="item.key" class="item" :class="{'active': route.path===item.key}" @click="toRoute(item)">
-                    <icon-svg v-if="route.path===item.key" class="icon-pre" type="refresh" @click.stop="refreshCurrentTabNav(item)"  />
+                <span v-for="(item, index) in tabNavList" :key="index" class="item" :class="{'active': equalTabNavRView(route, item.route, item.menu.tabNavType)}" @click="toRoute(item)">
+                    <icon-svg class="icon-pre" type="refresh" @click.stop="refreshCurrentTabNav(item)"  />
                     <span>{{t(item.menu.title)}}</span> 
-                    <icon-svg v-if="item.key!==homeRouteItemPath" class="icon" type="close" @click.stop="closeCurrentTabNav(item)" />
+                    <icon-svg v-if="item.menu.path!==homeRouteItemPath" class="icon" type="close" @click.stop="closeCurrentTabNav(item, index)" />
                 </span>
             </div>
         </div>
@@ -16,7 +16,19 @@
             <icon-svg class="icon" type="arrow-right"  />
         </div>
         <div class="down">
-            <icon-svg class="icon" type="more"  />
+            
+            <el-dropdown placement="bottom-end" @command="handleCommandMore">
+                <icon-svg class="icon" type="more"  />
+                <template #dropdown>
+                    <el-dropdown-menu>
+                        <el-dropdown-item command="closeleft"><icon-svg class="icon-dropdown-menu" type="arrow-left2"  /> 关闭左侧</el-dropdown-item>
+                        <el-dropdown-item command="closeright"><icon-svg class="icon-dropdown-menu" type="arrow-right2"  /> 关闭右侧</el-dropdown-item>
+                        <el-dropdown-item command="closeother"><icon-svg class="icon-dropdown-menu" type="close"  /> 关闭其他</el-dropdown-item>
+                        <el-dropdown-item command="closeall"><icon-svg class="icon-dropdown-menu" type="close2"  /> 关闭所有</el-dropdown-item>
+                    
+                    </el-dropdown-menu>
+                </template>
+           </el-dropdown>
         </div>
     </div>
 </template>
@@ -27,11 +39,12 @@ import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 import IconSvg from "@/components/IconSvg";
 import { StateType as GlobalStateType } from "@/store/global";
-import { getTabNavKeyValue, RoutesDataItem, TabNavItem, TabNavKey } from '@/utils/routes';
+import { equalTabNavRoute, RoutesDataItem, TabNavItem, TabNavType } from '@/utils/routes';
 import settings from '@/config/settings';
 
 interface RightTabNavSetupData {  
     t: (key: string | number) => string;  
+    equalTabNavRView: (route1: RouteLocationNormalizedLoaded, route2: RouteLocationNormalizedLoaded, type?: TabNavType) => boolean,
     translateX: Ref<number>;
     scrollBox: Ref;
     scrollContent: Ref;
@@ -42,7 +55,8 @@ interface RightTabNavSetupData {
     route: RouteLocationNormalizedLoaded;
     toRoute: (item: TabNavItem) => void;
     refreshCurrentTabNav: (item: TabNavItem) => void;
-    closeCurrentTabNav: (item: TabNavItem) => void;
+    closeCurrentTabNav: (item: TabNavItem, index: number) => void;
+    handleCommandMore: (command: string) => void;
 }
 
 export default defineComponent({
@@ -60,6 +74,7 @@ export default defineComponent({
 
         const { t } = useI18n();
         const { routeItem } = toRefs(props);
+        const equalTabNavRView = equalTabNavRoute;
 
         
         const translateX = ref<number>(0);
@@ -100,22 +115,28 @@ export default defineComponent({
 
      
 
-       
+        // 设置TabNav 
         const setTabNav = (): void => {
 
-            const currentTabNavKey: TabNavKey =  routeItem.value.tabNavKey || 'path';
-            const currentTabNavKeyVal: string = getTabNavKeyValue(route, currentTabNavKey);
-            // 数组里是否已经存在当前key
-            const isCurrent = tabNavList.value.some(item =>{
-                if(item.key === currentTabNavKeyVal){
-                    return true 
-                } 
+            /**
+             * 只有当前路由的path和当前定义路由规则的path一致才会继续执行，
+             * 因为 routeItem 是经过computed获取后传过来的，存在异步情况
+             */
+            if(route.path!==routeItem.value.path) {
+                return;
+            }
+
+            // 数组里是否已经存在当前route规则
+            const isRoute: boolean = tabNavList.value.some(item =>{
+                if(equalTabNavRoute(item.route, route, routeItem.value.tabNavType)) {
+                    return true;
+                }                
             });
-            if(!isCurrent) {
+            
+            if(!isRoute) {
                 store.commit('global/setHeadTabNavList', [
                     ...tabNavList.value,
                     {
-                        key: currentTabNavKeyVal,
                         route: {
                             ...route
                         },
@@ -126,15 +147,75 @@ export default defineComponent({
                 ]);
             }
 
-
-
-
-            
-
             // console.log('route', route, router.currentRoute.value, router.resolve('/home/workplace'), router.currentRoute.value==router.resolve('/home/workplace'))
         }
+
+        // 关闭TabNav
+        const closeTabNav = (item: TabNavItem, index: number): void => {
+
+            // 判断关闭的是否是当前打开的tab
+            let isRouterPush: boolean | TabNavItem = false;
+            if(equalTabNavRoute(route, item.route, item.menu.tabNavType)) {
+                isRouterPush = tabNavList.value[index-1]
+            }
+
+            let navList: TabNavItem[] = tabNavList.value.filter((item2: TabNavItem) => !equalTabNavRoute(item2.route, item.route, item.menu.tabNavType))
+            store.commit('global/setHeadTabNavList', [
+                ...navList
+            ]);
+
+            if(isRouterPush!==false) {
+                router.push(isRouterPush.route)
+            }
+            
+        }
+
+        // 关闭TabNav所有
+        const closeTabNavAll = (): void => {
+            // 首页
+            const homeRoute: TabNavItem = tabNavList.value[0];
+
+            // 有关闭回调的无法关闭
+            let navList: TabNavItem[] = tabNavList.value.filter((item: TabNavItem) => item.menu.tabNavCloseBefore && typeof item.menu.tabNavCloseBefore === 'function')
+            store.commit('global/setHeadTabNavList', [
+                {
+                    ...homeRoute
+                },
+                ...navList
+            ]);
+
+            router.push(homeRoute.route)
+        }
+
+        // 关闭TabNav其他
+        const closeTabNavOther = (): void => {
+
+            // 有关闭回调的和当前打开的和首页无法关闭
+            let navList: TabNavItem[] = tabNavList.value.filter((item: TabNavItem, i: number) => (item.menu.tabNavCloseBefore && typeof item.menu.tabNavCloseBefore === 'function') || equalTabNavRoute(route, item.route, item.menu.tabNavType) || i===0)
+            store.commit('global/setHeadTabNavList', [
+                ...navList
+            ]);
+
+        }
+
+        // 关闭TabNav左侧和右侧
+        const closeTabNavLeftRight = (param: 'left' | 'right'): void => {
+            // 获取当前打开tabNav索引
+            const index = tabNavList.value.findIndex(item => equalTabNavRoute(route, item.route, item.menu.tabNavType))
+
+            // 有关闭回调的和当前打开的和首页和左侧或右侧无法关闭
+            let navList: TabNavItem[] = tabNavList.value.filter((item: TabNavItem, i: number) => (item.menu.tabNavCloseBefore && typeof item.menu.tabNavCloseBefore === 'function') || ( param === 'left' ? i>=index : i<=index ) || i===0);
+
+            store.commit('global/setHeadTabNavList', [
+                ...navList
+            ]);
+        }
+
+
+
+
         watch([route, routeItem], ()=> {
-            if(route.path===routeItem.value.path) setTabNav()
+            setTabNav()
         })
 
         onMounted(()=> {
@@ -146,17 +227,47 @@ export default defineComponent({
         const toRoute = (item: TabNavItem): void => {
             router.push(item.route);
         }
+
+        // 刷新当前tabNav
         const refreshCurrentTabNav = (item: TabNavItem): void => {
                     console.log('refreshCurrentTabNav', item)
         }
+
         // 关闭当前tabNav
-        const closeCurrentTabNav = (item: TabNavItem): void => {
-                    console.log('closeCurrentTabNav', item)
+        const closeCurrentTabNav = (item: TabNavItem, index: number): void => {
+            if(item.menu.tabNavCloseBefore && typeof item.menu.tabNavCloseBefore === 'function' ) {
+                item.menu.tabNavCloseBefore(()=> {
+                    closeTabNav(item, index);
+                })
+            } else {
+                 closeTabNav(item, index);
+            }
+        }
+
+        // 更多操作
+        const handleCommandMore = (command: string): void => {
+            switch (command) {
+                case 'closeleft':
+                    closeTabNavLeftRight('left')
+                    break;
+                case 'closeright':
+                    closeTabNavLeftRight('right')
+                    break;
+                case 'closeother':
+                    closeTabNavOther()
+                    break;
+                case 'closeall':
+                    closeTabNavAll()
+                    break;
+                default:
+                    break;
+            }
         }
 
 
         return {  
-            t,    
+            t,
+            equalTabNavRView,    
             translateX,
             scrollBox,
             scrollContent,
@@ -168,6 +279,7 @@ export default defineComponent({
             toRoute,
             refreshCurrentTabNav,
             closeCurrentTabNav,
+            handleCommandMore
         }
     }
 })
@@ -191,7 +303,7 @@ export default defineComponent({
        /*  background-color: #FFFFFF; */
         text-align: center;
         font-size: 12px;
-        cursor: pointer;
+        cursor: pointer;        
         .icon {
             color: rgba(0,0,0,.45);
         }
@@ -247,6 +359,7 @@ export default defineComponent({
 
                 }
                 .icon-pre {
+                    display: none;
                     font-size: 12px;
                     margin: 0 5px 0 0;
                     color: rgba($--color-primary, 0.75);
@@ -259,9 +372,16 @@ export default defineComponent({
                 color: $--color-primary;
                 background:#FFFFFF;
                 border-color:#FFFFFF;
+                .icon-pre { 
+                    display: inline-block;
+                }
             }
         }
     }
 
+}
+.icon-dropdown-menu {
+    font-size: 12px;
+    margin-right: 5px;
 }
 </style>

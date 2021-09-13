@@ -36,7 +36,6 @@ const initState: StateType = {
   headFixed: settings.headFixed,
   headTabNavList: [
     {
-      key: homeRoute.path,
       route: homeRoute,
       menu: settings.homeRouteItem
     }

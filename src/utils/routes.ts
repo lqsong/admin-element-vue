@@ -14,9 +14,9 @@ export interface BreadcrumbType {
 }
 
 /**
- * tab导航key取值类型
+ * tab导航存储规则类型
  */
-export type TabNavKey = 'path' | 'querypath';
+export type TabNavType = 'path' | 'querypath';
 
 import 'vue-router'
 declare module 'vue-router' {
@@ -40,11 +40,16 @@ declare module 'vue-router' {
        */
       breadcrumb?: BreadcrumbType[] | false;
       /**
-       * 设置tab导航key取值类型
+       * 设置tab导航存储规则类型
        *    1、默认不配置按照path(route.path)规则
        *    2、querypath：path + query (route.path+route.query) 规则
        */
-      tabNavKey?: TabNavKey ;
+      tabNavType?: TabNavType ;
+      /**
+       * 设置该字段，则在关闭当前tab页时，作为关闭前的钩子函数
+       * @param close 关闭回调函数
+       */
+      tabNavCloseBefore?: (close: ()=>void)=> void;
       /**
         * 左侧菜单选中，如果设置路径，侧栏将突出显示你设置的路径对应的侧栏导航
         *   1、（默认 route.path），此参数是为了满足特殊页面特殊需求，
@@ -72,12 +77,12 @@ export type RoutesDataItem = RouteRecordRaw;
  * 头部tab导航类型
  */
 export interface TabNavItem {
-  key: string;
   route: RouteLocationNormalizedLoaded,
   menu: RoutesDataItem
 }
 
 import { isExternal } from './validate';
+import { equalObject } from "./object";
 
 /**
  * 获取 route
@@ -242,14 +247,14 @@ export const vueRoutes = (routesData: RoutesDataItem[], parentPath = '/', headSt
  */
 export const routesSetMeta = (routesData: RoutesDataItem[]): RoutesDataItem[] => {
   return routesData.map(item => {
-    const { children, tabNavKey, meta, ...other } = item;    
+    const { children, tabNavType, meta, ...other } = item;    
     const newItem: RoutesDataItem = {
       meta: {
         ...meta,
 
         // 自定义设置的 meta 值 S
 
-        tabNavKey: tabNavKey || 'path',  
+        tabNavType: tabNavType || 'path',  
 
         // 自定义设置的 meta 值 E
       },
@@ -267,17 +272,6 @@ export const routesSetMeta = (routesData: RoutesDataItem[]): RoutesDataItem[] =>
   });
 
 }
-
-/**
- * 根据当前route与tabNavKey的规则设置tabNavKey的值
- * @param route vue-route
- * @returns 
- */
-export const getTabNavKeyValue = (route: RouteLocationNormalizedLoaded, keyType: TabNavKey): string => {
-  return keyType==='path' ? route.path : ''
-}
-
-
 
 /**
  * 根据 自定义传入权限名 判断当前用户是否有权限
@@ -343,3 +337,24 @@ export const getPermissionMenuData = ( roles: string[], routes: RoutesDataItem[]
 };
 
 
+
+/**
+ * 判断tabNav，对应的route是否相等
+ * @param route1 vue-route
+ * @param route2 vue-route
+ * @param type 判断规则
+ * @returns 
+ */
+export const equalTabNavRoute = (route1: RouteLocationNormalizedLoaded, route2: RouteLocationNormalizedLoaded, type: TabNavType = 'path'): boolean=> {
+  let is = false;
+  switch (type) {
+    case 'querypath': // path + query
+      is = equalObject(route1.query,route2.query) && route1.path === route2.path
+      break;
+    default: // path
+      is = route1.path === route2.path
+      break;
+  }
+
+  return is;
+}

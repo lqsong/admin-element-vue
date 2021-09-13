@@ -38,6 +38,11 @@ const IndexLayoutRoutes: Array<RoutesDataItem> = [
             path: 'http://liqingsong.cc',
           },
         ],
+        tabNavCloseBefore: (close: () => void): void=> {
+           if(window.confirm('确认关闭吗')) {
+             close();
+           }
+        }
       },
       {
         icon: 'detail',
@@ -166,6 +171,7 @@ const IndexLayoutRoutes: Array<RoutesDataItem> = [
             title: 'index-layout.menu.pages.detail.basic',
             path: 'basic',
             component: ()=> import('@/views/pagesample/detail/basic/index.vue'),
+            tabNavType: 'querypath',
           },
           {
             title: 'index-layout.menu.pages.detail.module',
