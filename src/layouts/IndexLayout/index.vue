@@ -16,6 +16,7 @@
 
             <right-top
               :collapsed="collapsed"
+              :tabNavEnable="tabNavEnable"
               :topNavEnable="topNavEnable"
               :belongTopMenu="belongTopMenu"
               :toggleCollapsed="toggleCollapsed"
@@ -60,6 +61,7 @@ import Settings from "./components/Settings.vue";
 interface IndexLayoutSetupData {
   collapsed: ComputedRef<boolean>;
   toggleCollapsed: () => void;
+  tabNavEnable: ComputedRef<boolean>;
   topNavEnable: ComputedRef<boolean>;
   belongTopMenu: ComputedRef<string>;
   headFixed: ComputedRef<boolean>;
@@ -107,6 +109,9 @@ export default defineComponent({
           store.commit('global/changeLayoutCollapsed', !collapsed.value);
         }
 
+        // 右侧顶部tabNav是否开启
+        const tabNavEnable = computed<boolean>(()=> store.state.global.tabNavEnable);
+
         // 右侧顶部导航是否开启
         const topNavEnable = computed<boolean>(()=> store.state.global.topNavEnable);
 
@@ -128,6 +133,7 @@ export default defineComponent({
         return {
           collapsed,
           toggleCollapsed,
+          tabNavEnable,
           topNavEnable,
           belongTopMenu,
           headFixed, 

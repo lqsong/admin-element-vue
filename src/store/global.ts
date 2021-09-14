@@ -12,8 +12,10 @@ export interface StateType {
   topNavEnable: boolean;
   // 头部固定开启
   headFixed: boolean;
+  // tab菜单开启
+  tabNavEnable: boolean;
   // 头部tab导航列表
-  headTabNavList: TabNavItem[]
+  headTabNavList: TabNavItem[];
 }
 
 export interface ModuleType extends StoreModuleType<StateType> {
@@ -22,6 +24,7 @@ export interface ModuleType extends StoreModuleType<StateType> {
     changeLayoutCollapsed: Mutation<StateType>;
     setTopNavEnable: Mutation<StateType>;
     setHeadFixed: Mutation<StateType>;
+    setTabNavEnable: Mutation<StateType>;
     setHeadTabNavList: Mutation<StateType>;
   };
   actions: {
@@ -34,6 +37,7 @@ const initState: StateType = {
   collapsed: false,
   topNavEnable: settings.topNavEnable,
   headFixed: settings.headFixed,
+  tabNavEnable: settings.tabNavEnable,
   headTabNavList: [
     {
       route: homeRoute,
@@ -57,6 +61,9 @@ const StoreModel: ModuleType = {
     },
     setHeadFixed(state, payload) {
       state.headFixed = payload;
+    },
+    setTabNavEnable(state, payload) {
+      state.tabNavEnable = payload;
     },
     setHeadTabNavList(state, payload) {
       state.headTabNavList = payload;

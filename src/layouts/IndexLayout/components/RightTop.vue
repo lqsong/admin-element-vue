@@ -1,5 +1,5 @@
 <template>
-    <div id="indexlayout-right-top" :class="{'topNavEnable': !topNavEnable }">
+    <div id="indexlayout-right-top" :class="{'topNavEnable': !topNavEnable, 'tabNavEnable': !tabNavEnable }">
         <div class="indexlayout-right-top-top">
             <div class="indexlayout-flexible" 
               @click="() => {
@@ -45,7 +45,7 @@
             </div>
             <bread-crumbs class="breadcrumb" :list="breadCrumbs"></bread-crumbs>
         </div>
-        <right-tab-nav :routeItem="routeItem"></right-tab-nav>
+        <right-tab-nav v-if="tabNavEnable" :routeItem="routeItem"></right-tab-nav>
     </div>
 </template>
 <script lang="ts">
@@ -80,6 +80,10 @@ export default defineComponent({
       collapsed: {
         type: Boolean,
         default: false
+      },
+      tabNavEnable: {
+        type: Boolean,
+        default: true
       },
       topNavEnable: {
         type: Boolean,
@@ -212,6 +216,9 @@ export default defineComponent({
       margin-left: 10px;
     }
   }
+  &.tabNavEnable {
+    height: ($headerHeight + $headerBreadcrumbHeight);
+  }
   &.topNavEnable {
     height: ($headerHeight + $headerTabNavHeight);
     .indexlayout-right-top-top {
@@ -239,6 +246,12 @@ export default defineComponent({
         }
       }
     }
+
+    &.tabNavEnable {
+      height: ($headerHeight);
+    }
+
+
   }
 }
 </style>

@@ -21,6 +21,11 @@ export interface SettingsType {
     headFixed: boolean;
 
     /**
+     * tab菜单开启
+     */
+    tabNavEnable: boolean;
+
+    /**
      * 站点首页路由
      */
     homeRouteItem: RoutesDataItem;
@@ -50,6 +55,7 @@ const settings: SettingsType = {
     siteTitle: 'ADMIN-ELEMENT-VUE',
     topNavEnable: true,
     headFixed: true,
+    tabNavEnable: true,
     homeRouteItem: {
         icon: 'control',
         title: 'index-layout.menu.home.workplace',

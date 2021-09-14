@@ -31,6 +31,9 @@
             <el-form-item label="固定右侧头部" class="text-align-right">
                 <el-switch v-model="headFixed" @change="onChangeHeadFixed" :disabled="disabledHeadFixed" />
             </el-form-item>
+            <el-form-item label="启用TabNav" class="text-align-right">
+                <el-switch v-model="tabNavEnable" @change="onChangeTabNavEnable" />
+            </el-form-item>
         </el-form>
 
     </el-drawer>
@@ -46,6 +49,8 @@ interface SettingsSetupData {
     show: () => void;
     topNavEnable: ComputedRef<boolean>;
     onChangeTopNavEnable: (v: boolean) => void;
+    tabNavEnable: ComputedRef<boolean>;
+    onChangeTabNavEnable: (v: boolean) => void;
     headFixed: ComputedRef<boolean>;
     onChangeHeadFixed: (v: boolean) => void;
     disabledHeadFixed: Ref<boolean>;
@@ -86,7 +91,13 @@ export default defineComponent({
                 disabledHeadFixed.value = false;
             }
 
-        }       
+        }  
+        
+        // 启用TabNav
+        const tabNavEnable = computed<boolean>(()=> store.state.global.tabNavEnable);
+        const onChangeTabNavEnable = (v: boolean): void => {
+            store.commit('global/setTabNavEnable', v);
+        }  
 
 
         return {
@@ -95,6 +106,8 @@ export default defineComponent({
             show,
             topNavEnable,
             onChangeTopNavEnable,
+            tabNavEnable,
+            onChangeTabNavEnable,
             headFixed,
             onChangeHeadFixed,
             disabledHeadFixed,
