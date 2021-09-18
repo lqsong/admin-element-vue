@@ -1,3 +1,4 @@
+import { RoutesDataItem } from "@/utils/routes";
 /**
  * 站点配置
  * @author LiQingSong
@@ -17,6 +18,16 @@ export interface SettingsType {
      * 头部固定开启
      */
     headFixed: boolean;
+
+    /**
+     * tab菜单开启
+     */
+     tabNavEnable: boolean;
+
+     /**
+     * 站点首页路由
+     */
+    homeRouteItem: RoutesDataItem;
   
     /**
      * 站点本地存储Token 的 Key值
@@ -43,6 +54,13 @@ const settings: SettingsType = {
     siteTitle: 'ADMIN-ELEMENT-VUE',
     topNavEnable: true,
     headFixed: true,
+    tabNavEnable: true,
+    homeRouteItem: {
+        icon: 'control',
+        title: 'index-layout.menu.home.workplace',
+        path: '/home/workplace',
+        component: ()=> import('@/views/home/index.vue')
+    },
     siteTokenKey: 'admin_element_vue_token',
     ajaxHeadersTokenKey: 'x-token',
     ajaxResponseNoVerifyUrl: [
