@@ -21,6 +21,7 @@
     "localforage": "^1.10.0",
     "lodash.debounce": "^4.0.8",
     "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
     "vue": "^3.2.12",
     "vue-i18n": "^9.1.7",
     "vue-router": "^4.0.11",
