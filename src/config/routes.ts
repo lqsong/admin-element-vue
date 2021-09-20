@@ -2,6 +2,10 @@
  * 路由入口
  * @author LiQingSong
  */
+import NProgress from 'nprogress'; // progress bar
+import 'nprogress/nprogress.css'; // progress bar style
+NProgress.configure({ showSpinner: false }); // NProgress Configuration
+
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { RoutesDataItem } from "@/utils/routes";
 import settings from "@/config/settings";
@@ -57,6 +61,16 @@ const router = createRouter({
     },
     history: createWebHashHistory(import.meta.env.BASE_URL),
     routes: routes,
-  });
-  
+});
+
+router.beforeEach((/* to, from */) => {
+  // start progress bar
+  NProgress.start();
+});
+
+router.afterEach(() => {
+  // finish progress bar
+  NProgress.done();
+});
+
 export default router;
