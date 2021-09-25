@@ -189,7 +189,8 @@ export default defineComponent({
       .indexlayout-top-selectlang {
         padding-left: 10px;
         .dropDown {
-          i {
+          i,
+          .svg-icon {
             font-size: 16px;
             color: #c0c4cc;
           }
@@ -239,7 +240,8 @@ export default defineComponent({
         }
         .indexlayout-top-selectlang {
           .dropDown {
-            i {
+            i,
+            .svg-icon {
               color: $heading-color;
             }
           }

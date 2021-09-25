@@ -1,6 +1,6 @@
 <template>
     <el-dropdown  @command="onMenuClick">
-        <a class="indexlayout-top-usermenu ant-dropdown-link" @click="e => e.preventDefault()">
+        <a class="indexlayout-top-usermenu" @click="e => e.preventDefault()">
             {{currentUser.name}}
             <i class="el-icon-arrow-down el-icon--right"></i>
         </a>

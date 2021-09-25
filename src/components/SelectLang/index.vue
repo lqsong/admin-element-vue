@@ -1,7 +1,8 @@
 <template>
     <el-dropdown @command="changeLang">
         <span class="dropDown">
-            <i class="el-icon-football"></i>
+            <!-- <i class="el-icon-football"></i> -->
+            <icon-svg type="language-outline" ></icon-svg>
         </span>
         <template #dropdown>
             <el-dropdown-menu class="menu">
@@ -19,6 +20,7 @@
 import { defineComponent, WritableComputedRef } from "vue";
 import { setI18nLanguage } from "@/config/i18n";
 import { useI18n } from "vue-i18n";
+import IconSvg from "@/components/IconSvg";
 interface SelectLangSetupData {
     locales: string[];
     languageLabels: {[key: string]: string};
@@ -29,6 +31,9 @@ interface SelectLangSetupData {
 
 export default defineComponent({
     name: 'SelectLang',
+    components: {
+        IconSvg
+    },
     setup(): SelectLangSetupData {
 
         const { locale }  = useI18n();
