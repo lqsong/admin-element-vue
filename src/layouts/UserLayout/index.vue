@@ -54,7 +54,8 @@ export default defineComponent({
 
     ::v-deep(.el-dropdown) {
         .dropDown {
-            i {
+            i,
+            .svg-icon {
                 color: #ffffff;
                 font-size: 16px;
             }
