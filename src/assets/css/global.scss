@@ -3,7 +3,7 @@
 @import './mixin.scss';
 
 #nprogress .bar {
-    background: $--color-primary !important;
+    background: var(--el-color-primary) !important;
 }
 
 .flex-wrap-wrap {

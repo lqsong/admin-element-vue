@@ -1,7 +1,6 @@
 <template>
     <el-dropdown @command="changeLang">
         <span class="dropDown">
-            <!-- <i class="el-icon-football"></i> -->
             <icon-svg type="language-outline" ></icon-svg>
         </span>
         <template #dropdown>

@@ -1,7 +1,7 @@
 <template>
     <div class="indexlayout-main-conent">
         <el-card shadow="never" class="cus-card">
-            <i class="el-icon-top" :style="{fontSize: '35px', color: '#FF0000'}"></i>
+            <span :style="{fontSize: '35px', color: '#FF0000'}">↑</span>
             {{t('page.custom-breadcrumbs.msg')}}
        </el-card>
     </div>

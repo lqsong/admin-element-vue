@@ -56,8 +56,7 @@
 
 
     <el-button style="width: 100%;margin-top: 16px; border-style: dashed;" @click="newTableData" >
-        <i class="el-icon-plus"></i>
-        新增内容
+        + 新增内容
     </el-button>
 </template>
 <script lang="ts">

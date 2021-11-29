@@ -40,7 +40,7 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, computed, ComputedRef } from "vue";
+import { defineComponent, computed, ComputedRef, watch, ref, Ref, nextTick } from "vue";
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import { StateType as GlobalStateType } from '@/store/global';
@@ -65,7 +65,7 @@ interface IndexLayoutSetupData {
   topNavEnable: ComputedRef<boolean>;
   belongTopMenu: ComputedRef<string>;
   headFixed: ComputedRef<boolean>;
-  defaultActive: ComputedRef<string>;
+  defaultActive: Ref<string>;
   breadCrumbs: ComputedRef<BreadcrumbType[]>;
   permissionMenuData: ComputedRef<RoutesDataItem[]>;
   routeItem: ComputedRef<RoutesDataItem>;
@@ -120,7 +120,12 @@ export default defineComponent({
 
 
         // 左侧选择的菜单
-        const defaultActive = computed<string>(()=> getSelectLeftMenuPath(routeItem.value));
+        // const defaultActive = computed<string>(()=> getSelectLeftMenuPath(routeItem.value));
+        const defaultActive = ref<string>(getSelectLeftMenuPath(routeItem.value));
+        watch([routeItem], async () => {
+          await nextTick();          
+          defaultActive.value = getSelectLeftMenuPath(routeItem.value);
+        })
 
 
         // 面包屑导航

@@ -6,12 +6,20 @@
         <el-form :model="modelRef" :rules="rulesRef" ref="formRef">
             <el-form-item  label="" prop="username">
                 <el-input v-model="modelRef.username" :placeholder="t('page.user.login.form-item-username')" @keydown.enter="handleSubmit">
-                    <template #prefix><i class="el-icon-user el-input__icon"></i></template>
+                    <template #prefix>
+                        <i class="el-input__icon">
+                            <icon-svg type="user"></icon-svg>
+                        </i>
+                    </template>
                 </el-input>
             </el-form-item>
             <el-form-item label="" prop="password">
                 <el-input v-model="modelRef.password" type="password" :placeholder="t('page.user.login.form-item-password')" @keydown.enter="handleSubmit">
-                    <template #prefix><i class="el-icon-unlock el-input__icon"></i></template>
+                    <template #prefix>
+                         <i class="el-input__icon">
+                            <icon-svg type="pwd"></icon-svg>
+                        </i>
+                    </template>
                 </el-input>
             </el-form-item>
             <el-form-item>
@@ -36,6 +44,7 @@ import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { useI18n } from "vue-i18n";
 import { ElForm, ElMessage } from 'element-plus';
+import IconSvg from "@/components/IconSvg";
 import { LoginParamsType } from './data.d';
 import { StateType as UserLoginStateType } from './store';
 
@@ -52,6 +61,7 @@ interface UserLoginSetupData {
 export default defineComponent({
     name: 'UserLogin',
     components: {
+        IconSvg
     },
     setup(): UserLoginSetupData {
         const router = useRouter();

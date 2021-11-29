@@ -1,15 +1,19 @@
-/* 改变主题色变量 */
-$--color-primary: #009688;
+/* 只需要重写你需要的即可 */
+@forward "element-plus/theme-chalk/src/common/var.scss" with (
+  $colors: (
+    "primary": (
+      "base": #009688,
+    ),
+  ),
+);
+
+// 导入所有样式:
+@use "element-plus/theme-chalk/src/index.scss" as *;
+
+$heading-color: rgba(0, 0, 0, 0.85); // 标题色
 
 /// color|1|Font Color|2
 $--color-text-primary: #303133 !default;
-
-/* 改变 icon 字体路径变量，必需 */
-$--font-path: '~element-plus/lib/theme-chalk/fonts';
-
-@import '~element-plus/packages/theme-chalk/src/index';
-
-$heading-color: rgba(0, 0, 0, 0.85); // 标题色
 
 // Menu
 $menu-collapsed-width: 54px;
@@ -27,11 +31,11 @@ $menu-dark-highlight-color: #fff;
     border: none;
 
 
-    .el-submenu .el-menu {
+    .el-sub-menu .el-menu {
         background-color: $menu-dark-submenu-bg;
     }
     
-    .el-submenu__title,
+    .el-sub-menu__title,
     .el-menu-item {
         height: 40px;
         line-height: 40px;
@@ -54,18 +58,18 @@ $menu-dark-highlight-color: #fff;
         } 
     }
 
-    .is-active>.el-submenu__title {
+    .is-active>.el-sub-menu__title {
         color: $menu-dark-highlight-color !important;
         .icon {
             color: $menu-dark-highlight-color !important;
         }
     }
-    .el-submenu .el-menu-item.is-active,
+    .el-sub-menu .el-menu-item.is-active,
     .el-menu-item.is-active{
         color: $menu-dark-highlight-color !important;
-        background-color: $--color-primary !important;
+        background-color: var(--el-color-primary) !important;
     }
-    .el-submenu__title {
+    .el-sub-menu__title {
         margin-top: 4px;
         margin-bottom: 4px;
     }
@@ -77,7 +81,7 @@ $menu-dark-highlight-color: #fff;
     /* 收起 */
     &.el-menu--collapse {
         width: $menu-collapsed-width;
-        .el-submenu__title,
+        .el-sub-menu__title,
         .el-menu-item {
             .icon {
                 position: absolute;
@@ -95,7 +99,7 @@ $menu-dark-highlight-color: #fff;
     .el-menu {
         background-color: $menu-dark-submenu-bg;
     }
-    .el-submenu__title,
+    .el-sub-menu__title,
     .el-menu-item {
         height: 40px;
         line-height: 40px;
@@ -118,18 +122,18 @@ $menu-dark-highlight-color: #fff;
         }        
     }
 
-    .is-active>.el-submenu__title {
+    .is-active>.el-sub-menu__title {
         color: $menu-dark-highlight-color !important;
         .icon {
             color: $menu-dark-highlight-color !important;
         }
     }
-    .el-submenu .el-menu-item.is-active,
+    .el-sub-menu .el-menu-item.is-active,
     .el-menu-item.is-active{
         color: $menu-dark-highlight-color !important;
-        background-color: $--color-primary !important;
+        background-color: var(--el-color-primary) !important;
     }
-    .el-submenu__title {
+    .el-sub-menu__title {
         margin-top: 4px;
         margin-bottom: 4px;
     }
@@ -164,19 +168,19 @@ $menu-dark-highlight-color: #fff;
 /*自定义 table 样式*/
 .custom-table {
     .el-table__header {
-        background-color: #F5F7FA;
+        background-color: #F5F7FA !important;
     }
     .custom-td-header-one,
     .el-table__body tr:hover .custom-td-header-one {
         color: #303133;
         font-weight: bold;
-        background-color: #F5F7FA;
+        background-color: #F5F7FA !important;
     }
 }
 .custom-table-header {
     color: #303133;
     th {
-        background-color: #F5F7FA;
+        background-color: #F5F7FA !important;
     }
 }
 
