@@ -21,7 +21,7 @@
                     <el-col :span="16" class="text-align-right">                        
                         <el-input v-model="searchVal" style="width:200px;margin-left: 16px;" placeholder="请输入搜索内容">
                             <template #suffix>
-                                <i class="el-input__icon el-icon-search cursor-pointer"></i>
+                                <i class="el-input__icon"><icon-svg type="search" class="cursor-pointer"></icon-svg></i>
                             </template>
                         </el-input>
                         <el-button style="margin-left: 8px"  @click="() => searchDrawerVisible = true">高级搜索</el-button>
@@ -104,6 +104,7 @@
 import { computed, ComputedRef, defineComponent, onMounted, Ref, ref } from "vue";
 import { useStore } from "vuex";
 import { ElMessageBox, ElMessage } from "element-plus";
+import IconSvg from "@/components/IconSvg";
 import ScreenTable from '@/components/ScreenTable/index.vue';
 import CreateForm from './components/CreateForm.vue';
 import UpdateForm from './components/UpdateForm.vue';
@@ -139,6 +140,7 @@ interface ListHighlyAdaptiveTablePageSetupData {
 export default defineComponent({
     name: 'ListHighlyAdaptiveTablePage',
     components: {
+        IconSvg,
         ScreenTable,
         CreateForm,
         UpdateForm,

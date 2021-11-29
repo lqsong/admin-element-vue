@@ -40,6 +40,7 @@ export default defineConfig(({ mode, command })=> {
       },
     },
     server: {
+      host: true,
       port, 
     }
   }

@@ -10,14 +10,14 @@
                 <span>
                 {{t('page.home.text-daycompare')}}
                 {{Math.abs(visitData.day)}}%
-                    <i class="el-icon-caret-top colored4014" v-if="visitData.day > 0" ></i>
-                    <i v-else class="el-icon-caret-bottom color19be6b" ></i>
+                    <icon-svg type="arrow-up" class="colored4014" v-if="visitData.day > 0"></icon-svg>
+                    <icon-svg type="arrow-down" class="color19be6b" v-else></icon-svg>
                 </span>
                 <span class="margin-l10">
                 {{t('page.home.text-weekcompare')}}
                 {{Math.abs(visitData.week)}}%
-                    <i class="el-icon-caret-top colored4014" v-if="visitData.week > 0" ></i>
-                    <i v-else class="el-icon-caret-bottom color19be6b" ></i>
+                    <icon-svg type="arrow-up" class="colored4014" v-if="visitData.week > 0"></icon-svg>
+                    <icon-svg type="arrow-down" class="color19be6b" v-else></icon-svg>
                 </span>
             </div>
           </div>
@@ -34,6 +34,7 @@
 import { computed, ComputedRef, defineComponent, onMounted, Ref, ref } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
+import IconSvg from "@/components/IconSvg";
 import { ArticleChartDataType } from "../../data.d";
 import { StateType as HomeStateType } from "../../store";
 
@@ -45,6 +46,9 @@ interface ArticleChartCardSetupData {
 
 export default defineComponent({
     name: 'ArticleChartCard',
+    components: {
+        IconSvg
+    },
     setup(): ArticleChartCardSetupData {
         const store = useStore<{ Home: HomeStateType}>();
         const { t } = useI18n();

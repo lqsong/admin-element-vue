@@ -8,16 +8,16 @@
                 <table class="el-table el-table--border"  cellspacing="0" cellpadding="0" border="0">
                     <thead>
                         <tr class="custom-table-header">
-                            <th><div class="cell">admin</div></th>
-                            <th><div class="cell">user</div></th>
-                            <th><div class="cell">test</div></th>
+                            <th class="el-table__cell"><div class="cell">admin</div></th>
+                            <th class="el-table__cell"><div class="cell">user</div></th>
+                            <th class="el-table__cell"><div class="cell">test</div></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><div class="cell">超级管理员（拥有所有权限）</div></td>
-                            <td><div class="cell">临时用户账号</div></td>
-                            <td><div class="cell">临时测试账号</div></td>
+                            <td class="el-table__cell"><div class="cell">超级管理员（拥有所有权限）</div></td>
+                            <td class="el-table__cell"><div class="cell">临时用户账号</div></td>
+                            <td class="el-table__cell"><div class="cell">临时测试账号</div></td>
                         </tr>
                     </tbody>
                 </table>
@@ -34,7 +34,7 @@
                 <table class="el-table el-table--border"  cellspacing="0" cellpadding="0" border="0">
                     <thead>
                         <tr class="custom-table-header">
-                            <th>
+                            <th class="el-table__cell">
                                 <div class="cell">
                                     不做验证的操作按钮
                                 </div>
@@ -43,7 +43,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="el-table__cell">
                                 <div class="cell">
                                     <el-button type="primary">编辑</el-button>
                                     <el-button type="danger" > 删除</el-button>
@@ -58,7 +58,7 @@
                 <table class="el-table el-table--border"  cellspacing="0" cellpadding="0" border="0">
                     <thead>
                         <tr class="custom-table-header">
-                            <th>
+                            <th class="el-table__cell">
                                 <div class="cell">
                                     user账号可操作按钮
                                 </div>
@@ -67,7 +67,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="el-table__cell">
                                 <div class="cell">
                                     <Permission roles="user">
                                         <template #otherwise>无权操作，此参数可赋值为空！</template>
@@ -82,7 +82,7 @@
                     </tbody>
                     <thead>
                         <tr class="custom-table-header">
-                            <th>
+                            <th class="el-table__cell">
                                 <div class="cell">
                                     test账号可操作按钮
                                 </div>
@@ -91,7 +91,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="el-table__cell">
                                 <div class="cell">
                                     <Permission roles="test">
                                         <template #otherwise>无权操作，此参数可赋值为空！</template>
@@ -112,7 +112,7 @@
                 <table class="el-table el-table--border"  cellspacing="0" cellpadding="0" border="0">
                     <thead>
                         <tr class="custom-table-header">
-                            <th>
+                           <th class="el-table__cell">
                                 <div class="cell">
                                     user账号可操作按钮
                                 </div>
@@ -121,7 +121,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
+                           <td class="el-table__cell">
                                 <div class="cell">
                                     <el-button v-permission="'user'" type="primary">编辑</el-button>
                                     <el-button v-permission="'user'" type="danger" >删除</el-button>
@@ -131,7 +131,7 @@
                     </tbody>
                     <thead>
                         <tr class="custom-table-header">
-                            <th>
+                            <th class="el-table__cell">
                                 <div class="cell">
                                     test账号可操作按钮
                                 </div>
@@ -140,7 +140,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="el-table__cell">
                                 <div class="cell">
                                     <el-button v-permission="'test'" type="primary">编辑</el-button>
                                     <el-button v-permission="'test'" type="danger" >删除</el-button>

@@ -417,7 +417,7 @@ export default defineComponent({
                     margin-left: 3px;
                 }
                 &:hover {
-                    color: $--color-primary;
+                    color: var(--el-color-primary);
                 }
                 .icon {
                     font-size: 10px;
@@ -432,14 +432,14 @@ export default defineComponent({
                     display: none;
                     font-size: 12px;
                     margin: 0 5px 0 0;
-                    color: rgba($--color-primary, 0.75);
+                    color: rgba(var(--el-color-primary), 0.75);
                     &:hover {
-                        color: rgba($--color-primary, 1);
+                        color: rgba(var(--el-color-primary), 1);
                     }
                 }
             }            
             .active {
-                color: $--color-primary;
+                color: var(--el-color-primary);
                 background:#FFFFFF;
                 border-color:#FFFFFF;
                 .icon-pre { 

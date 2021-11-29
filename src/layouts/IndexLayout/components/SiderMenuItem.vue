@@ -3,7 +3,7 @@
         <template v-if="belongTopMenu !== topMenuPath && topNavEnable === true"></template>
         <template v-else>
             <template v-if="item.children && Array.isArray(item.children) && hasChildRoute(item.children)">
-                <el-submenu :index="item.path" popper-class="index-layout-leftmenu-popper">
+                <el-sub-menu :index="item.path" popper-class="index-layout-leftmenu-popper">
                     <template #title>
                         <Icon v-if="item.icon" :type="item.icon" class="icon" />
                         <span>{{t(item.title)}}</span>
@@ -16,7 +16,7 @@
                         :belongTopMenu="belongTopMenu"
                     >                        
                     </sider-menu-item>
-                </el-submenu>
+                </el-sub-menu>
             </template>
             <template v-else>
                 <a-link :to="item.path">

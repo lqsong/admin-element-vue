@@ -8,8 +8,8 @@
                 }
               }"
             >
-               <i class="el-icon-s-unfold" v-if="collapsed"></i>
-               <i class="el-icon-s-fold" v-else></i>
+              <icon-svg type="menu-unfold" v-if="collapsed"></icon-svg>
+              <icon-svg type="menu-fold" v-else></icon-svg>
             </div>
             <div class="indexlayout-top-menu">
                 <div ref="topMenuCon" :style="{width: topMenuWidth}">
@@ -41,7 +41,7 @@
         </div>
         <div v-if="topNavEnable" class="indexlayout-right-top-bot">
             <div class="indexlayout-right-top-bot-home">
-              <i class="el-icon-s-home"></i>
+              <icon-svg type="home"></icon-svg>
             </div>
             <bread-crumbs class="breadcrumb" :list="breadCrumbs"></bread-crumbs>
         </div>
@@ -52,6 +52,7 @@
 import { defineComponent, onMounted, PropType, Ref, toRefs } from "vue";
 import { useI18n } from "vue-i18n";
 import { BreadcrumbType, RoutesDataItem } from '@/utils/routes';
+import IconSvg from "@/components/IconSvg";
 import BreadCrumbs from '@/components/BreadCrumbs/index.vue';
 import SelectLang from '@/components/SelectLang/index.vue';
 import ALink from '@/components/ALink/index.vue';
@@ -69,6 +70,7 @@ interface RightTopSetupData {
 export default defineComponent({
     name: 'RightTop',
     components: {
+      IconSvg,
       ALink,
       BreadCrumbs,
       RightTopMessage,
@@ -171,7 +173,7 @@ export default defineComponent({
         &.active {
           background-color: $menu-dark-submenu-bg;
           color: $menu-dark-highlight-color;
-          border-bottom-color: $--color-primary;
+          border-bottom-color: var(--el-color-primary);
         }
       }
 

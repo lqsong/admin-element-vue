@@ -29,10 +29,10 @@
                             <el-button  @click="searchResetFields">重置</el-button>
                             <el-button type="text" style="margin-left: 8px" @click="setSearchOpen">
                                 <template v-if="searchOpen">
-                                    收起 <i class="el-icon-arrow-up" ></i>
+                                    收起 <icon-svg type="arrow-up"></icon-svg>
                                 </template>
                                 <template v-else>
-                                    展开 <i class="el-icon-arrow-down"></i>
+                                    展开 <icon-svg type="arrow-down"></icon-svg>
                                 </template>
                             </el-button>
                         </div>
@@ -146,6 +146,7 @@
 import { computed, ComputedRef, defineComponent, onMounted, reactive, Ref, ref } from "vue";
 import { useStore } from "vuex";
 import { ElMessageBox, ElMessage, ElForm } from "element-plus";
+import IconSvg from "@/components/IconSvg";
 import CreateForm from './components/CreateForm.vue';
 import UpdateForm from './components/UpdateForm.vue';
 import TypeSelect from './components/TypeSelect.vue';
@@ -182,6 +183,7 @@ interface ListSearchTablePageSetupData {
 export default defineComponent({
     name: 'ListSearchTablePage',
     components: {
+        IconSvg,
         CreateForm,
         UpdateForm,
         TypeSelect
