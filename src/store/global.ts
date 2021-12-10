@@ -1,9 +1,10 @@
 
 import { Mutation/* , Action */ } from 'vuex';
 import { StoreModuleType } from "@/utils/store";
-import { TabNavItem } from '@/utils/routes';
+import { TabNavItem, equalTabNavRoute } from '@/utils/routes';
 import settings from '@/config/settings';
 import router from '@/config/routes';
+import { RouteLocationRaw } from 'vue-router';
 
 export interface StateType {
   // 左侧展开收起
@@ -26,6 +27,7 @@ export interface ModuleType extends StoreModuleType<StateType> {
     setHeadFixed: Mutation<StateType>;
     setTabNavEnable: Mutation<StateType>;
     setHeadTabNavList: Mutation<StateType>;
+    closeCurrentHeadTabNav: Mutation<StateType>;
   };
   actions: {
   };
@@ -67,6 +69,19 @@ const StoreModel: ModuleType = {
     },
     setHeadTabNavList(state, payload) {
       state.headTabNavList = payload;
+    },
+    /**
+     * 关闭当前tabNav，并跳转自定义路由
+     * @param state 
+     * @param payload RouteLocationRaw 跳转路由参数，必须
+     */
+     closeCurrentHeadTabNav(state, payload: RouteLocationRaw) {
+      const navList: TabNavItem[] =  state.headTabNavList.filter((item2: TabNavItem) => !equalTabNavRoute(router.currentRoute.value, item2.route, item2.menu.tabNavType))
+      state.headTabNavList = [
+        ...navList
+      ]
+
+      router.push(payload)
     },
   },
   actions: {}
