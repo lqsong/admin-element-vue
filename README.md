@@ -37,6 +37,10 @@ Element Plus Vue3.x Admin
  - [Gitee](https://gitee.com/lqsong/admin-element-vue/tree/vite.ts)
 
 
+## 实战案例
+
+- lqsblog-frontend-admin-vue（[Github](https://github.com/lqsong/lqsblog-frontend-admin-vue) 、 [Gitee](https://gitee.com/lqsong/lqsblog-frontend-admin-vue)）
+
 
 
 ## 捐赠
