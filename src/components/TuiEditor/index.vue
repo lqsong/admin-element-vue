@@ -2,7 +2,7 @@
     <div ref="editorDiv"></div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, PropType, Ref, ref } from "vue";
+import { defineComponent, onMounted, PropType, Ref, ref, watch, toRefs } from "vue";
 import request from '@/utils/request';
 import Editor from '@toast-ui/editor';
 import 'codemirror/lib/codemirror.css'; // Editor's Dependency Style
@@ -65,11 +65,14 @@ export default defineComponent({
     },
     setup(props, { emit }): TuiEditorSetupData {
 
+        const { modelValue } = toRefs(props);
+
+        let editor: Editor;
         const editorDiv = ref<HTMLElement>();
 
         onMounted(()=> {
             if(editorDiv.value) {
-                const editor = new Editor({
+                editor = new Editor({
                     el: editorDiv.value,
                     toolbarItems: props.toolbars,
                     initialValue: props.modelValue,
@@ -108,6 +111,10 @@ export default defineComponent({
                     }
                 })
             }
+        })
+
+        watch(modelValue, ()=> {
+          editor.setMarkdown(modelValue.value)
         })
 
         return {
