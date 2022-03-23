@@ -63,6 +63,9 @@ declare module 'vue-router' {
         *   3、(默认不设置 path.split('/')[0])，此参数是为了满足特殊页面特殊需求
         */
       belongTopMenu?: string;
+
+       // 所有父元素的path,下标key按照父元素的顺序
+       parentPath?: string[];
   }
 }
 import { RouteRecordRaw,  RouteLocationNormalizedLoaded } from 'vue-router';
@@ -79,6 +82,13 @@ export type RoutesDataItem = RouteRecordRaw;
 export interface TabNavItem {
   route: RouteLocationNormalizedLoaded,
   menu: RoutesDataItem
+}
+
+/**
+ * 用Routes的path作为key的JsonRoutes
+ */
+export interface PathJsonRoutesDataItem {
+  [path: string]: RoutesDataItem
 }
 
 import { isExternal } from './validate';
@@ -108,6 +118,16 @@ export const getRouteItem = (pathname: string, routesData: RoutesDataItem[]): Ro
 
   return item;
 };
+
+/**
+ * 获取 route
+ * @param pathname 当前路由path
+ * @param jsonRoutesData 经过jsonPathVueRoutes处理，框架的所有路由
+ * @returns
+ */
+export const getJsonRouteItem = (pathname: string, jsonRoutesData: PathJsonRoutesDataItem): RoutesDataItem => {
+  return jsonRoutesData[pathname] || {};
+}
 
 /**
  * 根据 hidden 判断是否有数据子集
@@ -163,15 +183,16 @@ export const setRoutePathForParent = (pathname: string, parentPath = '/', headSt
 
 /**
  * 根据路由 pathname 数组 - 返回对应的 route 数组
- * @param pathname path[]
- * @param routesData routes
+ * @param pathname 路由path数组
+ * @param jsonRoutesData 经过jsonPathVueRoutes处理，框架的所有路由
+ * @returns
  */
-export const getPathsTheRoutes = ( pathname: string[], routesData: RoutesDataItem[]): RoutesDataItem[] => {
+ export const getPathsTheRoutes = ( pathname: string[], jsonRoutesData: PathJsonRoutesDataItem): RoutesDataItem[] => {
   const routeItem: RoutesDataItem[] = [];
 
   for (let index = 0, len = pathname.length; index < len; index += 1) {
     const element = pathname[index];
-    const item = getRouteItem(element, routesData);
+    const item = getJsonRouteItem(element,jsonRoutesData);
     if (item.path !== '') {
       routeItem.push(item);
     }
@@ -183,15 +204,21 @@ export const getPathsTheRoutes = ( pathname: string[], routesData: RoutesDataIte
 
 /**
  * 获取面包屑对应的 route 数组
- * @param route route 当前routeItem
- * @param pathname path[]
- * @param routesData routes
+ * @param pathname 当前路由path
+ * @param jsonRoutesData 经过jsonPathVueRoutes处理，框架的所有路由
+ * @returns
  */
-export const getBreadcrumbRoutes = (route: RoutesDataItem, pathname: string[], routesData: RoutesDataItem[]): BreadcrumbType[] => {
-  if (!route.breadcrumb) {
-    const routePaths = getPathsTheRoutes(pathname, routesData);
+ export const getBreadcrumbRoutes = (pathname: string, jsonRoutesData: PathJsonRoutesDataItem): BreadcrumbType[] => {
+  const route = getJsonRouteItem(pathname,jsonRoutesData);
+  if(!route.path) {
+    return [];
+  }
 
-    return route.breadcrumb === false ? routePaths : [...routePaths, route];
+  if (!route.breadcrumb) {
+    const parentPath = route.parentPath || []
+    const routes = getPathsTheRoutes(parentPath, jsonRoutesData);
+
+    return route.breadcrumb === false ? routes : [...routes, route];
   }
 
   return route.breadcrumb;
@@ -214,7 +241,7 @@ export const getRouteBelongTopMenu = (route: RoutesDataItem): string => {
   if (route.belongTopMenu) {
     return route.belongTopMenu;
   }
-  return `/${route.path.split('/')[1]}`;
+  return route.parentPath ? (route.parentPath[0] || `/${route.path.split('/')[1]}`) :  `/${route.path.split('/')[1]}`;
 };
 
 
@@ -240,6 +267,42 @@ export const vueRoutes = (routesData: RoutesDataItem[], parentPath = '/', headSt
     return newItem;
   });
 };
+
+/**
+ * 把经过 vueRoutes 处理过的 routes 转换成用path作为key的json，并统一增加了parentPath
+ * @param vueRoutesData 经过 vueRoutes 处理过的 routes
+ * @returns PathJsonRoutesDataItem
+ */
+ export const jsonPathVueRoutes = (vueRoutesData: RoutesDataItem[]): PathJsonRoutesDataItem=> {
+
+  const jsonRoutes: PathJsonRoutesDataItem = {};
+
+  function forRoute(routesData: RoutesDataItem[], parentPath: string[]) {
+    const len = routesData.length;
+    for (let index = 0; index < len; index++) {
+      const item = routesData[index];
+
+      const pPath = (item.parentPath && item.parentPath.length > 0) ? item.parentPath : parentPath;
+
+      const newItem: RoutesDataItem = {
+        ...item,
+        parentPath: [...pPath]
+      };
+
+      jsonRoutes[item.path] = newItem;
+
+      if (item.children) {
+        forRoute(item.children,[...pPath, item.path])
+      }
+
+    }
+  }
+
+  forRoute(vueRoutesData, []);
+
+  return jsonRoutes;
+}
+
 
 /**
  * 批量设置route.meta值
