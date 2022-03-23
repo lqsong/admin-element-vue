@@ -85,14 +85,14 @@
 
 
 
-            <FooterToolbar class="text-align-right">
+            <form-footer-toolbar>
                 <el-button type="primary" @click="handleSubmit" :loading="submitLoading">
                 提交
                 </el-button>  
                 <el-button @click="resetFields">
                 重置
                 </el-button>                           
-            </FooterToolbar>
+            </form-footer-toolbar>
 
 
         </el-form>
@@ -104,8 +104,8 @@ import { useStore } from "vuex";
 import { ElForm, ElMessage } from "element-plus";
 import { FormDataType } from "./data.d";
 import { StateType as FormStateType } from "./store";
-import FooterToolbar from '@/layouts/IndexLayout/components/FooterToolbar.vue';
 import TableForm from './components/TableForm/index.vue';
+import FormFooterToolbar from "@/components/FormFooterToolbar/index.vue";
 
 interface FormComplexPageSetupData {    
     modelRef: FormDataType;
@@ -120,7 +120,7 @@ export default defineComponent({
     name: 'FormComplexPage',
     components: {
         TableForm,
-        FooterToolbar
+        FormFooterToolbar
     },
     setup(): FormComplexPageSetupData {
 

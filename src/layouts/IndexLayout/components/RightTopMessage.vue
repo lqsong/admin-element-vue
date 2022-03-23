@@ -41,20 +41,3 @@ export default defineComponent({
     }
 })
 </script>
-<style lang="scss" scoped>
-@import '../../../assets/css/global.scss';
-.indexlayout-top-message {
-    height: $headerHeight;
-    line-height: $headerHeight;
-    /* display: inline-block; */
-    display: inline;
-    color: #c0c4cc;
-    .indexlayout-top-message-badge {
-        margin-left: -5px;
-        margin-top: -20px;
-        ::v-deep(.el-badge__content) {
-            border: 0;
-        }
-    }
-}
-</style>
