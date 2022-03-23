@@ -1,0 +1,26 @@
+
+$heading-color: rgba(0, 0, 0, 0.85); // 标题色
+
+/// color|1|Font Color|2
+$--color-text-primary: #303133 !default;
+
+// Menu
+$menu-collapsed-width: 54px;
+
+// dark theme
+$menu-dark-bg: #222834;
+$menu-dark-submenu-bg: #000c17;
+$menu-dark-color: rgba(#FFF, 0.65);
+$menu-dark-highlight-color: #fff;
+
+
+// 主窗口背景色
+$mainBgColor: #f0f3f4;
+// 左边宽度
+$leftSideBarWidth: 200px;
+// 头部高度
+$headerHeight: 50px;
+// 头部下方面包屑高度
+$headerBreadcrumbHeight: 34px;
+// 头部面包屑下tab导航高度
+$headerTabNavHeight: 36px
