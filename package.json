@@ -17,14 +17,14 @@
     "axios": "^0.21.4",
     "core-js": "^3.21.1",
     "echarts": "^4.9.0",
-    "element-plus": "^2.0.2",
+    "element-plus": "^2.1.4",
     "localforage": "^1.10.0",
     "lodash.debounce": "^4.0.8",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
     "vue": "^3.2.31",
     "vue-i18n": "^9.1.9",
-    "vue-router": "^4.0.12",
+    "vue-router": "^4.0.14",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

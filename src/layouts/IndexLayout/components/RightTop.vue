@@ -187,9 +187,11 @@ export default defineComponent({
       .indexlayout-top-usermenu {
         padding-left: 10px;
         color: #c0c4cc;
+        line-height: $headerHeight;
       }
       .indexlayout-top-selectlang {
         padding-left: 10px;
+        line-height: $headerHeight;
         .dropDown {
           i,
           .svg-icon {
