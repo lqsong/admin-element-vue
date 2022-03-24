@@ -14,8 +14,8 @@ export default function useTitle(route: ComputedRef<RoutesDataItem> | Ref<Routes
         document.title = `${t(title)} - ${settings.siteTitle}`;
     } 
 
-    watch<RoutesDataItem, false>(route,(route) => {
-        setTitle(route.title);
+    watch<RoutesDataItem, false>(route,() => {
+        setTitle(route.value.title || '');
     })
 
     onMounted(()=> {
