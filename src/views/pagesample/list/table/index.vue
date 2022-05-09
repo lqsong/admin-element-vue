@@ -62,7 +62,7 @@
                 <el-table-column
                     label="操作"
                     prop="action"
-                    width="150">
+                    width="160">
                     <template #default="{row}">
                         <el-button type="text" @click="() => detailUpdateData(row.id)" :loading="detailUpdateLoading.includes(row.id)">编辑</el-button>
                         <el-button type="text"  @click="() => deleteTableData(row.id)" :loading="deleteLoading.includes(row.id)">删除</el-button>                         

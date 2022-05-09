@@ -74,7 +74,7 @@ export default defineComponent({
         },
         size:{
           type: String,
-          default: 'small'
+          default: ''
         },
         tableClass: {
           type: String,
