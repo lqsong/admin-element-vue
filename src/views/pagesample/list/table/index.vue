@@ -6,17 +6,18 @@
                     <el-col :span="8">
                         <el-button type="primary" @click="() => setCreateFormVisible(true)">新增</el-button>
                     </el-col>
-                    <el-col :span="16" class="text-align-right">
-                        <el-radio-group v-model="tabVal">
-                            <el-radio-button label="all">全部</el-radio-button>
-                            <el-radio-button label="header">头部</el-radio-button>
-                            <el-radio-button label="footer">底部</el-radio-button>
-                        </el-radio-group>
-                        <el-input v-model="searchVal" style="width:200px;margin-left: 16px;" placeholder="请输入搜索内容">
+                    <el-col :span="16" >
+                        <el-input v-model="searchVal" style="width:200px;margin-left: 16px; float: right;" placeholder="请输入搜索内容">
                             <template #suffix>
                                 <i class="el-input__icon"><icon-svg type="search" class="cursor-pointer"></icon-svg></i>
                             </template>
                         </el-input>
+                        <el-radio-group v-model="tabVal" style="float: right;">
+                            <el-radio-button label="all">全部</el-radio-button>
+                            <el-radio-button label="header">头部</el-radio-button>
+                            <el-radio-button label="footer">底部</el-radio-button>
+                        </el-radio-group>
+                        
                     </el-col>
             </el-row>
           </template>
@@ -62,7 +63,7 @@
                 <el-table-column
                     label="操作"
                     prop="action"
-                    width="150">
+                    width="160">
                     <template #default="{row}">
                         <el-button type="text" @click="() => detailUpdateData(row.id)" :loading="detailUpdateLoading.includes(row.id)">编辑</el-button>
                         <el-button type="text"  @click="() => deleteTableData(row.id)" :loading="deleteLoading.includes(row.id)">删除</el-button>                         
