@@ -1,5 +1,5 @@
 <template>
-    <div class="indexlayout-main-conent">
+    <div class="layout-main-conent">
         <el-card shadow="never" class="cus-card" style="margin-bottom: 15px" :body-style="{ 'padding-bottom': '0' }">
             <el-form :model="searchModelRef" ref="searchFormRef" label-width="80px">
                 <el-row :gutter="16" type="flex" justify="end" class="flex-wrap-wrap">

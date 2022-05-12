@@ -12,6 +12,11 @@ import settings from "@/config/settings";
 
 import SecurityLayout from '@/layouts/SecurityLayout.vue';
 
+/* UniversalLayout 通用布局，可以与 IndexLayout 互相代替  */
+// import UniversalLayoutRoutes from '@/layouts/UniversalLayout/routes';
+// import UniversalLayout from '@/layouts/UniversalLayout/index.vue';
+
+/* IndexLayout 自定义布局，可以与 UniversalLayout 互相代替 */
 import IndexLayoutRoutes from '@/layouts/IndexLayout/routes';
 import IndexLayout from '@/layouts/IndexLayout/index.vue';
 

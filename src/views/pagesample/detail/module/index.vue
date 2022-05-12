@@ -1,5 +1,5 @@
 <template>
-    <div class="indexlayout-main-conent" v-loading="loading">
+    <div class="layout-main-conent" v-loading="loading">
         
             <el-card shadow="never" class="cus-card"  style="margin-bottom: 20px">
                 <template #header>退款申请</template>

@@ -1,5 +1,5 @@
 <template>
-    <div class="indexlayout-main-conent">
+    <div class="layout-main-conent">
         <el-card shadow="never" class="cus-card">
 
                 <div v-for="item in svgIcons" class="list" :key="item" >

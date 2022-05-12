@@ -2,32 +2,46 @@
 import { Mutation/* , Action */ } from 'vuex';
 import { StoreModuleType } from "@/utils/store";
 import { TabNavItem, equalTabNavRoute } from '@/utils/routes';
-import settings from '@/config/settings';
+import settings, { Theme, NavMode } from '@/config/settings';
 import router from '@/config/routes';
 import { RouteLocationRaw } from 'vue-router';
 
 export interface StateType {
+  /* 以下是针对所有 Layout 扩展字段 */
   // 左侧展开收起
   collapsed: boolean;
-  // 顶部菜单开启
-  topNavEnable: boolean;
   // 头部固定开启
   headFixed: boolean;
   // tab菜单开启
   tabNavEnable: boolean;
   // 头部tab导航列表
   headTabNavList: TabNavItem[];
+
+  /* 以下是针对 IndexLayout 扩展字段 */
+  // 顶部菜单开启
+  topNavEnable: boolean;
+
+  /* 以下是针对 UniversalLayout 扩展字段 */
+  // 模板主题
+  theme: Theme;
+  // 头部固定开启
+  navMode: NavMode;
+  // 左侧侧边固定开启
+  leftSiderFixed: boolean;
 }
 
 export interface ModuleType extends StoreModuleType<StateType> {
   state: StateType;
   mutations: {
     changeLayoutCollapsed: Mutation<StateType>;
-    setTopNavEnable: Mutation<StateType>;
     setHeadFixed: Mutation<StateType>;
     setTabNavEnable: Mutation<StateType>;
     setHeadTabNavList: Mutation<StateType>;
     closeCurrentHeadTabNav: Mutation<StateType>;
+    setTopNavEnable: Mutation<StateType>;
+    setTheme: Mutation<StateType>;
+    setNavMode: Mutation<StateType>;
+    setLeftSiderFixed: Mutation<StateType>;
   };
   actions: {
   };
@@ -37,7 +51,6 @@ const homeRoute = router.resolve(settings.homeRouteItem.path);
 
 const initState: StateType = {
   collapsed: false,
-  topNavEnable: settings.topNavEnable,
   headFixed: settings.headFixed,
   tabNavEnable: settings.tabNavEnable,
   headTabNavList: [
@@ -45,7 +58,11 @@ const initState: StateType = {
       route: homeRoute,
       menu: settings.homeRouteItem
     }
-  ]
+  ],
+  topNavEnable: settings.topNavEnable,
+  theme: settings.theme,
+  navMode: settings.navMode,
+  leftSiderFixed: settings.leftSiderFixed,
 };
 
 const StoreModel: ModuleType = {
@@ -57,9 +74,6 @@ const StoreModel: ModuleType = {
   mutations: {
     changeLayoutCollapsed(state, payload) {
       state.collapsed = payload;
-    },
-    setTopNavEnable(state, payload) {
-      state.topNavEnable = payload;
     },
     setHeadFixed(state, payload) {
       state.headFixed = payload;
@@ -82,6 +96,18 @@ const StoreModel: ModuleType = {
       ]
 
       router.push(payload)
+    },
+    setTopNavEnable(state, payload) {
+      state.topNavEnable = payload;
+    },
+    setTheme(state, payload) {
+      state.theme = payload;
+    },
+    setNavMode(state, payload) {
+      state.navMode = payload;
+    },
+    setLeftSiderFixed(state, payload) {
+      state.leftSiderFixed = payload;
     },
   },
   actions: {}
