@@ -6,11 +6,17 @@
 
 **注意：Demo 用的是在线mock服务，不稳定，若在线登录不了pull到本地可直接运行查看demo**
 
-| **[http://tsv2-demo.admin-element-vue.liqingsong.cc](http://tsv2-demo.admin-element-vue.liqingsong.cc/)**             |
+| **[基于IndexLayout](http://tsv2-demo.admin-element-vue.liqingsong.cc/)**  |
 :-------------------------:
-| ![Home](https://gitee.com/lqsong/public/raw/master/admin-element-vue-typescript/home.png)  |
-| ![Home](https://gitee.com/lqsong/public/raw/master/admin-element-vue-typescript/home2.png)  |
+| ![Home](http://admin-element-vue.liqingsong.cc/tsv2/images/indexlayout/home1.png)  |
+| ![Home](http://admin-element-vue.liqingsong.cc/tsv2/images/indexlayout/home2.png)  |
 
+| **[基于UniversalLayout](http://tsv2-universal-demo.admin-element-vue.liqingsong.cc/)**  |
+:-------------------------:
+| ![Home](http://admin-element-vue.liqingsong.cc/tsv2/images/universallayout/home1.png)  |
+| ![Home](http://admin-element-vue.liqingsong.cc/tsv2/images/universallayout/home2.png)  |
+| ![Home](http://admin-element-vue.liqingsong.cc/tsv2/images/universallayout/home3.png)  |
+| ![Home](http://admin-element-vue.liqingsong.cc/tsv2/images/universallayout/home4.png)  |
 
 ## 实战案例
 
@@ -50,9 +56,11 @@
 
 - 全局功能
   - 国际化多语言
-  - 动态顶级菜单（支持设置是否启用）
   - 动态侧边栏（支持多级路由嵌套）
   - 动态面包屑（支持自定义配置）
+  - 动态顶级菜单（IndexLayout支持设置是否启用）
+  - 菜单导航模式vertical/horizontal切换（UniversalLayout支持）
+  - 主题dark/light切换（UniversalLayout支持）
   - Svg Sprite 图标
   - Mock 数据
 

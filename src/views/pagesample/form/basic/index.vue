@@ -1,5 +1,5 @@
 <template>
-    <div class="indexlayout-main-conent">
+    <div class="layout-main-conent">
       <el-card shadow="never" class="cus-card">
         <el-row>
             <el-col :xs="0" :sm="2"  :md="4" :lg="6" :xl="6" class="border-solid-transparent"></el-col>

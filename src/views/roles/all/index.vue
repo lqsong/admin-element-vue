@@ -1,5 +1,5 @@
 <template>
-    <div class="indexlayout-main-conent">
+    <div class="layout-main-conent">
         <el-card shadow="never" class="cus-card">
 
                 <el-alert title="此栏目为权限功能做演示！" type="warning" />

@@ -1,5 +1,5 @@
 <template>
-    <div class="indexlayout-main-conent">
+    <div class="layout-main-conent">
         <el-form label-position="top" :model="modelRef" :rules="rulesRef" ref="formRef">
             <el-card shadow="never" class="cus-card" style="margin-bottom: 20px">
                 <template #header>基础信息</template>

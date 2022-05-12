@@ -1,5 +1,5 @@
 <template>
-    <div class="indexlayout-main-conent">
+    <div class="layout-main-conent">
         <el-card shadow="never" class="cus-card">
 
                 <el-alert
