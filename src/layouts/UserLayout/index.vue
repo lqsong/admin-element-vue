@@ -41,7 +41,7 @@ export default defineComponent({
   height: 100vh;
   min-height: 500px;
   overflow: auto;
-  background-image: url('../../assets/images/bg-smooth.jpg');
+  background-image: url('../../assets/images/bg.svg');
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
@@ -56,7 +56,7 @@ export default defineComponent({
         .dropDown {
             i,
             .svg-icon {
-                color: #ffffff;
+                color: rgba(0,0,0,.85);
                 font-size: 16px;
             }
         }
