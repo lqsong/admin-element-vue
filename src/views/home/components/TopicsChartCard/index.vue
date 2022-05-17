@@ -21,14 +21,12 @@
 import { computed, ComputedRef, defineComponent, onMounted, Ref, ref, watch } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
-import { EChartOption } from 'echarts';
-import useEcharts from '@/composables/useEcharts';
+import useEcharts, { EChartsOption } from '@/composables/useEcharts';
 import { StateType as HomeStateType } from "../../store";
 import { ChartDataType } from "../../data";
 
-const topicsChartOption: EChartOption = {
+const topicsChartOption: EChartsOption = {
   tooltip: {
-    trigger: 'axis',
   },
   grid: {
     left: '0',
@@ -75,6 +73,7 @@ const topicsChartOption: EChartOption = {
       itemStyle: {
         borderWidth: 6,
         borderColor: '#A9F387',
+        color: '#48D8BF'
       },
       smooth: true,
     },
@@ -107,7 +106,7 @@ export default defineComponent({
         const echarts = useEcharts(topicsChartRef, topicsChartOption);      
         watch([echarts, chartData],()=> {
           if(echarts.value) {
-              const option: EChartOption = {
+              const option: EChartsOption = {
                 xAxis: {
                   // data: ["03-01", "03-01", "03-01", "03-01", "03-01", "03-01", "03-01"]
                   data: chartData.value.day,
