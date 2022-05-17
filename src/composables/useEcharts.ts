@@ -1,33 +1,35 @@
-import { onMounted, onBeforeUnmount, Ref, ref } from 'vue';
+import { onMounted, onBeforeUnmount, Ref, ref, nextTick } from 'vue';
 import debounce from 'lodash.debounce';
-import echarts, { ECharts, EChartOption } from 'echarts';
-import 'echarts/theme/macarons';
+import * as echarts from 'echarts';
+
+export type EChartsOption = echarts.EChartsOption;
 
 export default function useEcharts(
     labRef: Ref<HTMLDivElement | HTMLCanvasElement | undefined>, 
-    initOption: EChartOption, 
-    theme = 'macarons'
+    initOption: EChartsOption, 
+    theme = ''
     ): Ref<echarts.ECharts | undefined> {
 
-    let ec: ECharts;
-    const chart = ref<ECharts>();
+
+    const chart = ref<echarts.ECharts>();
     
     const resizeHandler = debounce(() => {
-        ec.resize();
+        chart.value?.resize();
     }, 100);
     
-    onMounted(()=> {
+    onMounted(async ()=> {
+        await nextTick();
+
         if(labRef.value) {
-            ec = echarts.init(labRef.value, theme);
-            ec.setOption(initOption);
-            chart.value = ec;
+            chart.value = echarts.init(labRef.value, theme);
+            chart.value.setOption(initOption);
         }
         
         window.addEventListener('resize', resizeHandler);
     })
 
     onBeforeUnmount(()=> {
-        ec.dispose();            
+        chart.value?.dispose();            
         window.removeEventListener('resize', resizeHandler);
     });
 

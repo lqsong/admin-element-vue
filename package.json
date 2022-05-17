@@ -16,7 +16,7 @@
     "@toast-ui/editor": "^2.5.4",
     "axios": "^0.21.4",
     "core-js": "^3.22.4",
-    "echarts": "^4.9.0",
+    "echarts": "^5.3.2",
     "element-plus": "^2.2.0",
     "localforage": "^1.10.0",
     "lodash.debounce": "^4.0.8",
@@ -28,7 +28,6 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@types/echarts": "^4.9.15",
     "@types/jest": "^24.9.1",
     "@types/lodash.debounce": "^4.0.7",
     "@typescript-eslint/eslint-plugin": "^4.33.0",

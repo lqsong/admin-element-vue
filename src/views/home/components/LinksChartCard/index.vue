@@ -19,18 +19,12 @@
 import { computed, defineComponent, onMounted, Ref, ref, watch, ComputedRef } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
-import { EChartOption } from 'echarts';
-import useEcharts from '@/composables/useEcharts';
+import useEcharts, { EChartsOption } from '@/composables/useEcharts';
 import { StateType as HomeStateType } from "../../store";
 import { ChartDataType } from "../../data";
 
-const linksChartOption: EChartOption = {
-  tooltip: {
-    trigger: 'axis',
-    axisPointer: {
-      type: 'shadow',
-    },
-  },
+const linksChartOption: EChartsOption = {
+  tooltip: {},
   grid: {
     left: '0',
     right: '0',
@@ -53,6 +47,9 @@ const linksChartOption: EChartOption = {
       data: [
         /* 5888, 3838, 15880, 12888, 18888, 16888,5888, 3838, 15880, 12888, 18888, 16888 */
       ],
+      itemStyle:{
+        color: '#48D8BF'
+      }
     },
   ],
 };
@@ -78,12 +75,12 @@ export default defineComponent({
         // chart Data
         const chartData = computed<ChartDataType>(()=> store.state.Home.linksChartData.chart);
 
-        // echarts 图表
+        // ec 图表
         const linksChartRef = ref<HTMLDivElement>();
-        const echarts = useEcharts(linksChartRef, linksChartOption);      
-        watch([echarts, chartData],()=> {
-          if(echarts.value) {
-              const option: EChartOption = {
+        const ec = useEcharts(linksChartRef, linksChartOption);      
+        watch([ec, chartData],()=> {
+          if(ec.value) {
+              const option: EChartsOption = {
                 xAxis: {
                   // data: ["03-01", "03-01", "03-01", "03-01", "03-01", "03-01", "03-01"]
                   data: chartData.value.day,
@@ -96,7 +93,7 @@ export default defineComponent({
                   },
                 ],
               };              
-              echarts.value.setOption(option);
+              ec.value.setOption(option);
           }
         }); 
 
