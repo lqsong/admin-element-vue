@@ -1,4 +1,4 @@
-import { onMounted, onBeforeUnmount, Ref, ref, nextTick } from 'vue';
+import { onMounted, onBeforeUnmount, Ref, shallowRef, nextTick } from 'vue';
 import debounce from 'lodash.debounce';
 import * as echarts from 'echarts';
 
@@ -11,7 +11,7 @@ export default function useEcharts(
     ): Ref<echarts.ECharts | undefined> {
 
 
-    const chart = ref<echarts.ECharts>();
+    const chart = shallowRef<echarts.ECharts>();
     
     const resizeHandler = debounce(() => {
         chart.value?.resize();
