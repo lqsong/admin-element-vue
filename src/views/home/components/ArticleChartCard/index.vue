@@ -31,17 +31,17 @@
       </el-card>   
 </template>
 <script lang="ts">
-import { computed, ComputedRef, defineComponent, onMounted, Ref, ref } from "vue";
-import { useStore } from "vuex";
+import { reactive,  defineComponent, onMounted, Ref, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import IconSvg from "@/components/IconSvg";
-import { ArticleChartDataType } from "../../data.d";
-import { StateType as HomeStateType } from "../../store";
+import { ArticleChartDataType } from "./data.d";
+import { ResponseData } from '@/utils/request';
+import { dailynewArticles } from "./service";
 
 interface ArticleChartCardSetupData {
     t: (key: string | number) => string;
     loading: Ref<boolean>;
-    visitData:  ComputedRef<ArticleChartDataType>;
+    visitData:  ArticleChartDataType;
 }
 
 export default defineComponent({
@@ -50,16 +50,26 @@ export default defineComponent({
         IconSvg
     },
     setup(): ArticleChartCardSetupData {
-        const store = useStore<{ Home: HomeStateType}>();
         const { t } = useI18n();
 
         // 数据
-        const visitData = computed<ArticleChartDataType>(()=> store.state.Home.articleChartData);
+        const visitData = reactive<ArticleChartDataType>({
+          total: 0,
+          num: 0,
+          week: 0,
+          day: 0
+        });
+      
         // 读取数据 func
         const loading = ref<boolean>(true);
         const getData = async () => {
-            loading.value = true;
-            await store.dispatch('Home/queryArticleChartData');
+            loading.value = true;           
+            const response: ResponseData = await dailynewArticles();
+            const { data } = response;
+            visitData.total = data.total || 0;
+            visitData.num = data.num || 0;
+            visitData.week = data.week || 0;
+            visitData.day = data.day || 0;
             loading.value = false;
         }
 
