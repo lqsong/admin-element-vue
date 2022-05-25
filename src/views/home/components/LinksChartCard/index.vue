@@ -16,12 +16,12 @@
       </el-card>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted, Ref, ref, watch, ComputedRef } from "vue";
-import { useStore } from "vuex";
+import { computed, defineComponent, reactive, Ref, ref, ComputedRef } from "vue";
 import { useI18n } from "vue-i18n";
 import useEcharts, { EChartsOption } from '@/composables/useEcharts';
-import { StateType as HomeStateType } from "../../store";
-import { ChartDataType } from "../../data";
+import { LinksChartDataType } from "./data.d";
+import { ResponseData } from '@/utils/request';
+import { annualnewLinks } from "./service";
 
 const linksChartOption: EChartsOption = {
   tooltip: {},
@@ -65,51 +65,57 @@ interface LinksChartCardSetupData {
 export default defineComponent({
     name: 'LinksChartCard',
     setup(): LinksChartCardSetupData {
-        const store = useStore<{ Home: HomeStateType}>();
         const { t } = useI18n();
 
-        // 总数
-        const total = computed<number>(() => store.state.Home.linksChartData.total);
-        // num
-        const num = computed<number>(() => store.state.Home.linksChartData.num);
-        // chart Data
-        const chartData = computed<ChartDataType>(()=> store.state.Home.linksChartData.chart);
-
-        // ec 图表
-        const linksChartRef = ref<HTMLDivElement>();
-        const ec = useEcharts(linksChartRef, linksChartOption);      
-        watch([ec, chartData],()=> {
-          if(ec.value) {
-              const option: EChartsOption = {
-                xAxis: {
-                  // data: ["03-01", "03-01", "03-01", "03-01", "03-01", "03-01", "03-01"]
-                  data: chartData.value.day,
-                },
-                series: [
-                  {
-                    name: '新增',
-                    // data: [3, 1, 1, 2, 2, 2, 2]
-                    data: chartData.value.num,
-                  },
-                ],
-              };              
-              ec.value.setOption(option);
+        // 数据
+        const visitData = reactive<LinksChartDataType>({
+          total: 0,
+          num: 0,
+          chart: {
+            day: [],
+            num: [],
           }
-        }); 
-
-
-        // 读取数据 func
-        const loading = ref<boolean>(true);
-        const getData = async () => {
-            loading.value = true;
-            await store.dispatch('Home/queryLinksChartData');
-            loading.value = false;
-        };
-
-        onMounted(()=> {
-           getData();
         });
 
+        // 总数
+        const total = computed<number>(() => visitData.total);
+        // num
+        const num = computed<number>(() => visitData.num);
+
+        const loading = ref<boolean>(false);
+        // ec 图表
+        const linksChartRef = ref<HTMLDivElement>();
+        useEcharts(linksChartRef, linksChartOption, async (chart)=> {
+
+            loading.value = true;
+
+            const response: ResponseData = await annualnewLinks();
+            const { data } = response;
+            visitData.total = data.total || 0;
+            visitData.num = data.num || 0;
+            visitData.chart = data.chart || {
+              day: [],
+              num: [],
+            }
+
+            const option: EChartsOption = {
+              xAxis: {
+                // data: ["03-01", "03-01", "03-01", "03-01", "03-01", "03-01", "03-01"]
+                data: visitData.chart.day,
+              },
+              series: [
+                {
+                  name: '新增',
+                  // data: [3, 1, 1, 2, 2, 2, 2]
+                  data: visitData.chart.num,
+                },
+              ],
+            };
+            chart.setOption(option);
+            
+            loading.value = false;
+
+        });       
 
         return {
             t,

@@ -2,20 +2,12 @@ import { Mutation, Action } from 'vuex';
 import { StoreModuleType } from "@/utils/store";
 import { ResponseData } from '@/utils/request';
 import {
-    dailynewArticles,
-    weeknewWorks,
-    monthnewTopics,
-    annualnewLinks,
     hotSearchQueryList,
     hotTagsQueryList,
     articleHitQueryList,
     worksHitQueryList,
   } from './service';
 import {
-    ArticleChartDataType,
-    WorksChartDataType,
-    TopicsChartDataType,
-    LinksChartDataType,
     HotSearchDataType,
     HotTagsDataType,
     ArticleHitDataType,
@@ -24,10 +16,6 @@ import {
   } from './data.d';
 
 export interface StateType {
-  articleChartData: ArticleChartDataType;
-  worksChartData: WorksChartDataType;
-  topicsChartData: TopicsChartDataType;
-  linksChartData: LinksChartDataType;
   hotSearchData: HotSearchDataType;
   hotTagsData: HotTagsDataType;
   articleHitData: ArticleHitDataType;
@@ -37,20 +25,12 @@ export interface StateType {
 export interface ModuleType extends StoreModuleType<StateType> {
     state: StateType;
     mutations: {
-        setArticleChartData: Mutation<StateType>;
-        setWorksChartData: Mutation<StateType>;
-        setTopicsChartData: Mutation<StateType>;
-        setLinksChartData: Mutation<StateType>;
         setHotSearchData: Mutation<StateType>;
         setHotTagsData: Mutation<StateType>;
         setArticleHitData: Mutation<StateType>;
         setWorksHitData: Mutation<StateType>;
     };
     actions: {
-        queryArticleChartData: Action<StateType, StateType>;
-        queryWorksChartData: Action<StateType, StateType>;
-        queryTopicsChartData: Action<StateType, StateType>;
-        queryLinksChartData: Action<StateType, StateType>;
         queryHotSearchData: Action<StateType, StateType>;
         queryHotTagsData: Action<StateType, StateType>;
         queryArticleHitData: Action<StateType, StateType>;
@@ -59,36 +39,6 @@ export interface ModuleType extends StoreModuleType<StateType> {
 }
 
 const initState: StateType = {
-    articleChartData: {
-      total: 0,
-      num: 0,
-      week: 0,
-      day: 0,
-    },
-    worksChartData: {
-      total: 0,
-      num: 0,
-      chart: {
-        day: [],
-        num: [],
-      },
-    },
-    topicsChartData: {
-      total: 0,
-      num: 0,
-      chart: {
-        day: [],
-        num: [],
-      },
-    },
-    linksChartData: {
-      total: 0,
-      num: 0,
-      chart: {
-        day: [],
-        num: [],
-      },
-    },
     hotSearchData: {
         list: [],
         pagination: {
@@ -134,18 +84,6 @@ const StoreModel: ModuleType = {
         ...initState
     },
     mutations: {
-        setArticleChartData(state, payload) {
-            state.articleChartData = payload;
-        },
-        setWorksChartData(state, payload) {
-            state.worksChartData = payload;
-        },
-        setTopicsChartData(state, payload) {
-            state.topicsChartData = payload;
-        },
-        setLinksChartData(state, payload) {
-            state.linksChartData = payload;
-        },
         setHotSearchData(state, payload) {
             state.hotSearchData = payload;
         },
@@ -160,58 +98,6 @@ const StoreModel: ModuleType = {
         },
     },
     actions: {
-        async queryArticleChartData({ commit }) {
-            try {
-                const response: ResponseData = await dailynewArticles();
-                const { data } = response;
-                commit('setArticleChartData', {
-                    ...initState.articleChartData,
-                    ...data,
-                });
-                return true;
-            } catch (error) {
-                return false;
-            }
-        },
-        async queryWorksChartData({ commit }) {
-            try {
-                const response: ResponseData = await weeknewWorks();
-                const { data } = response;
-                commit('setWorksChartData', {
-                    ...initState.worksChartData,
-                    ...data,
-                });
-                return true;
-            } catch (error) {
-                return false;
-            }
-        },
-        async queryTopicsChartData({ commit }) {
-            try {
-                const response: ResponseData = await monthnewTopics();
-                const { data } = response;
-                commit('setTopicsChartData', {
-                    ...initState.topicsChartData,
-                    ...data,
-                });
-                return true;
-            } catch (error) {
-                return false;
-            }
-        },
-        async queryLinksChartData({ commit }) {
-            try {
-                const response: ResponseData = await annualnewLinks();
-                const { data } = response;
-                commit('setLinksChartData', {
-                    ...initState.linksChartData,
-                    ...data,
-                });
-                return true;
-            } catch (error) {
-                return false;
-            }
-        },
         async queryHotSearchData({ commit }, payload: TableListQueryParams) {
             try {       
                 const response: ResponseData = await hotSearchQueryList(payload);

@@ -18,12 +18,12 @@
 
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted, Ref, ref, watch, ComputedRef } from "vue";
-import { useStore } from "vuex";
+import { computed, defineComponent, Ref, ref, reactive, ComputedRef } from "vue";
 import { useI18n } from "vue-i18n";
 import useEcharts, { EChartsOption } from '@/composables/useEcharts';
-import { StateType as HomeStateType } from "../../store";
-import { ChartDataType } from "../../data";
+import { TopicsChartDataType } from "./data.d";
+import { ResponseData } from '@/utils/request';
+import { monthnewTopics } from "./service";
 
 const topicsChartOption: EChartsOption = {
   tooltip: {
@@ -91,49 +91,56 @@ interface TopicsChartCardSetupData {
 export default defineComponent({
     name: 'TopicsChartCard',
     setup(): TopicsChartCardSetupData {
-        const store = useStore<{ Home: HomeStateType}>();
         const { t } = useI18n();
 
+        // 数据
+        const visitData = reactive<TopicsChartDataType>({
+          total: 0,
+          num: 0,
+          chart: {
+            day: [],
+            num: [],
+          }
+        });
+
         // 总数
-        const total = computed<number>(() => store.state.Home.topicsChartData.total);
+        const total = computed<number>(() => visitData.total);
         // num
-        const num = computed<number>(() => store.state.Home.topicsChartData.num);
-        // chart Data
-        const chartData = computed<ChartDataType>(()=> store.state.Home.topicsChartData.chart);
+        const num = computed<number>(() => visitData.num);
+
+        const loading = ref<boolean>(false);
 
         // echarts 图表
         const topicsChartRef = ref<HTMLDivElement>();
-        const echarts = useEcharts(topicsChartRef, topicsChartOption);      
-        watch([echarts, chartData],()=> {
-          if(echarts.value) {
-              const option: EChartsOption = {
-                xAxis: {
-                  // data: ["03-01", "03-01", "03-01", "03-01", "03-01", "03-01", "03-01"]
-                  data: chartData.value.day,
-                },
-                series: [
-                  {
-                    name: '新增',
-                    // data: [3, 1, 1, 2, 2, 2, 2]
-                    data: chartData.value.num,
-                  },
-                ],
-              };              
-              echarts.value.setOption(option);
-          }
-        }); 
+        useEcharts(topicsChartRef, topicsChartOption, async (chart)=> {
 
-        // 读取数据 func
-        const loading = ref<boolean>(true);
-        const getData = async () => {
             loading.value = true;
-            await store.dispatch('Home/queryTopicsChartData');
-            loading.value = false;
-        };
 
-        onMounted(()=> {
-           getData();
-        });
+            const response: ResponseData = await monthnewTopics();
+            const { data } = response;
+            visitData.total = data.total || 0;
+            visitData.num = data.num || 0;
+            visitData.chart = data.chart || {
+              day: [],
+              num: [],
+            }
+
+            const option: EChartsOption = {
+              xAxis: {
+                data: visitData.chart.day,
+              },
+              series: [
+                {
+                  name: '新增',
+                  data: visitData.chart.num,
+                },
+              ],
+            };
+            chart.setOption(option);
+            
+            loading.value = false;
+
+        });        
 
         return {
             t,
