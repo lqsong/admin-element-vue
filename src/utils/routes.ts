@@ -253,9 +253,9 @@ export const getRouteBelongTopMenu = (route: RoutesDataItem): string => {
  */
 export const vueRoutes = (routesData: RoutesDataItem[], parentPath = '/', headStart = '/'): RoutesDataItem[] => {
   return routesData.map(item => {
-    const { children, ...other } = item;
+    const { children } = item;
     const itemChildren = children || [];
-    const newItem: RoutesDataItem = { ...other };
+    const newItem: RoutesDataItem = { ...item };
     newItem.path = setRoutePathForParent(newItem.path, parentPath, headStart);
     
     if (item.children) {
@@ -310,8 +310,9 @@ export const vueRoutes = (routesData: RoutesDataItem[], parentPath = '/', headSt
  */
  export const routesSetMeta = (routesData: RoutesDataItem[]): RoutesDataItem[] => {
   return routesData.map(item => {
-    const { children, tabNavType, meta, ...other } = item;    
+    const { children, tabNavType, meta } = item;    
     const newItem: RoutesDataItem = {
+      ...item,
       meta: {
         ...meta,
 
@@ -321,7 +322,6 @@ export const vueRoutes = (routesData: RoutesDataItem[], parentPath = '/', headSt
 
         // 自定义设置的 meta 值 E
       },
-      ...other
      };
     
     if (item.children) {
