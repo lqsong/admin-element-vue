@@ -1,6 +1,6 @@
 # admin-element-vue-typescript
 
-此分支是 Webpack + Vue3.x + Element Plus 版本 ， Vite 版本请查看 Vite.ts (分支)（[github](https://github.com/lqsong/admin-element-vue/tree/vite.ts)、[gitee](https://gitee.com/lqsong/admin-element-vue/tree/vite.ts)）
+此分支是 Webpack + Vue3.x + Vuex + Element Plus 版本 ， Vite 版本请查看 Vite.ts2 (分支)（[github](https://github.com/lqsong/admin-element-vue/tree/vite.ts2)、[gitee](https://gitee.com/lqsong/admin-element-vue/tree/vite.ts2)）
 
 ## Demo
 
@@ -31,6 +31,9 @@
  - [Gitee](https://gitee.com/lqsong/admin-element-vue)
 
 
+## 框架模板
+
+- frame-template-vue（[GitHub](https://github.com/lqsong/frame-template-vue)、[Gitee](https://gitee.com/lqsong/frame-template-vue)）
 
 ## 后台前端解决方案列表
 
@@ -42,6 +45,10 @@
  - electron-admin-antd-react（[GitHub](https://github.com/lqsong/electron-admin-antd-react)、[Gitee](https://gitee.com/lqsong/electron-admin-antd-react)）
  - admin-vue3-micro-qiankun（[GitHub](https://github.com/lqsong/admin-vue3-micro-qiankun)、[Gitee](https://gitee.com/lqsong/admin-vue3-micro-qiankun)）
 
+
+## 前台前端解决方案列表
+
+- template-vant-vue（[GitHub](https://github.com/lqsong/template-vant-vue)、[Gitee](https://gitee.com/lqsong/template-vant-vue)）
 
 ## 前台前端SSR解决方案列表
 
