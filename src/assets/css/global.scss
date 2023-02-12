@@ -1,0 +1,133 @@
+@import "./normalize.css";
+@import "./variables.scss";
+@import "./mixin.scss";
+@import "./element-plus.scss";
+html,
+body {
+	font-family: var(--ft-font-family);
+	font-size: var(--ft-font-size);
+	font-weight: var(--ft-font-weight);
+	line-height: 1.4;
+	text-size-adjust: 100%;
+	text-rendering: optimizelegibility;
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: transparent;
+	-moz-osx-font-smoothing: grayscale;
+}
+body {
+	width: 100%;
+	min-height: 100vh;
+	color: var(--ft-text-color);
+	background-color: var(--ft-bg-color);
+}
+a {
+	font-size: var(--ft-a-font-size);
+	font-weight: var(--ft-a-font-weight);
+	color: var(--ft-a-text-color);
+	text-decoration: none;
+	cursor: pointer;
+	background-color: transparent;
+	outline: none;
+	&:active,
+	&:hover {
+		text-decoration: none;
+		outline: 0;
+	}
+	&:active {
+		color: var(--ft-a-text-color);
+	}
+	&:hover {
+		color: var(--ft-a-hover-text-color);
+	}
+	&.primary {
+		--ft-a-text-color: var(--ft-color-primary);
+		--ft-a-hover-text-color: var(--ft-text-color);
+	}
+}
+.flex-wrap-wrap {
+	flex-wrap: wrap;
+}
+
+/* text */
+.text-align-right {
+	text-align: right;
+}
+
+/* float */
+.float-right {
+	float: right;
+}
+
+/* cursor */
+.cursor-pointer {
+	cursor: pointer;
+}
+
+/* margin */
+.margin-l15 {
+	margin-left: 15px;
+}
+.margin-b16 {
+	margin-bottom: 16px;
+}
+
+/* padding */
+.padding-t10 {
+	padding-top: 10px;
+}
+.padding-lr16 {
+	padding-right: 16px;
+	padding-left: 16px;
+}
+
+/* 详情表格样式 */
+.ft-detail {
+	position: relative;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	&.border {
+		border-right: solid 1px var(--ft-cell-border-color);
+		border-bottom: solid 1px var(--ft-cell-border-color);
+	}
+	.ft-detail-row {
+		position: relative;
+		box-sizing: border-box;
+		display: flex;
+		flex: 1;
+		flex-direction: row;
+		.left,
+		.right {
+			position: relative;
+			box-sizing: border-box;
+			display: flex;
+			flex: 1;
+			.cell {
+				padding: 8px 11px;
+				font-size: 14px;
+				line-height: 22px;
+				word-break: break-all;
+			}
+			&.width200 {
+				flex: none;
+				width: 200px;
+			}
+			&.border {
+				border-top: solid 1px var(--ft-cell-border-color);
+				border-left: solid 1px var(--ft-cell-border-color);
+			}
+		}
+	}
+
+	// 标题
+	.th {
+		background: var(--ft-cell-hover-bg-color);
+	}
+}
+
+/* 基于element table 重置样式 */
+.ft-el-table-header {
+	th {
+		background-color: var(--ft-cell-hover-bg-color) !important;
+	}
+}

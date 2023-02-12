@@ -1,0 +1,11 @@
+/dist/*
+.local
+.npmrc
+/node_modules/**
+
+**/*.svg
+**/*.sh
+
+/public/*
+
+

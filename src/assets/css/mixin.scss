@@ -1,0 +1,25 @@
+@mixin scrollbar(
+	$thumb-background: hsla(0, 0%, 100%, 0.2),
+	$thumb-shadow: hsla(0, 0%, 100%, 0.05),
+	$track-background: hsla(0, 0%, 100%, 0.15),
+	$track-shadow: rgba(37, 37, 37, 0.05)
+) {
+	::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+	::-webkit-scrollbar-thumb {
+		background: $thumb-background;
+		border-radius: 3px;
+		box-shadow: inset 0 0 5px $thumb-shadow;
+	}
+	::-webkit-scrollbar-track {
+		background: $track-background;
+		border-radius: 3px;
+		box-shadow: inset 0 0 5px $track-shadow;
+	}
+}
+
+@mixin scrollbar-light {
+	@include scrollbar(hsla(0, 0%, 0%, 0.2), hsla(0, 0%, 0%, 0.05), hsla(0, 0%, 0%, 0.15), rgba(255, 255, 255, 0.05));
+}

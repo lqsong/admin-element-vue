@@ -1,0 +1,87 @@
+@import "../../../assets/css/variables.scss";
+:root {
+	// 白天模式
+	color-scheme: light;
+
+	// 框架 - 左边宽度
+	--ft-mb-layout-left-side-width: 200px;
+	--ft-mb-layout-left-side-collapsed-width: 54px;
+
+	// 框架 - 左边 - 菜单宽度
+	--ft-mb-layout-left-menu-width: var(--ft-mb-layout-left-side-width);
+
+	// 框架 - 菜单 - item高度
+	--ft-mb-layout-menu-item-height: 40px;
+
+	// 框架 - 菜单 - item字体颜色
+	--ft-mb-layout-menu-item-color: var(--ft-color-white-rgb-2);
+
+	// 框架 - 菜单 - item字体颜色(选中)
+	--ft-mb-layout-menu-item-active-color: var(--ft-color-white);
+
+	// 框架 - 菜单 - item背景色(选中)
+	--ft-mb-layout-menu-item-active-bg-color: var(--ft-color-primary);
+
+	// 框架 - 菜单 - 背景色
+	--ft-mb-layout-menu-bg-color: var(--ft-color-black-primary-1);
+
+	// 框架 - 菜单 - 子菜单 - 背景色
+	--ft-mb-layout-submenu-bg-color: var(--ft-color-black-primary);
+
+	// 框架 - 主窗口 - 背景色
+	--ft-mb-layout-main-bg-color: var(--ft-color-white-1);
+
+	// 框架 - 右侧 - 头部高度
+	--ft-mb-layout-header-height: 48px;
+
+	// 框架 - 右侧 - 头部Tab - 导航高度
+	--ft-mb-layout-header-tab-nav-height: 36px;
+
+	// 框架 - 右侧 - 头部Tab - 背景颜色
+	--ft-mb-layout-header-tab-nav-bg-color: var(--ft-color-white-2);
+
+	// 框架 - 右侧 - 头部Tab - item(选中背景)
+	--ft-mb-layout-header-tab-nav-item-active-bg-color: var(--ft-color-white);
+
+	// 框架 - 右侧 - 头部Tab - item(hover背景)
+	--ft-mb-layout-header-tab-nav-item-hover-bg-color: var(--ft-color-white-1);
+
+	// 框架 - 右侧 - 头部 - 右侧 - item文字颜色
+	--ft-mb-layout-header-right-item-color: var(--ft-text-color);
+
+	// 框架 - 右侧 - 头部 - 右侧 - item背景色(hover)
+	--ft-mb-layout-header-right-item-hover-bg-color: var(--ft-color-white-1);
+
+	// 框架 - 右侧 - 主窗口 - 间隔
+	--ft-mb-layout-main-padding: 16px;
+}
+
+/* 暗黑主题 */
+html.dark {
+	// 黑夜模式
+	color-scheme: dark;
+
+	// 框架 - 菜单 - item背景色(选中)
+	--ft-mb-layout-menu-item-active-bg-color: var(--ft-color-black-2);
+
+	// 框架 - 菜单 - 背景色
+	--ft-mb-layout-menu-bg-color: var(--ft-color-black-1);
+
+	// 框架 - 菜单 - 子菜单 - 背景色
+	--ft-mb-layout-submenu-bg-color: var(--ft-color-black);
+
+	// 框架 - 主窗口 - 背景色
+	--ft-mb-layout-main-bg-color: var(--ft-color-black-rgb-3);
+
+	// 框架 - 右侧 - 头部Tab - 背景颜色
+	--ft-mb-layout-header-tab-nav-bg-color: var(--ft-color-black-1);
+
+	// 框架 - 右侧 - 头部Tab - item(选中背景)
+	--ft-mb-layout-header-tab-nav-item-active-bg-color: var(--ft-color-black);
+
+	// 框架 - 右侧 - 头部Tab - item(hover背景)
+	--ft-mb-layout-header-tab-nav-item-hover-bg-color: var(--ft-color-black-2);
+
+	// 框架 - 右侧 - 头部 - 右侧 - item背景色(hover)
+	--ft-mb-layout-header-right-item-hover-bg-color: var(--ft-color-black-primary);
+}

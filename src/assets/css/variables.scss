@@ -1,0 +1,87 @@
+:root {
+	// 白天模式
+	color-scheme: light;
+
+	// 颜色
+	--ft-color-white: #ffffff;
+	--ft-color-white-1: #f0f2f5;
+	--ft-color-white-2: #f3f3f3;
+	--ft-color-white-rgb-1: rgb(255 255 255 / 87%);
+	--ft-color-white-rgb-2: rgb(255 255 255 / 65%);
+	--ft-color-black: #000000;
+	--ft-color-black-1: #1d1e1f;
+	--ft-color-black-2: #303133;
+	--ft-color-black-rgb-1: rgb(0 0 0 / 10%);
+	--ft-color-black-rgb-2: rgb(60 60 60 / 12%);
+	--ft-color-black-rgb-3: rgb(84 84 84 / 65%);
+	--ft-color-black-primary: #000c17;
+	--ft-color-black-primary-1: #001529;
+	--ft-color-primary: #1890ff;
+	--ft-color-primary-1: #e6f7ff;
+
+	// 字体大小
+	--ft-font-size-base: 14px; // 基础
+
+	// 字体粗细
+	--ft-font-weight-base: 400; // 基础
+
+	// 网页 - 背景色
+	--ft-bg-color: var(--ft-color-white);
+
+	// 网页 - 文本颜色
+	--ft-text-color: var(--ft-color-black-2);
+
+	// 网页 - 字体
+	--ft-font-family: "Helvetica Neue", helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+		"\5fae\8f6f\96c5\9ed1", arial, sans-serif;
+
+	// 网页 - 字体大小
+	--ft-font-size: var(--ft-font-size-base);
+
+	// 网页 - 字体粗细
+	--ft-font-weight: var(--ft-font-weight-base);
+
+	// a 链接
+	--ft-a-font-size: var(--ft-font-size-base);
+	--ft-a-font-weight: var(--ft-font-weight-base);
+	--ft-a-text-color: var(--ft-text-color);
+	--ft-a-hover-text-color: var(--ft-color-primary);
+
+	// 分割器
+	--ft-divider-color: var(--ft-color-black-rgb-2);
+
+	// shadow color
+	--ft-shadow-color-1: var(--ft-color-black-rgb-1);
+
+	// card
+	--ft-card-bg-color: var(--ft-color-white);
+
+	// 单元格
+	--ft-cell-hover-bg-color: #f5f7fa;
+	--ft-cell-border-color: #ebeef5;
+}
+
+/* 暗黑主题 */
+html.dark {
+	// 黑夜模式
+	color-scheme: dark;
+
+	// 网页 - 背景色
+	--ft-bg-color: var(--ft-color-black-1);
+
+	// 网页 - 文本颜色
+	--ft-text-color: var(--ft-color-white-rgb-1);
+
+	// 分割器
+	--ft-divider-color: var(--ft-color-black-rgb-3);
+
+	// shadow color
+	--ft-shadow-color-1: var(--ft-color-white-rgb-1);
+
+	// card
+	--ft-card-bg-color: var(--ft-color-black-1);
+
+	// 单元格
+	--ft-cell-hover-bg-color: #262727;
+	--ft-cell-border-color: #363637;
+}

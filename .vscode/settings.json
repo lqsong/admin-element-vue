@@ -1,0 +1,9 @@
+{
+	"editor.formatOnSave": true,
+	"stylelint.enable": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.stylelint": true
+	},
+	"stylelint.validate": ["css", "less", "postcss", "scss", "vue", "sass", "html"],
+	"files.eol": "\n",
+}

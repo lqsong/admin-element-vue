@@ -1,0 +1,470 @@
+@import "./variables.scss";
+@import "../../../assets/css/mixin.scss";
+
+/* 菜单 popper */
+.member-layout-menu-popper {
+	.el-sub-menu__title,
+	.el-menu-item {
+		height: var(--ft-mb-layout-menu-item-height);
+		line-height: var(--ft-mb-layout-menu-item-height);
+		.icon {
+			width: 24px;
+			margin-right: 5px;
+			color: var(--ft-mb-layout-menu-item-color);
+			text-align: center;
+			vertical-align: middle;
+		}
+	}
+}
+
+/* member-layout */
+.member-layout {
+	display: flex;
+	flex-direction: row;
+	min-height: 100vh;
+
+	/* 菜单 */
+	.member-layout-menu {
+		background-color: var(--ft-mb-layout-menu-bg-color);
+		border: none;
+		.el-sub-menu .el-menu {
+			background-color: var(--ft-mb-layout-submenu-bg-color);
+		}
+		.el-sub-menu__title,
+		.el-menu-item {
+			height: var(--ft-mb-layout-menu-item-height);
+			line-height: var(--ft-mb-layout-menu-item-height);
+			color: var(--ft-mb-layout-menu-item-color);
+			.icon {
+				width: 24px;
+				margin-right: 5px;
+				color: var(--ft-mb-layout-menu-item-color);
+				text-align: center;
+				vertical-align: middle;
+			}
+			&:focus,
+			&:hover {
+				color: var(--ft-mb-layout-menu-item-active-color) !important;
+				background: none;
+				.icon {
+					color: var(--ft-mb-layout-menu-item-active-color) !important;
+				}
+			}
+		}
+
+		/* 选中 */
+		.is-active > .el-sub-menu__title {
+			color: var(--ft-mb-layout-menu-item-active-color) !important;
+			.icon {
+				color: var(--ft-mb-layout-menu-item-active-color) !important;
+			}
+		}
+		.el-sub-menu .el-menu-item.is-active,
+		.el-menu-item.is-active,
+		.el-sub-menu .el-menu-item.is-active svg,
+		.el-menu-item.is-active svg {
+			color: var(--ft-mb-layout-menu-item-active-color) !important;
+			background-color: var(--ft-mb-layout-menu-item-active-bg-color) !important;
+		}
+
+		/* 子标题 */
+		.el-sub-menu__title {
+			margin-top: 4px;
+			margin-bottom: 4px;
+		}
+		.el-menu-item:not(:last-child) {
+			margin-bottom: 8px;
+		}
+
+		/* 收起 */
+		&.el-menu--collapse {
+			width: var(--ft-mb-layout-left-side-collapsed-width);
+			.el-sub-menu__title,
+			.el-menu-item {
+				.icon {
+					position: absolute;
+					top: 10px;
+					left: 15px;
+					margin: 0;
+				}
+			}
+		}
+
+		/* 横导航模式 */
+		&.el-menu--horizontal.el-menu {
+			.el-sub-menu__title,
+			.el-menu-item {
+				height: var(--ft-mb-layout-header-height);
+				margin-top: 0;
+				margin-bottom: 0;
+				line-height: var(--ft-mb-layout-header-height);
+			}
+			.el-menu-item:not(:last-child) {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	/* 左侧 */
+	.member-layout-left {
+		display: flex;
+		flex: 0 0 var(--ft-mb-layout-left-menu-width);
+		background-color: var(--ft-mb-layout-menu-bg-color);
+		.member-layout-left-box {
+			display: flex;
+			flex-direction: column;
+			width: var(--ft-mb-layout-left-menu-width);
+			.member-layout-left-logo {
+				position: relative;
+				display: flex;
+				flex-shrink: 0;
+				align-items: center;
+				justify-content: center;
+				height: var(--ft-mb-layout-header-height);
+				.logo-url {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+				.img {
+					width: 26px;
+				}
+				.text {
+					margin-left: 10px;
+					font-family: -apple-system, BlinkMacSystemFont, "segoe ui", Roboto, "helvetica neue", Arial, "noto sans",
+						sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol", "noto color emoji";
+					font-size: 16px;
+					font-weight: 600;
+					color: var(--ft-mb-layout-menu-item-active-color);
+				}
+				&::after {
+					position: absolute;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					height: 1px;
+					content: "";
+					background-color: var(--ft-divider-color);
+				}
+			}
+			.member-layout-left-menu {
+				flex: 1;
+			}
+			&.fixed {
+				position: fixed;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				.member-layout-left-menu {
+					overflow: hidden auto;
+				}
+			}
+		}
+
+		/* 左侧收起 */
+		&.collapsed {
+			flex: 0 0 var(--ft-mb-layout-left-side-collapsed-width);
+			.member-layout-left-box {
+				width: var(--ft-mb-layout-left-side-collapsed-width);
+			}
+		}
+
+		@include scrollbar;
+	}
+
+	/* 右侧 */
+	.member-layout-right {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		background-color: var(--ft-mb-layout-main-bg-color);
+		.member-layout-right-top {
+			height: calc(var(--ft-mb-layout-header-height) + var(--ft-mb-layout-header-tab-nav-height));
+			.member-layout-right-top-box {
+				z-index: 10;
+				display: flex;
+				flex-direction: column;
+				height: calc(var(--ft-mb-layout-header-height) + var(--ft-mb-layout-header-tab-nav-height));
+				background-color: var(--ft-bg-color);
+				.member-layout-right-header,
+				.member-layout-right-tabnav {
+					position: relative;
+					display: flex;
+					align-items: center;
+					height: var(--ft-mb-layout-header-height);
+					.member-layout-right-header-main {
+						display: flex;
+						flex: 1;
+						flex-direction: row;
+						.member-layout-right-header-collapse {
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							width: var(--ft-mb-layout-header-height);
+							height: var(--ft-mb-layout-header-height);
+							.icon {
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								height: 30px;
+								padding: 0 8px;
+								cursor: pointer;
+								border-radius: 3px;
+								&:hover {
+									background-color: var(--ft-mb-layout-header-right-item-hover-bg-color);
+								}
+							}
+						}
+						.member-layout-right-header-main-box {
+							position: relative;
+							display: flex;
+							flex: 1;
+							align-items: center;
+							height: var(--ft-mb-layout-header-height);
+							overflow: hidden;
+							line-height: var(--ft-mb-layout-header-height);
+							.menu-box {
+								position: absolute;
+								top: 0;
+								right: 0;
+								bottom: 0;
+								left: 0;
+								overflow: hidden;
+							}
+						}
+					}
+					.member-layout-right-header-right {
+						display: flex;
+						align-items: center;
+						width: 170px;
+						.member-layout-right-header-right-item {
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							height: 30px;
+							padding: 0 8px;
+							margin-left: 5px;
+							color: var(--ft-mb-layout-header-right-item-color);
+							cursor: pointer;
+							border-radius: 3px;
+							&:hover {
+								background-color: var(--ft-mb-layout-header-right-item-hover-bg-color);
+							}
+						}
+					}
+					&::after {
+						position: absolute;
+						right: 0;
+						bottom: 0;
+						left: 0;
+						height: 1px;
+						content: "";
+						background-color: var(--ft-divider-color);
+					}
+
+					/* 菜单模式 */
+					&.menu {
+						background-color: var(--ft-mb-layout-menu-bg-color);
+						.member-layout-right-header-main {
+							.member-layout-right-header-logo {
+								display: flex;
+								flex-shrink: 0;
+								align-items: center;
+								height: var(--ft-mb-layout-header-height);
+								padding: 0 10px;
+								.logo-url {
+									display: flex;
+									align-items: center;
+									justify-content: center;
+								}
+								.img {
+									width: 26px;
+								}
+								.text {
+									margin-left: 10px;
+									font-family: -apple-system, BlinkMacSystemFont, "segoe ui", Roboto, "helvetica neue", Arial,
+										"noto sans", sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol",
+										"noto color emoji";
+									font-size: 16px;
+									font-weight: 600;
+									color: var(--ft-mb-layout-menu-item-active-color);
+								}
+							}
+						}
+						.member-layout-right-header-right {
+							.member-layout-right-header-right-item {
+								--ft-mb-layout-header-right-item-color: var(--ft-color-white);
+								--ft-mb-layout-header-right-item-hover-bg-color: var(--ft-color-black-primary);
+							}
+						}
+					}
+				}
+				.member-layout-right-tabnav {
+					display: flex;
+					flex-direction: row;
+					height: var(--ft-mb-layout-header-tab-nav-height);
+					background-color: var(--ft-mb-layout-header-tab-nav-bg-color);
+					.member-layout-right-tabnav-icon {
+						box-sizing: border-box;
+						display: flex;
+						flex-shrink: 0;
+						align-items: center;
+						justify-content: center;
+						width: var(--ft-mb-layout-header-tab-nav-height);
+						height: var(--ft-mb-layout-header-tab-nav-height);
+						font-size: 14px;
+						cursor: pointer;
+						border-left: solid 1px var(--ft-divider-color);
+						&:hover {
+							background-color: var(--ft-mb-layout-header-tab-nav-item-hover-bg-color);
+						}
+						&.disabled {
+							color: var(--ft-color-black-rgb-3);
+							cursor: not-allowed;
+						}
+					}
+					.member-layout-right-tabnav-box {
+						box-sizing: border-box;
+						flex: 1;
+						height: var(--ft-mb-layout-header-tab-nav-height);
+						overflow: hidden;
+						border-left: solid 1px var(--ft-divider-color);
+						.member-layout-right-tabnav-item-box {
+							position: relative;
+							float: left;
+							overflow: visible;
+							white-space: nowrap;
+							list-style: none;
+							transition: transform 0.5s ease-in-out;
+							.member-layout-right-tabnav-item {
+								box-sizing: border-box;
+								display: inline-flex;
+								flex-grow: 0;
+								flex-shrink: 0;
+								height: var(--ft-mb-layout-header-tab-nav-height);
+								cursor: pointer;
+								border-right: solid 1px var(--ft-divider-color);
+								.item-box {
+									display: flex;
+									flex: 1;
+									align-items: center;
+									padding: 0 10px;
+									outline: none;
+									.text {
+										font-size: 14px;
+									}
+									.icon {
+										margin-left: 11px;
+										font-size: 10px;
+										.svg-icon {
+											vertical-align: -0.1em;
+										}
+										&:hover {
+											color: var(--ft-color-primary);
+										}
+									}
+								}
+								&:hover {
+									background-color: var(--ft-mb-layout-header-tab-nav-item-hover-bg-color);
+								}
+								&.active {
+									background-color: var(--ft-mb-layout-header-tab-nav-item-active-bg-color);
+								}
+							}
+						}
+					}
+				}
+				&.fixed {
+					position: fixed;
+					top: 0;
+					right: 0;
+					left: var(--ft-mb-layout-left-menu-width);
+				}
+			}
+
+			/* 左侧收起 */
+			&.collapsed {
+				.member-layout-right-top-box {
+					&.fixed {
+						left: var(--ft-mb-layout-left-side-collapsed-width);
+					}
+				}
+			}
+
+			/* 导航布局-横向 */
+			&.menu-layout-horizontal {
+				.member-layout-right-top-box {
+					left: 0 !important;
+				}
+			}
+
+			/* 不显示tabNav */
+			&.is-tabs-nav-no {
+				height: var(--ft-mb-layout-header-height);
+				.member-layout-right-top-box {
+					height: var(--ft-mb-layout-header-height);
+				}
+			}
+		}
+		.member-layout-right-main {
+			position: relative;
+			flex: 1;
+			margin: var(--ft-mb-layout-main-padding);
+			.member-layout-main-screen {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				overflow: hidden;
+				&.scroll-y {
+					overflow-y: auto;
+				}
+			}
+		}
+		.member-layout-right-footer {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 30px;
+			background-color: var(--ft-bg-color);
+		}
+	}
+}
+
+/* 不是暗黑模式下，高亮菜单才好使 */
+html:not(.dark) {
+	/* 高亮菜单 */
+	.member-layout.light-menu {
+		--ft-mb-layout-menu-bg-color: var(--ft-color-white);
+		--ft-mb-layout-submenu-bg-color: var(--ft-color-white);
+		--ft-mb-layout-menu-item-color: var(--ft-color-black-2);
+		--ft-mb-layout-menu-item-active-bg-color: var(--ft-color-primary-1);
+		--ft-mb-layout-menu-item-active-color: var(--ft-color-primary);
+
+		/* 左侧 */
+		.member-layout-left {
+			@include scrollbar-light;
+		}
+
+		/* 右侧 */
+		.member-layout-right {
+			/* 头部 */
+			.member-layout-right-top {
+				.member-layout-right-top-box {
+					.member-layout-right-header {
+						/* 菜单模式 */
+						&.menu {
+							.member-layout-right-header-right {
+								.member-layout-right-header-right-item {
+									--ft-mb-layout-header-right-item-color: var(--ft-text-color);
+									--ft-mb-layout-header-right-item-hover-bg-color: var(--ft-color-white-1);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
