@@ -2,6 +2,7 @@
  * @description: 自定义 request 网络请求工具,基于axios
  * @author LiQingSong
  */
+import { ElMessage } from "element-plus";
 import qs from "qs";
 import axios, { AxiosInstance, AxiosPromise, AxiosResponse, Canceler, RawAxiosRequestHeaders } from "axios";
 import { ContentTypeEnum, ResultCodeEnum } from "@/enums/utils.request.enum";
@@ -125,7 +126,8 @@ const errorHandler = (error: any) => {
 		const reqUrl = url.split("?")[0].replace(baseURL, "");
 		const noVerifyBool = ajaxResponseNoVerifyUrl.includes(reqUrl);
 		if (!noVerifyBool) {
-			alert(customCodeMessage[code] || msg || "Error");
+			// alert(customCodeMessage[code] || msg || "Error");
+			ElMessage.warning(customCodeMessage[code] || msg || "Error");
 
 			if (code === ResultCodeEnum.LOGININVALID) {
 				// 如果未登录或失效，这里可以跳转到登录页面
@@ -135,9 +137,11 @@ const errorHandler = (error: any) => {
 	} else if (response && response.status) {
 		const errorText = serverCodeMessage[response.status] || response.statusText;
 		const { status, request } = response;
-		alert(`请求错误 ${status}: ${request.responseURL}\n${errorText}`);
+		// alert(`请求错误 ${status}: ${request.responseURL}\n${errorText}`);
+		ElMessage.warning(`请求错误 ${status}: ${request.responseURL}\n${errorText}`);
 	} else if (!response) {
-		alert("网络异常：您的网络发生异常，无法连接服务器");
+		// alert("网络异常：您的网络发生异常，无法连接服务器");
+		ElMessage.warning("网络异常：您的网络发生异常，无法连接服务器");
 	}
 
 	return Promise.reject(error);
