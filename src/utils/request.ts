@@ -134,6 +134,8 @@ const errorHandler = (error: any) => {
 				router.push("/user/login");
 			}
 		}
+	} else if (message === "canceled") {
+		console.log("canceled", error);
 	} else if (response && response.status) {
 		const errorText = serverCodeMessage[response.status] || response.statusText;
 		const { status, request } = response;
