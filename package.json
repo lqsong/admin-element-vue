@@ -63,7 +63,7 @@
 		"stylelint-less": "^1.0.6",
 		"svgo": "^3.0.2",
 		"typescript": "^4.9.4",
-		"vite": "^3.2.5",
+		"vite": "^3.2.7",
 		"vite-plugin-compression": "^0.5.1",
 		"vite-plugin-eslint": "^1.8.1",
 		"vite-plugin-mock": "^2.9.6",
